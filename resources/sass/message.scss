@@ -1,0 +1,31 @@
+.message-green{
+    width: 300px;
+    background: rgb(0, 187, 0);
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    z-index: 900;
+    padding: 20px;
+
+    a{
+        position: absolute;
+        top: 0;
+        right: 0;
+        padding: 10px;
+        color: black;
+        line-height: 130%;
+        font-size: 20px;
+        transition: 0.5s ease color;
+        &:hover{
+            color: rgb(0, 71, 99);
+            
+        }
+    }
+}
+
+.fade-enter-active, .fade-leave-active {
+    transition: opacity .5s;
+  }
+  .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+    opacity: 0;
+  }

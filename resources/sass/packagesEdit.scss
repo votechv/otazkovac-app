@@ -1,0 +1,195 @@
+.editpackage{
+    width: 100%;
+    text-align: center;
+    margin-bottom: 90px; 
+
+    &__data{
+        width: 100%;
+        padding: 50px 0px;
+        p{
+            padding: 20px 60px;
+        }
+
+         a i{
+            color: black;
+            transition: 0.5s ease color;
+            font-size: 20px;
+            &:hover{
+                color: rgba(97,186,255,1);
+            }
+        }
+    }
+
+    &__table{
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    table{
+        border-collapse: collapse;
+        margin: Auto;
+        margin-bottom: 190px; 
+        width: 900px;
+        text-align: left;
+        border-bottom: 1px solid lightgrey;
+        border-top: 1px solid lightgrey;
+       
+        
+    i{
+        color: black;
+        padding: 0px 3px;
+        transition: 0.5s ease color;
+        cursor: pointer;
+        &:hover{
+            color:  rgba(97,186,255,1);
+        }
+
+    }
+
+    th,td {
+  padding: 14px 17px;
+  border-bottom: 1px solid lightgrey;
+  border-top: 1px solid lightgrey;
+}
+
+
+
+}
+
+.long-question-text{
+    width: 800px;
+}
+
+.long-edit-links{
+    width: 100px;
+}
+
+
+
+
+
+&__formain{
+    width: calc(100% - 250px);
+    padding: 50px 0px;
+    position: fixed;
+    background: white;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin-left: 250px;
+
+    #check:checked ~ &{
+        width: calc(100% - 0%);
+        margin-left: -250px;;
+    }
+
+  
+
+    input.addquestion{
+        width: 600px;
+        font-size: 19px;
+        padding: 10px 6px;
+       border: none;
+       border-bottom: 2px solid rgb(0, 0, 0);
+       &:focus{
+        outline: none;
+        border-bottom: 3px solid rgba(97,186,255,1);
+       }
+    }
+    button{
+        width: 150px;
+
+    }
+}
+
+}
+
+.plus-form{
+    font-size: 23px;
+    padding-left: 13px;
+    color: black;
+    transition: 0.5s ease color;
+
+    &:hover{
+        color: rgba(97,186,255,1);
+    }
+}
+
+
+.popup-form{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 11;
+    background-color: rgba(0, 0, 0, 0.281);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+
+    &__inner{
+    background: #fff;
+    padding: 32px;
+    width: 600px;
+    height: 300px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    justify-content: center;
+    align-items: center;
+
+form{
+    flex-direction: column;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+    input{
+        width: 400px;
+        font-size: 20px;
+        border: none;
+        border-bottom: 2px solid black;
+        text-align: center;
+        padding: 7px 0px;
+
+
+        &:focus{
+            outline: none;
+        }
+    }
+
+    .text-popup{
+        width: 300px;
+        margin-top: 12px;
+    }
+
+   i.save-ico-pop{
+        font-size: 24px;
+        cursor: pointer;
+        color: black;
+        padding: 20px 0px;
+
+    }
+    }
+}
+
+.closepopup{
+    position: absolute;
+    right: 0;
+    top: 0;
+    padding: 2px 10px;
+    cursor: pointer;
+    font-size: 20px;
+    color: black;
+    transition: 0.5s ease color;
+
+    &:hover{
+        color: rgba(97,186,255,1);
+    }
+}
+
+
+
+
