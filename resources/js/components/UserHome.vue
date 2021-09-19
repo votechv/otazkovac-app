@@ -2,14 +2,15 @@
 <div class="user-home">
    
     <div v-cloak class="user-home__content">
-        <h2> Všechny otázky uživatele: {{users.name}} </h2>
+        <h2> Všechny otázky uživatele: {{users.name}}</h2>
     </div> 
 
-    <div class="indexpackage">
+
+    <div class="indexpackage"> 
         <div class="indexpackage__wrap"> 
                 <div class="indexpackage__single">
-                 <input class="input-h3"  @keydown.enter.prevent="submitForm()" type="text" name="name" v-model="newName">
-                <input class="input-p" @keydown.enter.prevent="submitForm()" type="text" name="text" v-model="newText">
+                 <input class="input-h3" autocomplete="off"  @keydown.enter.prevent="submitForm()" type="text" name="name" v-model="newName">
+                <input class="input-p" autocomplete="off" @keydown.enter.prevent="submitForm()" type="text" name="text" v-model="newText">
                      <i @click.prevent="submitForm()" class="fas fa-plus-square"></i> 
             </div>
       <!--  <h2 class="index-title">Balíčky uživatele {{users.name}} </h2> --> 
@@ -108,6 +109,12 @@ import MessageOk from './MessageOk'
                 this.visiblepop = true;
                 this.deleteid = single;
             },
+
+            refresh(){
+                axios.get('./api/packages/').then(response => {
+                            this.packages = response.data
+                });
+            },
             submitForm() {
                 let data = {
                     name: this.newName,
@@ -119,13 +126,14 @@ import MessageOk from './MessageOk'
                 this.newText = ''
 
                    axios.post('/api/packages', data).then(response => {
-                    this.packages.push(data)
+                    this.packages = response.data
                     
                    });
 
-                      axios.get('./api/packages/').then(response => {
-                this.packages = response.data
-            });
+                   this.refresh();
+
+                 
+          
 
             this.newName = '',
             this.newText = ''
@@ -137,9 +145,7 @@ import MessageOk from './MessageOk'
                  
                 
 
-                   axios.get('./api/packages/').then(response => {
-                this.packages = response.data
-            });
+             this.refresh();
 
             
 

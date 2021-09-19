@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="cs">
 
 <head>
     <meta charset="utf-8">
@@ -26,13 +26,12 @@
 
 @include('navigation')
 
-<div id="app" ></div>   
+<div id="app"></div>   
         
     <div class="content"> 
       
         @yield('content')
 
-        <message-ok /> 
 
     </div>    
 

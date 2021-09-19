@@ -55,7 +55,12 @@ class PackageController extends Controller
     public function show(Package $package)
     {
         if($package['user_id'] === auth('api')->user()->id OR $package['user_id'] === 1){
-            $package->load('question');
+            
+           $package->load(['question' => function ($query) {
+                $query->where('user_id', auth('api')->user()->id)->orwhere('user_id', 1);
+                
+            }]);
+            
             return $package;
             
         }
@@ -95,6 +100,5 @@ class PackageController extends Controller
 
         $package->delete();
 
-        
     }
 }

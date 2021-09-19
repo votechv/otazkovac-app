@@ -13,6 +13,10 @@
 
 Route::get('/', 'packagecontroller@index');
 Route::get('/public', 'packagecontroller@public');
+Route::get('/locked-package', 'packagecontroller@locked');
+Route::get('/profil', 'homecontroller@profil');
+Route::get('/scheduled', 'homecontroller@scheduled');
+Route::get('/navod', 'homecontroller@navod');
 
 Auth::routes();
 
@@ -25,4 +29,5 @@ Route::get('/package/{any?}', function(){
 Route::get('/home/{any?}', function(){
     return view('layouts.admin');
 })->where('any', '.*')->middleware('auth');
+
 

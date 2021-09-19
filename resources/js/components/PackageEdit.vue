@@ -59,7 +59,7 @@
 
 <div v-cloak class="links-app-play">
     <div class="links-app-play__single">
-        <router-link :to="'/package/'+ packages.id"> <i class="fas fa-play"></i> </router-link>
+        <a :href="'/package/'+ packages.id"> <i class="fas fa-play"></i> </a>
     </div>
 </div>
 
@@ -87,18 +87,34 @@ import {ref} from 'vue';
 
                 }
             },
+
+           
             created() {
             axios.get('/api/packages/'+this.$route.params.id).then(response => {
                 this.packages = response.data
                 
-            });
+            })
+             .catch(error => {
+                return this.$router.push('/package/404')
+            })
+            ;
      
             axios.get('/api/users/').then(response => {
                 this.user = response.data
+            })
+               .catch(error => {
+                return this.$router.push('/package/404')
             });
         },
 
         methods: {
+
+             refresh(){
+               axios.get('/api/packages/'+this.$route.params.id).then(response => {
+                this.packages = response.data
+                 }); 
+            },
+
             submitForm() {
                 let data = {
                     text: this.newQuestion,
@@ -115,12 +131,11 @@ import {ref} from 'vue';
 
                 
                 
-                axios.get('/api/packages/'+this.$route.params.id).then(response => {
-                this.packages = response.data
-                 }); 
+                this.refresh();
 
                 
             },
+
 
               deleteQuestion(question){
                 this.$root.$emit('flash', 'Otázka odstraněna');
@@ -130,9 +145,7 @@ import {ref} from 'vue';
                 
                 axios.delete('/api/questions/' + question.id + '/');
                      
-                axios.get('/api/packages/'+this.$route.params.id).then(response => {
-                this.packages = response.data
-                 }); 
+                this.refresh();
 
                 }
 
@@ -174,9 +187,7 @@ import {ref} from 'vue';
 
                   axios.patch('/api/questions/'+this.otazka_id, data); 
 
-                  axios.get('/api/packages/'+this.$route.params.id).then(response => {
-                this.packages = response.data
-                 });
+                  this.refresh();
 
                   this.visiblepop = false;
 
@@ -190,9 +201,7 @@ import {ref} from 'vue';
 
                 axios.patch('/api/packages/'+information.id, data); 
 
-                    axios.get('/api/packages/'+this.$route.params.id).then(response => {
-                this.packages = response.data
-                 });
+                  this.refresh();
 
                 this.visiblepop2 = false;
 

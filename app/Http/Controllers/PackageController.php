@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Package;
+use App\Question;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -32,6 +33,13 @@ class PackageController extends Controller
         return view('public',[
             'packages' => Package::all(),
             'users' => User::all(),
+        ]);
+    }
+    public function locked(){
+        return view('locked',[
+            'packages' => Package::all(),
+            'users' => User::all(),
+            'questions' => Question::all(),
         ]);
     }
 

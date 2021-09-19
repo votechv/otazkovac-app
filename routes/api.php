@@ -24,7 +24,6 @@ Route::apiResources([
     'packages' => 'API\PackageController',
     'questions' => 'API\QuestionController',
     'users' => 'API\UserController',
-    'Qpackage' => 'API\QuestionPackageController'
 ]);
 
 });

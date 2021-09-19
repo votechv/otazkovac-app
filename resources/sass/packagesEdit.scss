@@ -78,6 +78,11 @@
     right: 0;
     margin-left: 250px;
 
+    @media screen and (max-width:780px){
+      
+            margin-left: 0px;
+        }
+    
     #check:checked ~ &{
         width: calc(100% - 0%);
         margin-left: -250px;;
@@ -172,6 +177,8 @@ form{
         padding: 20px 0px;
 
     }
+
+   
     }
 }
 

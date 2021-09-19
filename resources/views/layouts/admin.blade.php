@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="cs">
 
 <head>
     <meta charset="utf-8">
@@ -30,9 +30,8 @@
         
 <div class="content">   
 
-    <div  id="app"> 
+    <div id="app"> 
 
-       
 
         </div>
    

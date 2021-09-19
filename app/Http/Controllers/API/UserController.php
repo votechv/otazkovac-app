@@ -17,7 +17,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return auth()->user()->load('package', 'question');
+        return auth('api')->user()->load('package', 'question');
      
     }
 
