@@ -1,5 +1,7 @@
 @extends('layouts.body')
 
+@section('title', 'přihlašte se')
+
 @section('content')
 
 

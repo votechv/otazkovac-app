@@ -1,10 +1,10 @@
 <template>
    
-        <div class="editpackage" v-show="packages.user_id == user.id">
+        <div class="editpackage" v-if="user.id === packages.user_id">
 
          
         <div class="editpackage__data">
-            <h1> {{packages.name}}<a @click.prevent="addFormData(packages)"> <i class="fas fa-pen"></i></a> </h1>
+            <h1>  {{packages.name}}<a @click.prevent="addFormData(packages)"> <i class="fas fa-pen"></i></a> </h1>
             <p> {{packages.text}}</p>
         </div>
 
@@ -90,20 +90,19 @@ import {ref} from 'vue';
 
            
             created() {
-            axios.get('/api/packages/'+this.$route.params.id).then(response => {
+                axios.get('/api/packages/'+this.$route.params.id).then(response => {
                 this.packages = response.data
-                
             })
              .catch(error => {
                 return this.$router.push('/package/404')
             })
             ;
      
-            axios.get('/api/users/').then(response => {
+            axios.get('/api/users').then(response => {
                 this.user = response.data
             })
                .catch(error => {
-                return this.$router.push('/package/404')
+                return this.$router.push('./package/404')
             });
         },
 
@@ -123,15 +122,17 @@ import {ref} from 'vue';
                     package_userid: this.packages.user_id,
                     package: this.packages
                 }
+                 this.newQuestion = ''
+                 
                 axios.post('/api/questions', data).then(response => {
-                    this.newQuestion = ''
-                   this.packages.question.push(data)
                    
+                   this.packages.question.push(data)
+                    this.refresh();
                 })
 
                 
                 
-                this.refresh();
+               
 
                 
             },
@@ -143,9 +144,11 @@ import {ref} from 'vue';
                if(question.id) {
 
                 
-                axios.delete('/api/questions/' + question.id + '/');
+                axios.delete('/api/questions/' + question.id).then(response => {
+                    this.refresh();
+                   });
                      
-                this.refresh();
+              
 
                 }
 
@@ -185,9 +188,11 @@ import {ref} from 'vue';
                 }
 
 
-                  axios.patch('/api/questions/'+this.otazka_id, data); 
+                  axios.patch('/api/questions/'+this.otazka_id, data).then(response => {
+                    this.refresh();
+                   });; 
 
-                  this.refresh();
+          
 
                   this.visiblepop = false;
 
@@ -199,9 +204,11 @@ import {ref} from 'vue';
                     text: this.text,
                 }
 
-                axios.patch('/api/packages/'+information.id, data); 
+                axios.patch('/api/packages/'+information.id, data).then(response => {
+                    this.refresh();
+                   });; 
 
-                  this.refresh();
+                  
 
                 this.visiblepop2 = false;
 

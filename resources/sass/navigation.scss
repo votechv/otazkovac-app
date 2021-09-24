@@ -23,9 +23,9 @@ h3{
 
 .header-btn, .logout_btn{
     height: 30px;
-    margin-top: -2px;
+    margin-top: 0px;
     border: none;
-    padding: 18px;
+    padding: 10px;
     padding-left: 29px;
     border-left: 2px solid rgb(214, 214, 214);
     text-decoration: none;
@@ -321,7 +321,6 @@ label{
 .log-reg{
     position: relative;
     float: right;
-    margin-top: -5px;
     margin-right: 40px;
     transition: 0.5s ease all;
     display: flex;
@@ -336,9 +335,8 @@ label{
 
 .log-reg-btn{
     height: 30px;
-    margin-top: -2px;
     border: none;
-    padding: 18px;
+    margin-top: -4px;
     padding-left: 29px;
     text-decoration: none;
     background: transparent;

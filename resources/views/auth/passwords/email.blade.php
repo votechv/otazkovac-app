@@ -1,5 +1,8 @@
 @extends('layouts.body')
 
+@section('title', 'reset')
+
+
 @section('content')
 <div class="loginform">
 

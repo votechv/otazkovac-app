@@ -1,8 +1,6 @@
 <input type="checkbox" id="check">
 
-<!-- HLAVNIČKA JAK NA MOBILU TAK NA PC STEJNÁ
-____________________________________________________
-!-->
+<!-- HLAVNIČKA JAK NA MOBILU TAK NA PC STEJNÁ! -->
 <header>
 
   
@@ -47,14 +45,9 @@ ____________________________________________________
 
 </header>
 
-<!-- ____________________________________________________ 
-    KONEC HLAVIČKY
- -->
+<!-- KONEC HLAVIČKY-->
 
- <!-- 
-    MOBILNÍ NAVIGACE
-    ____________________________________________________ 
- -->
+ <!-- MOBILNÍ NAVIGACE -->
 <div class="mobile_nav">
     <div class="nav_bar">
         @auth
@@ -66,23 +59,18 @@ ____________________________________________________
     <div class="mobile_nav_item">
             <a href="/"> <i class="fas fa-home"></i> <span> Homepage </span> </a>
             <a href="/home"> <i class="fas fa-lock"></i> <span> Moje otázky </span> </a>
-            <a href="/public"> <i class="fas fa-globe-europe"></i> <span> Veřejné otázky </span> </a>
+            <a href="/public-package"> <i class="fas fa-globe-europe"></i> <span> Veřejné otázky </span> </a>
             <a href="/profil"> <i class="fas fa-user-alt"></i> <span> Profil </span> </a>
             <a href="/navod"> <i class="fas fa-book-open"></i> <span> Návod </span> </a>
             <a href="/scheduled"> <i class="far fa-calendar-plus"></i> Plánované funkce </span> </a>
     </div>
 </div>
 
-<!-- ____________________________________________________ 
-   KONEC MOBILNÍ NAVIGACE
- -->
+<!-- KONEC MOBILNÍ NAVIGACE-->
 
 
  
- <!-- NAVIGACE BOČNÍ PC 
-    ____________________________________________________ 
-
---> 
+ <!-- NAVIGACE BOČNÍ PC --> 
 
 <div class="sidebar">
     <div class="profile-info">     
@@ -91,7 +79,7 @@ ____________________________________________________
     
     <a href="/"> <i class="fas fa-home"></i> <span> Homepage </span> </a>
     <a href="/home"> <i class="fas fa-lock"></i> <span> Moje otázky </span> </a>
-    <a href="/public"> <i class="fas fa-globe-europe"></i> <span> Veřejné otázky </span> </a>
+    <a href="/public-package"> <i class="fas fa-globe-europe"></i> <span> Veřejné otázky </span> </a>
     
     <div class="sidebar__down">
         <a href="/profil"> <i class="fas fa-user-alt"></i> <span> Profil </span> </a>
@@ -101,56 +89,7 @@ ____________________________________________________
 
 </div>
 
-<!-- 
-____________________________________________________ 
-KONEC NAVIGACE BOČNÍ PC 
--->
+<!-- KONEC NAVIGACE BOČNÍ PC -->
 
 
 
-
-<!-- Navigace 
-<nav class="main-navigation">
-        <div class="main-navigation__links"> 
-   
- 
-
-    <a href="/">Hlavní stránka</a>
-
-    @guest
-
-            <a href="{{ route('login') }}">Přihlásit se</a>
-    
-        @if (Route::has('register'))
-
-            <a href="{{ route('register') }}">Zaregistrujte se</a>
-
-        @endif
-    
-    @endguest
-    
-    
-    
-    @auth
-        
-    <a href="/home">
-    <strong> {{auth()->user()->name}}</strong>
-    </a>
-    
-    
-    <a class="dropdown-item" href="{{ route('logout') }}"
-    onclick="event.preventDefault();
-                  document.getElementById('logout-form').submit();">
-     {{ __('Logout') }}
- </a>
-
- <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-     @csrf
- </form>
-    @endauth
-
-</div>
-    
-    </nav>
-
--->

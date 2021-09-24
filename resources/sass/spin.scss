@@ -37,6 +37,11 @@
         text-align: center;
         padding-left: 50px;
         padding-right: 50px;
+        
+        @media screen and(max-width: 1024px){
+            height: 55vh !important;
+           
+        }
     }
 
     &__spin{
@@ -47,12 +52,21 @@
         align-items: center;
         height: 70vh;
 
+        @media screen and(max-width: 1024px){
+            height: 65vh !important;
+        }
+
        
 
         h3{ 
             font-size: 45px;
             padding-bottom: 60px;
             text-align: center;
+
+            @media screen and(max-width: 1024px){
+                font-size: 35Px;
+               
+            }
         }
         button{
             width: 300px;
@@ -84,6 +98,10 @@
     bottom: 0;
     display: flex;
     padding: 10px;
+
+    @media screen and (max-width: 800px){
+        display: none;
+    }
     &__single{
         width: 100px;
         display: flex;

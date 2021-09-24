@@ -70,12 +70,16 @@ class QuestionController extends Controller
     public function update(Request $request, Question $question)
     {
 
+        
         $request->validate([
             'text' => 'required',
         ]);
+        if($question['user_id'] === auth('api')->user()->id){  
         $question->update(
             $request->all()
         );
+
+    }
 
     
     }
@@ -89,9 +93,10 @@ class QuestionController extends Controller
     public function destroy(Question $question)
     {
 
-            
+        if($question['user_id'] === auth('api')->user()->id){  
+   
         $question->delete();
-
+        }
         
     }
 }

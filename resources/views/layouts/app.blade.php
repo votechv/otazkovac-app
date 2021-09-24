@@ -6,8 +6,9 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
+    <link rel="shortcut icon" href="{{ asset('cdn/favicon.png') }}">
 
-    <title>{{ config('app.name', 'Otázkovač app') }}</title>
+    <title>Otázkovač.cz – app</title>
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>

@@ -82,9 +82,11 @@ class PackageController extends Controller
             'name' => 'required',
             'text' => 'required',
         ]);
+        if($package['user_id'] === auth('api')->user()->id){  
         $package->update(
             $request->all()
         );
+    }
 
          
     }
@@ -97,8 +99,9 @@ class PackageController extends Controller
      */
     public function destroy(Package $package)
     {
-
+        if($package['user_id'] === auth('api')->user()->id){ 
         $package->delete();
+        }
 
     }
 }

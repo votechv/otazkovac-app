@@ -1,5 +1,8 @@
 @extends('layouts.body')
 
+@section('title', 'ověření')
+
+
 @section('content')
 <div class="container">
     <div class="row justify-content-center">

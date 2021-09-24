@@ -53,7 +53,7 @@
                 return this.$router.push('/package/404')
             })
             ;
-            axios.get('/api/users/').then(response => {
+            axios.get('/api/users').then(response => {
                 this.singleuser = response.data
             })
              .catch(error => {

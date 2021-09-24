@@ -1,5 +1,7 @@
 @extends('layouts.body')
 
+@section('title', 'plánované funkce')
+
 @section('content')
 
 <div class="scheduled-main">

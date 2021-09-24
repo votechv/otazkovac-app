@@ -1,5 +1,7 @@
 @extends('layouts.body')
 
+@section('title', 'návod')
+
 @section('content')
 
 <div class="four-hundred-and-four">

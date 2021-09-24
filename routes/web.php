@@ -11,12 +11,12 @@
 |
 */
 
-Route::get('/', 'packagecontroller@index');
-Route::get('/public', 'packagecontroller@public');
-Route::get('/locked-package', 'packagecontroller@locked');
-Route::get('/profil', 'homecontroller@profil');
-Route::get('/scheduled', 'homecontroller@scheduled');
-Route::get('/navod', 'homecontroller@navod');
+Route::get('/', 'PackageController@index');
+Route::get('/public-package', 'PackageController@public');
+Route::get('/locked-package', 'PackageController@locked');
+Route::get('/profil', 'HomeController@profil');
+Route::get('/scheduled', 'HomeController@scheduled');
+Route::get('/navod', 'HomeController@navod');
 
 Auth::routes();
 
