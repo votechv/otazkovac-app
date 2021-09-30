@@ -1,6 +1,10 @@
 <template>
+  
+  <div> 
 
-<div v-cloak class="app-spin">
+   <div class="loadingdesign"  :class="{loadingclass : loadingcl}"> 
+   </div>
+<div v-cloak class="app-spin" v-if="loading">
  
     <div v-cloak class="app-spin__content">
         <h2> {{packages.name}} </h2>
@@ -30,6 +34,7 @@
 </div>
 
 </div>
+</div>
 
 
 </template>
@@ -42,6 +47,8 @@
                 choose: 'Aplikaci spustíte stisknutím tlačítka',
                 singleuser: '',
                 visible: true,
+                loading: false,
+                loadingcl: true,
             }
         },
     
@@ -50,14 +57,17 @@
                 this.packages = response.data
             })
              .catch(error => {
-                return this.$router.push('/package/404')
+                return this.$router.push('../404')
             })
             ;
             axios.get('/api/users').then(response => {
                 this.singleuser = response.data
+                this.loading = true
+
+                this.loadingcl = false
             })
              .catch(error => {
-                return this.$router.push('/package/404')
+                return this.$router.push('../404')
             })
             ;
    

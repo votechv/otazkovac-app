@@ -1,6 +1,10 @@
 <template>
-   
-        <div class="editpackage" v-if="user.id === packages.user_id">
+
+<div> 
+
+   <div class="loadingdesign"  :class="{loadingclass : loadingcl}"> 
+   </div>
+        <div class="editpackage" v-if="loading && user.id === packages.user_id">
 
          
         <div class="editpackage__data">
@@ -11,7 +15,7 @@
         <div class="editpackage__table"> 
         <table>
             <tr>
-                <th>Otázka</th>
+                <th class="long-question-text">Otázka</th>
                 <th>Edit</th>
             </tr>
 
@@ -64,6 +68,7 @@
 </div>
 
         </div>
+        </div>
 
 
 
@@ -83,7 +88,10 @@ import {ref} from 'vue';
                     text: '',
                     otazka_id: '',
                     visiblepop: false,
-                    visiblepop2: false
+                    visiblepop2: false,
+                    loading: false,
+                    loadingcl: true, 
+
 
                 }
             },
@@ -94,23 +102,29 @@ import {ref} from 'vue';
                 this.packages = response.data
             })
              .catch(error => {
-                return this.$router.push('/package/404')
+                return this.$router.push('../../404')
             })
             ;
      
             axios.get('/api/users').then(response => {
                 this.user = response.data
+                this.loading = true
+
+                this.loadingcl = false
             })
                .catch(error => {
-                return this.$router.push('./package/404')
+                return this.$router.push('../../404')
             });
         },
 
         methods: {
 
              refresh(){
+                 this.loadingcl = true
                axios.get('/api/packages/'+this.$route.params.id).then(response => {
                 this.packages = response.data
+                
+                this.loadingcl = false
                  }); 
             },
 
@@ -124,9 +138,9 @@ import {ref} from 'vue';
                 }
                  this.newQuestion = ''
                  
+
+
                 axios.post('/api/questions', data).then(response => {
-                   
-                   this.packages.question.push(data)
                     this.refresh();
                 })
 

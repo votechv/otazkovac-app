@@ -1,5 +1,9 @@
 <template>
-<div class="user-home">
+<div>
+<div class="loadingdesign"  :class="{loadingclass : loadingcl}"> 
+</div>
+
+<div class="user-home" v-if="loading">
    
     <div v-cloak class="user-home__content">
         <h2> Všechny otázky uživatele: {{users.name}}</h2>
@@ -27,6 +31,9 @@
                     </div>
                 </div> 
             </div>           
+
+
+      
 
           
    <transition  enter-active-class="animate__animated animate__fadeIn animate__faster" leave-active-class="animate__animated animate__fadeOut animate__faster">
@@ -61,9 +68,13 @@
     
     
     
+            </div>
+    
+         </div>
+        </div>
+
     </div>
-    </div>
-    </div>
+
 </template>
 
 <script> 
@@ -77,6 +88,9 @@ import MessageOk from './MessageOk'
                 newText: '', 
                 deleteId: '', 
                 visiblepop: false,
+                loading: false,
+                loadingcl: true,
+              
             } 
         },
           props: {
@@ -88,10 +102,17 @@ import MessageOk from './MessageOk'
            created() {
             axios.get('./api/packages').then(response => {
                 this.packages = response.data
+
+                
             },
             );
             axios.get('./api/users', ).then(response => {
+                
                 this.users = response.data
+
+                this.loading = true
+                this.loadingcl = false
+                 
             },
           
 
@@ -111,8 +132,12 @@ import MessageOk from './MessageOk'
             },
 
             refresh(){
+                this.loadingcl = true
+
                 axios.get('./api/packages').then(response => {
                     this.packages = response.data
+
+                    this.loadingcl = false
                 });
             },
             submitForm() {
@@ -127,14 +152,8 @@ import MessageOk from './MessageOk'
 
                    axios.post('./api/packages', data).then(response => {
                        this.$router.push('/package/' + response.data.id.id + '/edit/')
-                  
-               
-
+                
                    });
-
-        
-               
-
 
                  
             },
@@ -144,12 +163,6 @@ import MessageOk from './MessageOk'
                     this.refresh();
                    });;
                  
-                
-
-          
-
-            
-
             this.visiblepop = false;
 
             }

@@ -9,12 +9,18 @@
 
 <div class="hp-top">
     <div class="hp-top__content">
-        <div class="hp-top__content-left">
+        <div class="hp-top__content-left
+        @auth
+        left-auth-ok
+    @endauth
+        ">
                 @guest
             <h2> Bezplatný a zábavný způsob jak otestovat své vědomosti</h2>
             <p> Potřebujete se nechat vyzkoušet na zítřejší test? Nebo chcete s přáteli hrát některou z poznávacích her, ale nevíte na jaké otázky se ptát? Otázkovač vám pomůže!  </p>
+           <div class="hp-buttons"> 
             <a href="/register"><button class="start"> Začít </button></a>
             <a href="/login"><button> Již mám účet</button></a>
+        </div>
             @endguest
 
             @auth
@@ -55,7 +61,11 @@
             @endauth
         </div>
 
-        <div class="hp-top__content-right">
+        <div class="hp-top__content-right
+        @auth
+        img-auth-ok
+        @endauth
+        " >
             <img src="https://vojtechvanek.com/comp-otazkovac.png" alt="imac">
         </div>
     </div>

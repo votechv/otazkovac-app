@@ -1999,13 +1999,20 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       packages: [],
       choose: 'Aplikaci spustíte stisknutím tlačítka',
       singleuser: '',
-      visible: true
+      visible: true,
+      loading: false,
+      loadingcl: true
     };
   },
   created: function created() {
@@ -2014,12 +2021,14 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/packages/' + this.$route.params.id).then(function (response) {
       _this.packages = response.data;
     })["catch"](function (error) {
-      return _this.$router.push('/package/404');
+      return _this.$router.push('../404');
     });
     axios.get('/api/users').then(function (response) {
       _this.singleuser = response.data;
+      _this.loading = true;
+      _this.loadingcl = false;
     })["catch"](function (error) {
-      return _this.$router.push('/package/404');
+      return _this.$router.push('../404');
     });
   },
   computed: {
@@ -2131,6 +2140,126 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NavodPage.vue?vue&type=script&lang=js&":
+/*!********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NavodPage.vue?vue&type=script&lang=js& ***!
+  \********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      heading: 'Přidávání balíčků',
+      text: 'V sekci "Moje otázky" můžete jednoduše přidávat nové balíčky. Aby mohl být balíček vytvořený, musí být vyplněné jméno i popisek!',
+      picture: '/cdn/cut-add-package.gif',
+      visible: true
+    };
+  },
+  methods: {
+    AddPackage: function AddPackage() {
+      var _this = this;
+
+      this.visible = false;
+      this.heading = "Přidávání balíčků";
+      this.text = 'V sekci "Moje otázky" můžete jednoduše přidávat nové balíčky. Aby mohl být balíček vytvořený, musí být vyplněné jméno i popisek!';
+      this.picture = '/cdn/cut-add-package.gif';
+      setTimeout(function () {
+        return _this.visible = true;
+      }, 300);
+    },
+    AddQuestion: function AddQuestion() {
+      var _this2 = this;
+
+      this.visible = false;
+      this.heading = "Přidávání otázek";
+      this.text = 'Přidávání nových otázek je možné pouze ve vámi vytvořených balíčcích. Musíte myší najet na balíček v sekci "Moje otázky", kliknout na ikonku tužky a následně pomocí inputu v dolní části obrazovky přidávat nové otázky. ';
+      this.picture = '/cdn/cut-add-questions.gif';
+      setTimeout(function () {
+        return _this2.visible = true;
+      }, 300);
+    },
+    editPackage: function editPackage() {
+      var _this3 = this;
+
+      this.visible = false;
+      this.heading = "Úpravy balíčků";
+      this.text = 'Pro úpravy balíčků musíte myší najet na balíček v sekci "Moje otázky", kliknout na ikonku tužky a následně pomocí ikonek editovat balíček. Balíček je možné přejmenovávat, upravovat jeho popisek, upravovat jeho otázky, přidávat nové otázky nebo mazat jeho otázky. ';
+      this.picture = '/cdn/cut-edit-pacakge.gif';
+      setTimeout(function () {
+        return _this3.visible = true;
+      }, 300);
+    },
+    deletePackage: function deletePackage() {
+      var _this4 = this;
+
+      this.visible = false;
+      this.heading = "Mazání balíčků";
+      this.text = 'Mazání balíčků je možné v sekci "Moje otázky". Najeďte myší na balíček, který chcete smazat, následně klikněte na ikonku popelnice a potvrďte pop-up okno.';
+      this.picture = '/cdn/cut-delete-package.gif';
+      setTimeout(function () {
+        return _this4.visible = true;
+      }, 300);
+    },
+    spinn: function spinn() {
+      var _this5 = this;
+
+      this.visible = false;
+      this.heading = "Učte se!";
+      this.text = 'Po vytvoření balíčku můžete hned začít s učením. Algoritmus otázkovače je momentálně v beta verzi, různá rozšíření pro lepší učení budeme postupně přidávat.';
+      this.picture = '/cdn/otazkovac-spin-small.gif';
+      setTimeout(function () {
+        return _this5.visible = true;
+      }, 300);
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NotFound.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NotFound.vue?vue&type=script&lang=js& ***!
@@ -2234,6 +2363,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2247,7 +2381,9 @@ __webpack_require__.r(__webpack_exports__);
       text: '',
       otazka_id: '',
       visiblepop: false,
-      visiblepop2: false
+      visiblepop2: false,
+      loading: false,
+      loadingcl: true
     };
   },
   created: function created() {
@@ -2256,20 +2392,24 @@ __webpack_require__.r(__webpack_exports__);
     axios.get('/api/packages/' + this.$route.params.id).then(function (response) {
       _this.packages = response.data;
     })["catch"](function (error) {
-      return _this.$router.push('/package/404');
+      return _this.$router.push('../../404');
     });
     axios.get('/api/users').then(function (response) {
       _this.user = response.data;
+      _this.loading = true;
+      _this.loadingcl = false;
     })["catch"](function (error) {
-      return _this.$router.push('./package/404');
+      return _this.$router.push('../../404');
     });
   },
   methods: {
     refresh: function refresh() {
       var _this2 = this;
 
+      this.loadingcl = true;
       axios.get('/api/packages/' + this.$route.params.id).then(function (response) {
         _this2.packages = response.data;
+        _this2.loadingcl = false;
       });
     },
     submitForm: function submitForm() {
@@ -2284,8 +2424,6 @@ __webpack_require__.r(__webpack_exports__);
       };
       this.newQuestion = '';
       axios.post('/api/questions', data).then(function (response) {
-        _this3.packages.question.push(data);
-
         _this3.refresh();
       });
     },
@@ -2427,6 +2565,17 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
@@ -2436,7 +2585,9 @@ __webpack_require__.r(__webpack_exports__);
       newName: '',
       newText: '',
       deleteId: '',
-      visiblepop: false
+      visiblepop: false,
+      loading: false,
+      loadingcl: true
     };
   },
   props: {
@@ -2452,6 +2603,8 @@ __webpack_require__.r(__webpack_exports__);
     });
     axios.get('./api/users').then(function (response) {
       _this.users = response.data;
+      _this.loading = true;
+      _this.loadingcl = false;
     });
   },
   components: {
@@ -2465,8 +2618,10 @@ __webpack_require__.r(__webpack_exports__);
     refresh: function refresh() {
       var _this2 = this;
 
+      this.loadingcl = true;
       axios.get('./api/packages').then(function (response) {
         _this2.packages = response.data;
+        _this2.loadingcl = false;
       });
     },
     submitForm: function submitForm() {
@@ -34354,64 +34509,77 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "app-spin" }, [
-    _c("div", { staticClass: "app-spin__content" }, [
-      _c("h2", [_vm._v(" " + _vm._s(_vm.packages.name) + " ")]),
-      _vm._v(" "),
-      _c("div", { staticClass: "app-spin__content-text" }, [
-        _c("p", [_vm._v(" " + _vm._s(_vm.packages.text) + " ")])
-      ])
-    ]),
+  return _c("div", [
+    _c("div", {
+      staticClass: "loadingdesign",
+      class: { loadingclass: _vm.loadingcl }
+    }),
     _vm._v(" "),
-    _c("div", { staticClass: "app-spin__spin" }, [
-      _c(
-        "div",
-        { staticClass: "app-spin__question" },
-        [
-          _c(
-            "transition",
-            {
-              attrs: {
-                "enter-active-class": "animate__animated animate__backInDown",
-                "leave-active-class": "animate__animated animate__backOutDown"
-              }
-            },
-            [
-              _vm.visible
-                ? _c("h3", [_vm._v(" " + _vm._s(_vm.choose))])
-                : _vm._e()
-            ]
-          )
-        ],
-        1
-      ),
-      _vm._v(" "),
-      _c(
-        "button",
-        {
-          on: {
-            click: function($event) {
-              $event.preventDefault()
-              return _vm.random()
-            }
-          }
-        },
-        [_vm._v("SPIN")]
-      )
-    ]),
-    _vm._v(" "),
-    _vm.packages.user_id === _vm.singleuser.id
-      ? _c("div", { staticClass: "links-app" }, [
-          _c(
-            "div",
-            { staticClass: "links-app__single" },
-            [
-              _c("router-link", { attrs: { to: _vm.packages.id + "/edit" } }, [
-                _c("i", { staticClass: "fas fa-pen" })
+    _vm.loading
+      ? _c("div", { staticClass: "app-spin" }, [
+          _c("div", { staticClass: "app-spin__content" }, [
+            _c("h2", [_vm._v(" " + _vm._s(_vm.packages.name) + " ")]),
+            _vm._v(" "),
+            _c("div", { staticClass: "app-spin__content-text" }, [
+              _c("p", [_vm._v(" " + _vm._s(_vm.packages.text) + " ")])
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "app-spin__spin" }, [
+            _c(
+              "div",
+              { staticClass: "app-spin__question" },
+              [
+                _c(
+                  "transition",
+                  {
+                    attrs: {
+                      "enter-active-class":
+                        "animate__animated animate__backInDown",
+                      "leave-active-class":
+                        "animate__animated animate__backOutDown"
+                    }
+                  },
+                  [
+                    _vm.visible
+                      ? _c("h3", [_vm._v(" " + _vm._s(_vm.choose))])
+                      : _vm._e()
+                  ]
+                )
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function($event) {
+                    $event.preventDefault()
+                    return _vm.random()
+                  }
+                }
+              },
+              [_vm._v("SPIN")]
+            )
+          ]),
+          _vm._v(" "),
+          _vm.packages.user_id === _vm.singleuser.id
+            ? _c("div", { staticClass: "links-app" }, [
+                _c(
+                  "div",
+                  { staticClass: "links-app__single" },
+                  [
+                    _c(
+                      "router-link",
+                      { attrs: { to: _vm.packages.id + "/edit" } },
+                      [_c("i", { staticClass: "fas fa-pen" })]
+                    )
+                  ],
+                  1
+                )
               ])
-            ],
-            1
-          )
+            : _vm._e()
         ])
       : _vm._e()
   ])
@@ -34463,6 +34631,156 @@ var render = function() {
             ])
           : _vm._e()
       ])
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NavodPage.vue?vue&type=template&id=4369d38c&scoped=true&":
+/*!************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NavodPage.vue?vue&type=template&id=4369d38c&scoped=true& ***!
+  \************************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "navod-page" },
+    [
+      _c("div", { staticClass: "navod-page__rozcesti" }, [
+        _c(
+          "div",
+          {
+            staticClass: "navod-btn",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.AddPackage()
+              }
+            }
+          },
+          [
+            _c("h5", { staticClass: "number" }, [_vm._v(" 1 ")]),
+            _vm._v(" "),
+            _c("h6", [_vm._v(" Přidávání balíčků ")])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "navod-btn",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.AddQuestion()
+              }
+            }
+          },
+          [
+            _c("h5", { staticClass: "number" }, [_vm._v(" 2 ")]),
+            _vm._v(" "),
+            _c("h6", [_vm._v(" Přidávání otázek ")])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "navod-btn",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.editPackage()
+              }
+            }
+          },
+          [
+            _c("h5", { staticClass: "number" }, [_vm._v(" 3 ")]),
+            _vm._v(" "),
+            _c("h6", [_vm._v(" Úpravy balíčků")])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "navod-btn",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.deletePackage()
+              }
+            }
+          },
+          [
+            _c("h5", { staticClass: "number" }, [_vm._v(" 4 ")]),
+            _vm._v(" "),
+            _c("h6", [_vm._v(" Odstranění balíčků ")])
+          ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            staticClass: "navod-btn",
+            on: {
+              click: function($event) {
+                $event.preventDefault()
+                return _vm.spinn()
+              }
+            }
+          },
+          [
+            _c("h5", { staticClass: "number" }, [_vm._v(" 5 ")]),
+            _vm._v(" "),
+            _c("h6", [_vm._v(" Učte se ")])
+          ]
+        )
+      ]),
+      _vm._v(" "),
+      _c(
+        "transition",
+        {
+          attrs: {
+            "enter-active-class": "animate__animated animate__zoomIn",
+            "leave-active-class": "animate__animated animate__zoomOut"
+          }
+        },
+        [
+          _vm.visible
+            ? _c("div", { staticClass: "navod-page__content" }, [
+                _c("div", { staticClass: "navod-page__top" }, [
+                  _c("img", {
+                    attrs: { src: _vm.picture, alt: "picture-otazkovac" }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "navod-page__bottom" }, [
+                  _c("h3", [_vm._v(" " + _vm._s(_vm.heading))]),
+                  _vm._v(" "),
+                  _c("p", { staticClass: "text-short" }, [
+                    _vm._v(_vm._s(_vm.text))
+                  ])
+                ])
+              ])
+            : _vm._e()
+        ]
+      )
     ],
     1
   )
@@ -34528,354 +34846,369 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm.user.id === _vm.packages.user_id
-    ? _c(
-        "div",
-        { staticClass: "editpackage" },
-        [
-          _c("div", { staticClass: "editpackage__data" }, [
-            _c("h1", [
-              _vm._v("  " + _vm._s(_vm.packages.name)),
+  return _c("div", [
+    _c("div", {
+      staticClass: "loadingdesign",
+      class: { loadingclass: _vm.loadingcl }
+    }),
+    _vm._v(" "),
+    _vm.loading && _vm.user.id === _vm.packages.user_id
+      ? _c(
+          "div",
+          { staticClass: "editpackage" },
+          [
+            _c("div", { staticClass: "editpackage__data" }, [
+              _c("h1", [
+                _vm._v("  " + _vm._s(_vm.packages.name)),
+                _c(
+                  "a",
+                  {
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.addFormData(_vm.packages)
+                      }
+                    }
+                  },
+                  [_c("i", { staticClass: "fas fa-pen" })]
+                )
+              ]),
+              _vm._v(" "),
+              _c("p", [_vm._v(" " + _vm._s(_vm.packages.text))])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "editpackage__table" }, [
+              _c(
+                "table",
+                [
+                  _vm._m(0),
+                  _vm._v(" "),
+                  _vm._l(_vm.packages.question, function(question) {
+                    return _c(
+                      "tr",
+                      { key: question.id, staticClass: "question" },
+                      [
+                        _c(
+                          "td",
+                          {
+                            staticClass: "long-question-text",
+                            attrs: { contenteditable: _vm.editing }
+                          },
+                          [_vm._v(" " + _vm._s(question.text) + " ")]
+                        ),
+                        _vm._v(" "),
+                        _c("td", { staticClass: "long-edit-links" }, [
+                          _c(
+                            "a",
+                            {
+                              on: {
+                                click: function($event) {
+                                  return _vm.deleteQuestion(question)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-trash-alt" })]
+                          ),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.addFormOtazka(question)
+                                }
+                              }
+                            },
+                            [_c("i", { staticClass: "fas fa-pen" })]
+                          )
+                        ])
+                      ]
+                    )
+                  })
+                ],
+                2
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "editpackage__formain" }, [
+              _c("input", {
+                directives: [
+                  {
+                    name: "model",
+                    rawName: "v-model",
+                    value: _vm.newQuestion,
+                    expression: "newQuestion"
+                  }
+                ],
+                staticClass: "addquestion",
+                attrs: {
+                  placeholder: "Nová otázka...",
+                  type: "text",
+                  name: "question"
+                },
+                domProps: { value: _vm.newQuestion },
+                on: {
+                  keyup: function($event) {
+                    if (
+                      !$event.type.indexOf("key") &&
+                      _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
+                    ) {
+                      return null
+                    }
+                    return _vm.submitForm()
+                  },
+                  input: function($event) {
+                    if ($event.target.composing) {
+                      return
+                    }
+                    _vm.newQuestion = $event.target.value
+                  }
+                }
+              }),
+              _vm._v(" "),
               _c(
                 "a",
                 {
                   on: {
                     click: function($event) {
                       $event.preventDefault()
-                      return _vm.addFormData(_vm.packages)
+                      return _vm.submitForm()
                     }
                   }
                 },
-                [_c("i", { staticClass: "fas fa-pen" })]
+                [_c("i", { staticClass: "fas fa-plus-square plus-form" })]
               )
             ]),
             _vm._v(" "),
-            _c("p", [_vm._v(" " + _vm._s(_vm.packages.text))])
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "editpackage__table" }, [
             _c(
-              "table",
-              [
-                _vm._m(0),
-                _vm._v(" "),
-                _vm._l(_vm.packages.question, function(question) {
-                  return _c(
-                    "tr",
-                    { key: question.id, staticClass: "question" },
-                    [
-                      _c(
-                        "td",
-                        {
-                          staticClass: "long-question-text",
-                          attrs: { contenteditable: _vm.editing }
-                        },
-                        [_vm._v(" " + _vm._s(question.text) + " ")]
-                      ),
-                      _vm._v(" "),
-                      _c("td", { staticClass: "long-edit-links" }, [
-                        _c(
-                          "a",
-                          {
-                            on: {
-                              click: function($event) {
-                                return _vm.deleteQuestion(question)
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "fas fa-trash-alt" })]
-                        ),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
-                            on: {
-                              click: function($event) {
-                                $event.preventDefault()
-                                return _vm.addFormOtazka(question)
-                              }
-                            }
-                          },
-                          [_c("i", { staticClass: "fas fa-pen" })]
-                        )
-                      ])
-                    ]
-                  )
-                })
-              ],
-              2
-            )
-          ]),
-          _vm._v(" "),
-          _c("div", { staticClass: "editpackage__formain" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.newQuestion,
-                  expression: "newQuestion"
-                }
-              ],
-              staticClass: "addquestion",
-              attrs: {
-                placeholder: "Nová otázka...",
-                type: "text",
-                name: "question"
-              },
-              domProps: { value: _vm.newQuestion },
-              on: {
-                keyup: function($event) {
-                  if (
-                    !$event.type.indexOf("key") &&
-                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                  ) {
-                    return null
-                  }
-                  return _vm.submitForm()
-                },
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.newQuestion = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c(
-              "a",
+              "transition",
               {
-                on: {
-                  click: function($event) {
-                    $event.preventDefault()
-                    return _vm.submitForm()
-                  }
+                attrs: {
+                  "enter-active-class":
+                    "animate__animated animate__fadeIn animate__faster",
+                  "leave-active-class":
+                    "animate__animated animate__fadeOut animate__faster"
                 }
               },
-              [_c("i", { staticClass: "fas fa-plus-square plus-form" })]
-            )
-          ]),
-          _vm._v(" "),
-          _c(
-            "transition",
-            {
-              attrs: {
-                "enter-active-class":
-                  "animate__animated animate__fadeIn animate__faster",
-                "leave-active-class":
-                  "animate__animated animate__fadeOut animate__faster"
-              }
-            },
-            [
-              _vm.visiblepop
-                ? _c("div", { staticClass: "popup-form" }, [
-                    _c("div", { staticClass: "popup-form__inner" }, [
-                      _c("form", [
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.otazka,
-                              expression: "otazka"
-                            }
-                          ],
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.otazka },
-                          on: {
-                            keydown: function($event) {
-                              if (
-                                !$event.type.indexOf("key") &&
-                                _vm._k(
-                                  $event.keyCode,
-                                  "enter",
-                                  13,
-                                  $event.key,
-                                  "Enter"
-                                )
-                              ) {
-                                return null
+              [
+                _vm.visiblepop
+                  ? _c("div", { staticClass: "popup-form" }, [
+                      _c("div", { staticClass: "popup-form__inner" }, [
+                        _c("form", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.otazka,
+                                expression: "otazka"
                               }
-                              $event.preventDefault()
-                              return _vm.editQuestion(_vm.otazka)
-                            },
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.otazka = $event.target.value
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c(
-                          "a",
-                          {
+                            ],
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.otazka },
                             on: {
-                              click: function($event) {
+                              keydown: function($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
                                 $event.preventDefault()
                                 return _vm.editQuestion(_vm.otazka)
+                              },
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.otazka = $event.target.value
                               }
                             }
-                          },
-                          [_c("i", { staticClass: "far fa-save save-ico-pop" })]
-                        )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "closepopup",
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              _vm.visiblepop = false
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-times" })]
-                      )
-                    ])
-                  ])
-                : _vm._e()
-            ]
-          ),
-          _vm._v(" "),
-          _c(
-            "transition",
-            {
-              attrs: {
-                "enter-active-class":
-                  "animate__animated animate__fadeIn animate__faster",
-                "leave-active-class":
-                  "animate__animated animate__fadeOut animate__faster"
-              }
-            },
-            [
-              _vm.visiblepop2
-                ? _c("div", { staticClass: "popup-form" }, [
-                    _c("div", { staticClass: "popup-form__inner" }, [
-                      _c("form", [
-                        _c("input", {
-                          directives: [
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "a",
                             {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.name,
-                              expression: "name"
-                            }
-                          ],
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.name },
-                          on: {
-                            keydown: function($event) {
-                              if (
-                                !$event.type.indexOf("key") &&
-                                _vm._k(
-                                  $event.keyCode,
-                                  "enter",
-                                  13,
-                                  $event.key,
-                                  "Enter"
-                                )
-                              ) {
-                                return null
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.editQuestion(_vm.otazka)
+                                }
                               }
-                              $event.preventDefault()
-                              return _vm.editData(_vm.packages)
                             },
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.name = $event.target.value
-                            }
-                          }
-                        }),
-                        _vm._v(" "),
-                        _c("input", {
-                          directives: [
-                            {
-                              name: "model",
-                              rawName: "v-model",
-                              value: _vm.text,
-                              expression: "text"
-                            }
-                          ],
-                          staticClass: "text-popup",
-                          attrs: { type: "text" },
-                          domProps: { value: _vm.text },
-                          on: {
-                            keydown: function($event) {
-                              if (
-                                !$event.type.indexOf("key") &&
-                                _vm._k(
-                                  $event.keyCode,
-                                  "enter",
-                                  13,
-                                  $event.key,
-                                  "Enter"
-                                )
-                              ) {
-                                return null
-                              }
-                              $event.preventDefault()
-                              return _vm.editData(_vm.packages)
-                            },
-                            input: function($event) {
-                              if ($event.target.composing) {
-                                return
-                              }
-                              _vm.text = $event.target.value
-                            }
-                          }
-                        }),
+                            [
+                              _c("i", {
+                                staticClass: "far fa-save save-ico-pop"
+                              })
+                            ]
+                          )
+                        ]),
                         _vm._v(" "),
                         _c(
                           "a",
                           {
+                            staticClass: "closepopup",
                             on: {
                               click: function($event) {
                                 $event.preventDefault()
-                                return _vm.editData(_vm.packages)
+                                _vm.visiblepop = false
                               }
                             }
                           },
-                          [_c("i", { staticClass: "far fa-save save-ico-pop" })]
+                          [_c("i", { staticClass: "fas fa-times" })]
                         )
-                      ]),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "closepopup",
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              _vm.visiblepop2 = false
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-times" })]
-                      )
+                      ])
                     ])
-                  ])
-                : _vm._e()
-            ]
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "links-app-play" }, [
-            _c("div", { staticClass: "links-app-play__single" }, [
-              _c("a", { attrs: { href: "/package/" + _vm.packages.id } }, [
-                _c("i", { staticClass: "fas fa-play" })
+                  : _vm._e()
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "transition",
+              {
+                attrs: {
+                  "enter-active-class":
+                    "animate__animated animate__fadeIn animate__faster",
+                  "leave-active-class":
+                    "animate__animated animate__fadeOut animate__faster"
+                }
+              },
+              [
+                _vm.visiblepop2
+                  ? _c("div", { staticClass: "popup-form" }, [
+                      _c("div", { staticClass: "popup-form__inner" }, [
+                        _c("form", [
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.name,
+                                expression: "name"
+                              }
+                            ],
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.name },
+                            on: {
+                              keydown: function($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                $event.preventDefault()
+                                return _vm.editData(_vm.packages)
+                              },
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.name = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c("input", {
+                            directives: [
+                              {
+                                name: "model",
+                                rawName: "v-model",
+                                value: _vm.text,
+                                expression: "text"
+                              }
+                            ],
+                            staticClass: "text-popup",
+                            attrs: { type: "text" },
+                            domProps: { value: _vm.text },
+                            on: {
+                              keydown: function($event) {
+                                if (
+                                  !$event.type.indexOf("key") &&
+                                  _vm._k(
+                                    $event.keyCode,
+                                    "enter",
+                                    13,
+                                    $event.key,
+                                    "Enter"
+                                  )
+                                ) {
+                                  return null
+                                }
+                                $event.preventDefault()
+                                return _vm.editData(_vm.packages)
+                              },
+                              input: function($event) {
+                                if ($event.target.composing) {
+                                  return
+                                }
+                                _vm.text = $event.target.value
+                              }
+                            }
+                          }),
+                          _vm._v(" "),
+                          _c(
+                            "a",
+                            {
+                              on: {
+                                click: function($event) {
+                                  $event.preventDefault()
+                                  return _vm.editData(_vm.packages)
+                                }
+                              }
+                            },
+                            [
+                              _c("i", {
+                                staticClass: "far fa-save save-ico-pop"
+                              })
+                            ]
+                          )
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "closepopup",
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                _vm.visiblepop2 = false
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-times" })]
+                        )
+                      ])
+                    ])
+                  : _vm._e()
+              ]
+            ),
+            _vm._v(" "),
+            _c("div", { staticClass: "links-app-play" }, [
+              _c("div", { staticClass: "links-app-play__single" }, [
+                _c("a", { attrs: { href: "/package/" + _vm.packages.id } }, [
+                  _c("i", { staticClass: "fas fa-play" })
+                ])
               ])
             ])
-          ])
-        ],
-        1
-      )
-    : _vm._e()
+          ],
+          1
+        )
+      : _vm._e()
+  ])
 }
 var staticRenderFns = [
   function() {
@@ -34883,7 +35216,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("tr", [
-      _c("th", [_vm._v("Otázka")]),
+      _c("th", { staticClass: "long-question-text" }, [_vm._v("Otázka")]),
       _vm._v(" "),
       _c("th", [_vm._v("Edit")])
     ])
@@ -34910,221 +35243,249 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "user-home" }, [
-    _c("div", { staticClass: "user-home__content" }, [
-      _c("h2", [_vm._v(" Všechny otázky uživatele: " + _vm._s(_vm.users.name))])
-    ]),
+  return _c("div", [
+    _c("div", {
+      staticClass: "loadingdesign",
+      class: { loadingclass: _vm.loadingcl }
+    }),
     _vm._v(" "),
-    _c("div", { staticClass: "indexpackage" }, [
-      _c(
-        "div",
-        { staticClass: "indexpackage__wrap" },
-        [
-          _c("div", { staticClass: "indexpackage__single" }, [
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.newName,
-                  expression: "newName"
-                }
-              ],
-              staticClass: "input-h3",
-              attrs: { autocomplete: "off", type: "text", name: "name" },
-              domProps: { value: _vm.newName },
-              on: {
-                keydown: function($event) {
-                  if (
-                    !$event.type.indexOf("key") &&
-                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                  ) {
-                    return null
-                  }
-                  $event.preventDefault()
-                  return _vm.submitForm()
-                },
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.newName = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("input", {
-              directives: [
-                {
-                  name: "model",
-                  rawName: "v-model",
-                  value: _vm.newText,
-                  expression: "newText"
-                }
-              ],
-              staticClass: "input-p",
-              attrs: { autocomplete: "off", type: "text", name: "text" },
-              domProps: { value: _vm.newText },
-              on: {
-                keydown: function($event) {
-                  if (
-                    !$event.type.indexOf("key") &&
-                    _vm._k($event.keyCode, "enter", 13, $event.key, "Enter")
-                  ) {
-                    return null
-                  }
-                  $event.preventDefault()
-                  return _vm.submitForm()
-                },
-                input: function($event) {
-                  if ($event.target.composing) {
-                    return
-                  }
-                  _vm.newText = $event.target.value
-                }
-              }
-            }),
-            _vm._v(" "),
-            _c("i", {
-              staticClass: "fas fa-plus-square",
-              on: {
-                click: function($event) {
-                  $event.preventDefault()
-                  return _vm.submitForm()
-                }
-              }
-            })
+    _vm.loading
+      ? _c("div", { staticClass: "user-home" }, [
+          _c("div", { staticClass: "user-home__content" }, [
+            _c("h2", [
+              _vm._v(" Všechny otázky uživatele: " + _vm._s(_vm.users.name))
+            ])
           ]),
           _vm._v(" "),
-          _vm._l(_vm.packages, function(single) {
-            return _c(
+          _c("div", { staticClass: "indexpackage" }, [
+            _c(
               "div",
-              { key: single.id, staticClass: "indexpackage__single" },
+              { staticClass: "indexpackage__wrap" },
               [
-                _c("h2", [_vm._v(" " + _vm._s(single.name) + " ")]),
-                _vm._v(" "),
-                _c("p", [_vm._v(" " + _vm._s(single.text))]),
-                _vm._v(" "),
-                _c("div", { staticClass: "indexpackage__content" }, [
-                  _c(
-                    "div",
-                    { staticClass: "indexpackage__content__middle" },
-                    [
-                      _c(
-                        "router-link",
-                        { attrs: { to: "/package/" + single.id } },
-                        [_c("i", { staticClass: "fas fa-play" })]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        { staticClass: "indexpackage__content__middle-icon" },
-                        [
-                          _c(
-                            "router-link",
-                            {
-                              attrs: { to: "/package/" + single.id + "/edit" }
-                            },
-                            [_c("i", { staticClass: "fas fa-pen" })]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.deleteShow(single.id)
-                                }
-                              }
-                            },
-                            [_c("i", { staticClass: "fas fa-trash-alt" })]
-                          )
-                        ],
-                        1
-                      )
+                _c("div", { staticClass: "indexpackage__single" }, [
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.newName,
+                        expression: "newName"
+                      }
                     ],
-                    1
-                  )
-                ])
-              ]
-            )
-          }),
-          _vm._v(" "),
-          _c(
-            "transition",
-            {
-              attrs: {
-                "enter-active-class":
-                  "animate__animated animate__fadeIn animate__faster",
-                "leave-active-class":
-                  "animate__animated animate__fadeOut animate__faster"
-              }
-            },
-            [
-              _vm.visiblepop
-                ? _c("div", { staticClass: "popup-form" }, [
-                    _c("div", { staticClass: "popup-form__inner" }, [
-                      _c("form", { staticClass: "delete-message" }, [
-                        _c("p", { staticClass: "delete-message" }, [
-                          _vm._v(
-                            " Opravdu si přejete odstranit balíček i s jeho otázkami? "
+                    staticClass: "input-h3",
+                    attrs: { autocomplete: "off", type: "text", name: "name" },
+                    domProps: { value: _vm.newName },
+                    on: {
+                      keydown: function($event) {
+                        if (
+                          !$event.type.indexOf("key") &&
+                          _vm._k(
+                            $event.keyCode,
+                            "enter",
+                            13,
+                            $event.key,
+                            "Enter"
                           )
-                        ]),
-                        _vm._v(" "),
-                        _c("div", { staticClass: "buttons" }, [
-                          _c(
-                            "button",
-                            {
-                              staticClass: "zrusit",
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  _vm.visiblepop = false
-                                }
-                              }
-                            },
-                            [_vm._v(" Zrušit")]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              staticClass: "delete",
-                              on: {
-                                click: function($event) {
-                                  $event.preventDefault()
-                                  return _vm.deletePackage()
-                                }
-                              }
-                            },
-                            [_vm._v(" Odstranit ")]
+                        ) {
+                          return null
+                        }
+                        $event.preventDefault()
+                        return _vm.submitForm()
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.newName = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("input", {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.newText,
+                        expression: "newText"
+                      }
+                    ],
+                    staticClass: "input-p",
+                    attrs: { autocomplete: "off", type: "text", name: "text" },
+                    domProps: { value: _vm.newText },
+                    on: {
+                      keydown: function($event) {
+                        if (
+                          !$event.type.indexOf("key") &&
+                          _vm._k(
+                            $event.keyCode,
+                            "enter",
+                            13,
+                            $event.key,
+                            "Enter"
                           )
-                        ])
-                      ]),
+                        ) {
+                          return null
+                        }
+                        $event.preventDefault()
+                        return _vm.submitForm()
+                      },
+                      input: function($event) {
+                        if ($event.target.composing) {
+                          return
+                        }
+                        _vm.newText = $event.target.value
+                      }
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("i", {
+                    staticClass: "fas fa-plus-square",
+                    on: {
+                      click: function($event) {
+                        $event.preventDefault()
+                        return _vm.submitForm()
+                      }
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _vm._l(_vm.packages, function(single) {
+                  return _c(
+                    "div",
+                    { key: single.id, staticClass: "indexpackage__single" },
+                    [
+                      _c("h2", [_vm._v(" " + _vm._s(single.name) + " ")]),
                       _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "closepopup",
-                          on: {
-                            click: function($event) {
-                              $event.preventDefault()
-                              _vm.visiblepop = false
-                            }
-                          }
-                        },
-                        [_c("i", { staticClass: "fas fa-times" })]
-                      )
-                    ])
-                  ])
-                : _vm._e()
-            ]
-          )
-        ],
-        2
-      )
-    ])
+                      _c("p", [_vm._v(" " + _vm._s(single.text))]),
+                      _vm._v(" "),
+                      _c("div", { staticClass: "indexpackage__content" }, [
+                        _c(
+                          "div",
+                          { staticClass: "indexpackage__content__middle" },
+                          [
+                            _c(
+                              "router-link",
+                              { attrs: { to: "/package/" + single.id } },
+                              [_c("i", { staticClass: "fas fa-play" })]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "div",
+                              {
+                                staticClass:
+                                  "indexpackage__content__middle-icon"
+                              },
+                              [
+                                _c(
+                                  "router-link",
+                                  {
+                                    attrs: {
+                                      to: "/package/" + single.id + "/edit"
+                                    }
+                                  },
+                                  [_c("i", { staticClass: "fas fa-pen" })]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "a",
+                                  {
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.deleteShow(single.id)
+                                      }
+                                    }
+                                  },
+                                  [_c("i", { staticClass: "fas fa-trash-alt" })]
+                                )
+                              ],
+                              1
+                            )
+                          ],
+                          1
+                        )
+                      ])
+                    ]
+                  )
+                }),
+                _vm._v(" "),
+                _c(
+                  "transition",
+                  {
+                    attrs: {
+                      "enter-active-class":
+                        "animate__animated animate__fadeIn animate__faster",
+                      "leave-active-class":
+                        "animate__animated animate__fadeOut animate__faster"
+                    }
+                  },
+                  [
+                    _vm.visiblepop
+                      ? _c("div", { staticClass: "popup-form" }, [
+                          _c("div", { staticClass: "popup-form__inner" }, [
+                            _c("form", { staticClass: "delete-message" }, [
+                              _c("p", { staticClass: "delete-message" }, [
+                                _vm._v(
+                                  " Opravdu si přejete odstranit balíček i s jeho otázkami? "
+                                )
+                              ]),
+                              _vm._v(" "),
+                              _c("div", { staticClass: "buttons" }, [
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "zrusit",
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        _vm.visiblepop = false
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(" Zrušit")]
+                                ),
+                                _vm._v(" "),
+                                _c(
+                                  "button",
+                                  {
+                                    staticClass: "delete",
+                                    on: {
+                                      click: function($event) {
+                                        $event.preventDefault()
+                                        return _vm.deletePackage()
+                                      }
+                                    }
+                                  },
+                                  [_vm._v(" Odstranit ")]
+                                )
+                              ])
+                            ]),
+                            _vm._v(" "),
+                            _c(
+                              "a",
+                              {
+                                staticClass: "closepopup",
+                                on: {
+                                  click: function($event) {
+                                    $event.preventDefault()
+                                    _vm.visiblepop = false
+                                  }
+                                }
+                              },
+                              [_c("i", { staticClass: "fas fa-times" })]
+                            )
+                          ])
+                        ])
+                      : _vm._e()
+                  ]
+                )
+              ],
+              2
+            )
+          ])
+        ])
+      : _vm._e()
   ])
 }
 var staticRenderFns = []
@@ -50793,6 +51154,75 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./resources/js/components/NavodPage.vue":
+/*!***********************************************!*\
+  !*** ./resources/js/components/NavodPage.vue ***!
+  \***********************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _NavodPage_vue_vue_type_template_id_4369d38c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./NavodPage.vue?vue&type=template&id=4369d38c&scoped=true& */ "./resources/js/components/NavodPage.vue?vue&type=template&id=4369d38c&scoped=true&");
+/* harmony import */ var _NavodPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./NavodPage.vue?vue&type=script&lang=js& */ "./resources/js/components/NavodPage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _NavodPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _NavodPage_vue_vue_type_template_id_4369d38c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _NavodPage_vue_vue_type_template_id_4369d38c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "4369d38c",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/components/NavodPage.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/NavodPage.vue?vue&type=script&lang=js&":
+/*!************************************************************************!*\
+  !*** ./resources/js/components/NavodPage.vue?vue&type=script&lang=js& ***!
+  \************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NavodPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./NavodPage.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NavodPage.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_NavodPage_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/NavodPage.vue?vue&type=template&id=4369d38c&scoped=true&":
+/*!******************************************************************************************!*\
+  !*** ./resources/js/components/NavodPage.vue?vue&type=template&id=4369d38c&scoped=true& ***!
+  \******************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NavodPage_vue_vue_type_template_id_4369d38c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./NavodPage.vue?vue&type=template&id=4369d38c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NavodPage.vue?vue&type=template&id=4369d38c&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NavodPage_vue_vue_type_template_id_4369d38c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_NavodPage_vue_vue_type_template_id_4369d38c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
 /***/ "./resources/js/components/NotFound.vue":
 /*!**********************************************!*\
   !*** ./resources/js/components/NotFound.vue ***!
@@ -51031,8 +51461,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_UserHome__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/UserHome */ "./resources/js/components/UserHome.vue");
 /* harmony import */ var _components_PackageEdit__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/PackageEdit */ "./resources/js/components/PackageEdit.vue");
 /* harmony import */ var _components_NotFound__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/NotFound */ "./resources/js/components/NotFound.vue");
+/* harmony import */ var _components_NavodPage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/NavodPage */ "./resources/js/components/NavodPage.vue");
 
  // COMPONENTS
+
 
 
 
@@ -51042,7 +51474,7 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 /* harmony default export */ __webpack_exports__["default"] = (new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
   routes: [{
-    path: '/package/404',
+    path: '/404',
     component: _components_NotFound__WEBPACK_IMPORTED_MODULE_5__["default"]
   }, {
     path: '/package/:id',
@@ -51053,6 +51485,9 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
   }, {
     path: '/package/:id/edit',
     component: _components_PackageEdit__WEBPACK_IMPORTED_MODULE_4__["default"]
+  }, {
+    path: '/navod',
+    component: _components_NavodPage__WEBPACK_IMPORTED_MODULE_6__["default"]
   }]
 }));
 

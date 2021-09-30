@@ -7,6 +7,10 @@ header{
     width: calc(100% - 0%);
     top: 0;
     height: 60px;
+
+    @media screen and (max-width: 780px){
+        display: none;
+    }
 }
 
 .left-area { 
@@ -264,7 +268,6 @@ label{
     .nav_bar{
         background: #222;
         width: (100% - 0%);
-        margin-top: 60px;
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -272,6 +275,12 @@ label{
 
         h3{
             color: #fff;
+
+            a{
+                color: #fff;
+                text-decoration: none;
+                
+            }
         }
     }
     .nav_btn{

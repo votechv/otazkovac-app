@@ -11,9 +11,19 @@
     align-items: center;
     padding: 25px 0px;
     text-align: center;
+
+    @media screen and (max-width: 547px){
+        padding: 10px 0px;
+}
+
+   
         h2{
             padding-bottom: 20px;
             font-size: 34px;
+
+            @media screen and (max-width: 547px){
+                    font-size: 25px;
+            }
         }
     }
 
@@ -23,6 +33,10 @@
 
         p{
             font-size: 20px;
+
+            @media screen and (max-width: 547px){
+                font-size: 14px;
+        }
         }
     }
  
@@ -30,7 +44,7 @@
         padding-top:60px;
         overflow-x:auto;
         overflow-y:auto;
-        height: 70vh;
+        height: 65vh;
         justify-content: center;
         align-items: center;
         display: flex;
@@ -50,10 +64,14 @@
         flex-direction: column;
         justify-content: center;
         align-items: center;
-        height: 70vh;
+        min-height: calc(100vh - 300px);
 
         @media screen and(max-width: 1024px){
             height: 65vh !important;
+        }
+
+        @media screen and(max-width: 550px){
+            min-height: calc(100vh - 110px);
         }
 
        

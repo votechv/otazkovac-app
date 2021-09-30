@@ -219,6 +219,9 @@
         font-size: 20px;
         display: inline-block;
 
+        @media screen and(max-width:330px){
+            padding-left: 50px;
+        }
         a{
             color: black;
             transition: 0.5s ease color;

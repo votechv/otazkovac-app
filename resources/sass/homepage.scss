@@ -149,6 +149,14 @@
                 padding: 10px 0px;
                
               }
+
+              @media screen and (max-width: 500px){
+                  display: none;
+              }
+        }
+
+        .hp-buttons{
+            margin-top: 20px;
         }
 
         button{
@@ -161,14 +169,15 @@
             cursor: pointer;
             box-shadow: 1px 6px rgb(194, 194, 194);
             transition: 0.5s ease background;
+            color: black;
             &:hover{
                 background: rgb(192, 192, 192)
             }
 
             @media screen and( max-width: 800px){
                 max-width: 100%;
-                margin: 10px;
-                width: 200px;
+                margin: 10px 0px;
+                width: 100%;
 
              
             }
@@ -199,6 +208,14 @@
     &:hover{
         background:  rgb(1, 255, 1) !important;
     }
+}
+
+.left-auth-ok{
+    padding: 30px;
+}
+
+.img-auth-ok img{
+    width: 50%;
 }
 
 

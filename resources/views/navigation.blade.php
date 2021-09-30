@@ -50,20 +50,34 @@
  <!-- MOBILNÍ NAVIGACE -->
 <div class="mobile_nav">
     <div class="nav_bar">
-        @auth
-    <h3> Otázkovač.cz </h3>
-        @endauth
+      
+   <h3><a href="/"> Otázkovač.cz </a> </h3> 
+      
 
             <i class="fas fa-bars nav_btn"></i>
     </div>
     <div class="mobile_nav_item">
             <a href="/"> <i class="fas fa-home"></i> <span> Homepage </span> </a>
+           @auth
             <a href="/home"> <i class="fas fa-lock"></i> <span> Moje otázky </span> </a>
             <a href="/public-package"> <i class="fas fa-globe-europe"></i> <span> Veřejné otázky </span> </a>
             <a href="/profil"> <i class="fas fa-user-alt"></i> <span> Profil </span> </a>
-            <a href="/navod"> <i class="fas fa-book-open"></i> <span> Návod </span> </a>
-            <a href="/scheduled"> <i class="far fa-calendar-plus"></i> Plánované funkce </span> </a>
-    </div>
+           @endauth
+
+            @guest
+            <a href="{{ route('login') }}"> <i class="fas fa-sign-in-alt"></i> <span> Přihlásit se </span> </a>
+            <a href="{{ route('register') }}"><i class="fas fa-plus"></i> <span> Registrovat se </span> </a>
+            @endguest
+            
+            @auth
+            <a  href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                            document.getElementById('logout-form').submit();">
+                <i class="fas fa-sign-out-alt"></i> Odhlásit se 
+                </a>
+                @endauth
+            </div>
+           
 </div>
 
 <!-- KONEC MOBILNÍ NAVIGACE-->
