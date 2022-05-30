@@ -1,6 +1,10 @@
 <template>
+  
+  <div> 
 
-<div v-cloak class="app-spin">
+   <div class="loadingdesign"  :class="{loadingclass : loadingcl}"> 
+   </div>
+<div v-cloak class="app-spin" v-if="loading">
  
     <div v-cloak class="app-spin__content">
         <h2> {{packages.name}} </h2>
@@ -30,6 +34,7 @@
 </div>
 
 </div>
+</div>
 
 
 </template>
@@ -42,39 +47,83 @@
                 choose: 'Aplikaci spustíte stisknutím tlačítka',
                 singleuser: '',
                 visible: true,
+                loading: false,
+                loadingcl: true,
             }
         },
     
         created() {
             axios.get('/api/packages/'+this.$route.params.id).then(response => {
                 this.packages = response.data
-            });
-            axios.get('/api/users/').then(response => {
+            })
+             .catch(error => {
+                return this.$router.push('../404')
+            })
+            ;
+            axios.get('/api/users').then(response => {
                 this.singleuser = response.data
-            });
+                this.loading = true
+
+                this.loadingcl = false
+            })
+             .catch(error => {
+                return this.$router.push('../404')
+            })
+            ;
    
         },
               
+              computed: {
+                numbersArray() {        
+                    return this.createArrayOfNumber(0, this.packages.question.length -1);
+                }
+            },
 
         methods:{
-            mainSpin(){ 
 
-            },
-            random(){
+            getRandomNumber(min, max){
+            let totalEle = max - min;
+            let result = Math.floor(Math.random() * totalEle) + min;
+            return result;
+        },
 
-                if(this.packages.question.length > 0){ 
-
-                this.visible = false;
-                var number = Math.floor(Math.random() * this.packages.question.length);
-               
-                setTimeout(() => this.choose = this.packages.question[number].text, 300);
-                setTimeout(() => this.visible = true, 300);
+            createArrayOfNumber(start, end) {
+                let myArray = [];
+            
+                for (let i = start; i <= end; i++) {
+                    myArray.push(i);
                 }
-                else{
-                    this.choose = 'Naplňte svůj balíček otázkami :)'
-                }
+
+            return myArray;
                 
-            }, 
+            },
+
+        random(){
+
+        let randomIndex = this.getRandomNumber(0, this.numbersArray.length - 1);
+        let randomNumber = this.numbersArray[randomIndex];
+        this.numbersArray.splice(randomIndex, 1);
+
+        if(randomNumber > -2 && this.packages.question.length > 0){
+
+        this.visible = false;
+
+        setTimeout(() => this.choose = this.packages.question[randomNumber].text, 300);
+        setTimeout(() => this.visible = true, 300);
+        }
+
+        else if(this.packages.question.length < 1){
+            this.choose = 'Naplňte svůj balíček otázkami 😊'
+        }
+
+        else{
+            setTimeout(() => this.choose = 'Hurá 🎉 prošli jste všechny otázky v balíčku!', 300);  
+        
+        }
+},
+
+
+            
 
            
 

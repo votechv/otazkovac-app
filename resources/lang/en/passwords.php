@@ -13,10 +13,10 @@ return [
     |
     */
 
-    'password' => 'Passwords must be at least eight characters and match the confirmation.',
-    'reset' => 'Your password has been reset!',
-    'sent' => 'We have e-mailed your password reset link!',
-    'token' => 'This password reset token is invalid.',
-    'user' => "We can't find a user with that e-mail address.",
+    'password' => 'Heslo musí mít alespoň osm znaků a obě hesla se musí shodovat.',
+    'reset' => 'Vaše heslo bylo resetováno!',
+    'sent' => 'Poslali jsme vám e-mailem odkaz na resetování hesla!',
+    'token' => 'Tento token pro resetování hesla je neplatný.',
+    'user' => "Nemůžeme najít uživatele s touto e-mailovou adresou. “",
 
 ];

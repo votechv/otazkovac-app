@@ -25,4 +25,14 @@ class HomeController extends Controller
     {
         return view('home');
     }
+
+    public function scheduled(){
+        return view('page.scheduled');
+    }
+    public function profil(){
+        return view('page.profile');
+    }
+    public function navod(){
+        return view('page.navod');
+    }
 }

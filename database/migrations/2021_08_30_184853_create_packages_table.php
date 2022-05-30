@@ -20,7 +20,7 @@ class CreatePackagesTable extends Migration
             $table->text('text'); 
             $table->string('slug', 200); 
             $table->timestamps();
-            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->foreign('id')->references('package_id')->on('questions')->onDelete('cascade');
         });
     }
 

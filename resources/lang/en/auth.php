@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'failed' => 'These credentials do not match our records.',
-    'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
+    'failed' => 'Zadané heslo a email nesouhlasí.',
+    'throttle' => 'Příliš mnoho pokusů o přihlášení. Zkuste to za chvilku.',
 
 ];

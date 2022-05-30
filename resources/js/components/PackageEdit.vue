@@ -1,17 +1,21 @@
 <template>
-   
-        <div class="editpackage" v-show="packages.user_id == user.id">
+
+<div> 
+
+   <div class="loadingdesign"  :class="{loadingclass : loadingcl}"> 
+   </div>
+        <div class="editpackage" v-if="loading && user.id === packages.user_id">
 
          
         <div class="editpackage__data">
-            <h1> {{packages.name}}<a @click.prevent="addFormData(packages)"> <i class="fas fa-pen"></i></a> </h1>
+            <h1>  {{packages.name}}<a @click.prevent="addFormData(packages)"> <i class="fas fa-pen"></i></a> </h1>
             <p> {{packages.text}}</p>
         </div>
 
         <div class="editpackage__table"> 
         <table>
             <tr>
-                <th>Otázka</th>
+                <th class="long-question-text">Otázka</th>
                 <th>Edit</th>
             </tr>
 
@@ -59,10 +63,11 @@
 
 <div v-cloak class="links-app-play">
     <div class="links-app-play__single">
-        <router-link :to="'/package/'+ packages.id"> <i class="fas fa-play"></i> </router-link>
+        <a :href="'/package/'+ packages.id"> <i class="fas fa-play"></i> </a>
     </div>
 </div>
 
+        </div>
         </div>
 
 
@@ -83,22 +88,46 @@ import {ref} from 'vue';
                     text: '',
                     otazka_id: '',
                     visiblepop: false,
-                    visiblepop2: false
+                    visiblepop2: false,
+                    loading: false,
+                    loadingcl: true, 
+
 
                 }
             },
+
+           
             created() {
-            axios.get('/api/packages/'+this.$route.params.id).then(response => {
+                axios.get('/api/packages/'+this.$route.params.id).then(response => {
                 this.packages = response.data
-                
-            });
+            })
+             .catch(error => {
+                return this.$router.push('../../404')
+            })
+            ;
      
-            axios.get('/api/users/').then(response => {
+            axios.get('/api/users').then(response => {
                 this.user = response.data
+                this.loading = true
+
+                this.loadingcl = false
+            })
+               .catch(error => {
+                return this.$router.push('../../404')
             });
         },
 
         methods: {
+
+             refresh(){
+                 this.loadingcl = true
+               axios.get('/api/packages/'+this.$route.params.id).then(response => {
+                this.packages = response.data
+                
+                this.loadingcl = false
+                 }); 
+            },
+
             submitForm() {
                 let data = {
                     text: this.newQuestion,
@@ -107,20 +136,21 @@ import {ref} from 'vue';
                     package_userid: this.packages.user_id,
                     package: this.packages
                 }
+                 this.newQuestion = ''
+                 
+
+
                 axios.post('/api/questions', data).then(response => {
-                    this.newQuestion = ''
-                   this.packages.question.push(data)
-                   
+                    this.refresh();
                 })
 
                 
                 
-                axios.get('/api/packages/'+this.$route.params.id).then(response => {
-                this.packages = response.data
-                 }); 
+               
 
                 
             },
+
 
               deleteQuestion(question){
                 this.$root.$emit('flash', 'Otázka odstraněna');
@@ -128,11 +158,11 @@ import {ref} from 'vue';
                if(question.id) {
 
                 
-                axios.delete('/api/questions/' + question.id + '/');
+                axios.delete('/api/questions/' + question.id).then(response => {
+                    this.refresh();
+                   });
                      
-                axios.get('/api/packages/'+this.$route.params.id).then(response => {
-                this.packages = response.data
-                 }); 
+              
 
                 }
 
@@ -172,11 +202,11 @@ import {ref} from 'vue';
                 }
 
 
-                  axios.patch('/api/questions/'+this.otazka_id, data); 
+                  axios.patch('/api/questions/'+this.otazka_id, data).then(response => {
+                    this.refresh();
+                   });; 
 
-                  axios.get('/api/packages/'+this.$route.params.id).then(response => {
-                this.packages = response.data
-                 });
+          
 
                   this.visiblepop = false;
 
@@ -188,11 +218,11 @@ import {ref} from 'vue';
                     text: this.text,
                 }
 
-                axios.patch('/api/packages/'+information.id, data); 
+                axios.patch('/api/packages/'+information.id, data).then(response => {
+                    this.refresh();
+                   });; 
 
-                    axios.get('/api/packages/'+this.$route.params.id).then(response => {
-                this.packages = response.data
-                 });
+                  
 
                 this.visiblepop2 = false;
 

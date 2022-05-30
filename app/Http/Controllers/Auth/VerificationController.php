@@ -38,4 +38,11 @@ class VerificationController extends Controller
         $this->middleware('signed')->only('verify');
         $this->middleware('throttle:6,1')->only('verify', 'resend');
     }
+
+    protected function getFailedLoginMessage()
+    {
+        return 'These credentials do not match our records. :))';
+    
+        // You might even return a Lang::get() here
+    }
 }

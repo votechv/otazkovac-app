@@ -1,0 +1,30 @@
+.four-hundred-and-four{
+    width: 100%;
+    height: 92vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    flex-direction: column;
+    h1{
+        font-size: 80px;
+        padding: 20Px 0px;
+
+        @media screen and(max-width: 800px){
+            font-size: 50px;
+        }
+    }
+
+    h4{
+        font-size: 30px;
+        padding: 20Px 0px;
+    }
+
+    button{
+        background: none;
+        border: none;
+        color: black;
+        font-size: 40px;
+        cursor: pointer;
+    }
+}

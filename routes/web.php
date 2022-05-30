@@ -11,8 +11,11 @@
 |
 */
 
-Route::get('/', 'packagecontroller@index');
-Route::get('/public', 'packagecontroller@public');
+Route::get('/', 'PackageController@index');
+Route::get('/public-package', 'PackageController@public');
+Route::get('/locked-package', 'PackageController@locked');
+Route::get('/profil', 'HomeController@profil');
+Route::get('/scheduled', 'HomeController@scheduled');
 
 Auth::routes();
 
@@ -21,8 +24,17 @@ Route::get('/package/{any?}', function(){
     return view('layouts.admin');
 })->where('any', '.*')->middleware('auth');
 
+Route::get('/404', function(){
+    return view('layouts.admin');
+});
+
 
 Route::get('/home/{any?}', function(){
     return view('layouts.admin');
 })->where('any', '.*')->middleware('auth');
+
+Route::get('/navod', function(){
+    return view('layouts.admin');
+});
+
 

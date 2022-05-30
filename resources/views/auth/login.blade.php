@@ -1,5 +1,7 @@
 @extends('layouts.body')
 
+@section('title', 'přihlásit se')
+
 @section('content')
 
 <div class="loginform">

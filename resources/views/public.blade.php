@@ -1,5 +1,7 @@
 @extends('layouts.body')
 
+@section('title', 'veřejné balíčky')
+
 @section('content')
 
 
@@ -20,7 +22,12 @@
             <p> {{$package->text}} </p>
             <div class="indexpackage__content">
                 <div class="indexpackage__content__middle"> 
-                    <a href="/package/{{$package->id}} "> <i class="fas fa-play"></i> </a>
+                        @auth
+                        <a href="/package/{{$package->id}} "> <i class="fas fa-play"></i> </a>
+                        @endauth
+                        @guest
+                        <a href="/locked-package"> <i class="fas fa-eye"></i> </a>    
+                        @endguest
                 </div>
             </div>
         </div>

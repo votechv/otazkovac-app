@@ -1,15 +1,20 @@
 <template>
-<div class="user-home">
+<div>
+<div class="loadingdesign"  :class="{loadingclass : loadingcl}"> 
+</div>
+
+<div class="user-home" v-if="loading">
    
     <div v-cloak class="user-home__content">
-        <h2> Všechny otázky uživatele: {{users.name}} </h2>
+        <h2> Všechny otázky uživatele: {{users.name}}</h2>
     </div> 
 
-    <div class="indexpackage">
+
+    <div class="indexpackage"> 
         <div class="indexpackage__wrap"> 
                 <div class="indexpackage__single">
-                 <input class="input-h3"  @keydown.enter.prevent="submitForm()" type="text" name="name" v-model="newName">
-                <input class="input-p" @keydown.enter.prevent="submitForm()" type="text" name="text" v-model="newText">
+                 <input class="input-h3" autocomplete="off" @keydown.enter.prevent="submitForm()" type="text" name="name" v-model="newName">
+                <input class="input-p" autocomplete="off" @keydown.enter.prevent="submitForm()"  type="text" name="text" v-model="newText">
                      <i @click.prevent="submitForm()" class="fas fa-plus-square"></i> 
             </div>
       <!--  <h2 class="index-title">Balíčky uživatele {{users.name}} </h2> --> 
@@ -27,11 +32,14 @@
                 </div> 
             </div>           
 
+
+      
+
           
    <transition  enter-active-class="animate__animated animate__fadeIn animate__faster" leave-active-class="animate__animated animate__fadeOut animate__faster">
         <div class="popup-form" v-if="visiblepop">
             <div class="popup-form__inner">
-                   <form class="delete-message">
+                   <form class="delete-message" >
                        <p class="delete-message"> Opravdu si přejete odstranit balíček i s jeho otázkami? </p>
                         <div class="buttons"> 
                         <button class="zrusit" @click.prevent="visiblepop = false"> Zrušit</button>
@@ -60,9 +68,13 @@
     
     
     
+            </div>
+    
+         </div>
+        </div>
+
     </div>
-    </div>
-    </div>
+
 </template>
 
 <script> 
@@ -76,6 +88,9 @@ import MessageOk from './MessageOk'
                 newText: '', 
                 deleteId: '', 
                 visiblepop: false,
+                loading: false,
+                loadingcl: true,
+              
             } 
         },
           props: {
@@ -85,12 +100,19 @@ import MessageOk from './MessageOk'
           },
 
            created() {
-            axios.get('./api/packages/').then(response => {
+            axios.get('./api/packages').then(response => {
                 this.packages = response.data
+
+                
             },
             );
-            axios.get('./api/users/', ).then(response => {
+            axios.get('./api/users', ).then(response => {
+                
                 this.users = response.data
+
+                this.loading = true
+                this.loadingcl = false
+                 
             },
           
 
@@ -108,6 +130,16 @@ import MessageOk from './MessageOk'
                 this.visiblepop = true;
                 this.deleteid = single;
             },
+
+            refresh(){
+                this.loadingcl = true
+
+                axios.get('./api/packages').then(response => {
+                    this.packages = response.data
+
+                    this.loadingcl = false
+                });
+            },
             submitForm() {
                 let data = {
                     name: this.newName,
@@ -118,31 +150,19 @@ import MessageOk from './MessageOk'
                 this.newName = '',
                 this.newText = ''
 
-                   axios.post('/api/packages', data).then(response => {
-                    this.packages.push(data)
-                    
+                   axios.post('./api/packages', data).then(response => {
+                       this.$router.push('/package/' + response.data.id.id + '/edit/')
+                
                    });
 
-                      axios.get('./api/packages/').then(response => {
-                this.packages = response.data
-            });
-
-            this.newName = '',
-            this.newText = ''
                  
             },
 
             deletePackage(){
-                 axios.delete('/api/packages/' + this.deleteid);
+                 axios.delete('./api/packages/' + this.deleteid).then(response => {
+                    this.refresh();
+                   });;
                  
-                
-
-                   axios.get('./api/packages/').then(response => {
-                this.packages = response.data
-            });
-
-            
-
             this.visiblepop = false;
 
             }
