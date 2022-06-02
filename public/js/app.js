@@ -57003,12 +57003,6 @@ var navItem = document.querySelector('.mobile_nav_item');
 nav.addEventListener('click', function () {
   navItem.classList.toggle('mobile-nav-active');
 });
-gsap__WEBPACK_IMPORTED_MODULE_0__["default"].fromTo('.wrap-content-index__content', {
-  x: 0
-}, {
-  x: 1000,
-  duration: 10
-});
 
 /***/ }),
 
@@ -57078,8 +57072,8 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! /Users/macbook/otazkovac/resources/js/app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! /Users/macbook/otazkovac/resources/sass/app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! /Users/vojtechvanek/otazkovac-app/resources/js/app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! /Users/vojtechvanek/otazkovac-app/resources/sass/app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

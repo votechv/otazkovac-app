@@ -1,4 +1,4 @@
-import gsap from "gsap";
+import gsap from "gsap"; 
 
 let nav = document.querySelector('.nav_btn');
 let navItem = document.querySelector('.mobile_nav_item');
