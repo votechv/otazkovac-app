@@ -9,21 +9,21 @@
     <h2> Vaše kategorie</h2>
 
     <!-- DOŘEŠIT, TAKHLE JE TO FAKT STRAŠNÝ ! POUŽÍT FLICKYTY NA SCROLL, BEZ ŠIPEK!! -->
-    <div class="main-carousel user-home__category--wrap" data-flickity='{ "cellAlign": "left", "contain": true }'>
+    <div class="user-home__category--wrap">
 
-        <div class="carousel-cell user-home__category--single active-categorie">
+        <div class="user-home__category--single active-categorie">
             <img src="https://www.onlygfx.com/wp-content/uploads/2016/08/flag-of-uk.png">
             <h2> Angličtina</h2>
             <button> <i class="fa-solid fa-chevron-right"></i> </button>
         </div>
 
-        <div class="carousel-cell user-home__category--single">
+        <div class="user-home__category--single">
             <img src="https://www.onlygfx.com/wp-content/uploads/2016/08/flag-of-uk.png">
             <h2> Angličtina a její nové schopnosti </h2>
             <button> <i class="fa-solid fa-chevron-right"></i> </button>
         </div>
 
-        <div class="carousel-cell user-home__category--single">
+        <div class="user-home__category--single">
             <img src="https://www.onlygfx.com/wp-content/uploads/2016/08/flag-of-uk.png">
             <h2> »nejzdevětadevadesáteronásobitelnějšího</h2>
             <button> <i class="fa-solid fa-chevron-right"></i> </button>
