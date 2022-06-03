@@ -16,6 +16,10 @@ Route::get('/public-package', 'PackageController@public');
 Route::get('/locked-package', 'PackageController@locked');
 Route::get('/profil', 'HomeController@profil');
 Route::get('/scheduled', 'HomeController@scheduled');
+Route::get('/dashboard', 'HomeController@dashboard');
+Route::get('/studyroom', 'HomeController@studyroom');
+Route::get('/setting', 'HomeController@setting');
+
 
 Auth::routes();
 

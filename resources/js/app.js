@@ -3,7 +3,9 @@ import MainApp from './components/MainApp'
 import router from './router'
 import UserHome from './components/UserHome'
 import nav from './nav.js'
+import main from './main'
 import 'animate.css'
+import 'flickity'
 
 require('./bootstrap');
 

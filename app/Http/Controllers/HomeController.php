@@ -35,4 +35,17 @@ class HomeController extends Controller
     public function navod(){
         return view('page.navod');
     }
+
+    public function dashboard(){
+        return view('page.dashboard');
+    }
+
+    public function studyroom(){
+        return view('page.studyroom');
+    }
+
+    public function setting(){
+        return view('page.setting');
+    }
+
 }
