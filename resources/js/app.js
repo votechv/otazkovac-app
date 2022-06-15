@@ -3,9 +3,12 @@ import MainApp from './components/MainApp'
 import router from './router'
 import UserHome from './components/UserHome'
 import nav from './nav.js'
-import main from './main'
+import main from './main.js'
 import 'animate.css'
-import 'flickity'
+import jquery from 'jquery'
+
+
+
 
 require('./bootstrap');
 

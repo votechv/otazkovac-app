@@ -63,14 +63,37 @@
  <!-- NAVIGACE BOČNÍ PC -->
 
 <nav class="mainmenu">
-    <ul>
-        <li class="menuActive"> <a href="/dashboard"> <i class="fa-solid fa-chart-bar"></i> <span> Nástěnka </span> </a></li>
-        <li> <a href="/studyroom"> <i class="fa-solid fa-graduation-cap"></i> <span> Studovna </span> </a></li>
-        <li> <a href="/home"> <i class="fa-solid fa-box"></i><span> Moje balíčky  </span></a></li>
-        <li> <a href="/public-package"> <i class="fa-solid fa-box-archive"></i><span>Cizí balíčky</span></a></li>
-        <li> <a href="/setting"> <i class="fa-solid fa-gear"></i><span>Nastavení </span></a></li>
-        <li> <a href="/logout"> <i class="fa-solid fa-right-from-bracket"></i><span>Odhlásit se</span> </a></li>
-    </ul>
+   <div class="mainmenu__logo">
+    <img src="https://otazkovac.cz/cdn/otazkovac.png" alt="">
+   </div>
+
+   <div class="mainmenu__links">
+       <ul>
+           <li>
+               <a href="/dashboard"> <i class="fa-solid fa-chart-line"></i> Můj přehled </a>
+           </li>
+           <li>
+               <a href="/studyroom"> <i class="fa-solid fa-graduation-cap"></i> Studovna </a>
+           </li>
+          
+           <li>
+            <a href="/home"> <i class="fa-solid fa-question"></i> Moje balíčky </a>
+            </li>
+        <li>
+            <a href="/public-packages"> <i class="fa-solid fa-clipboard-question"></i>Veřejné balíčky </a>
+        </li>
+
+        <li>
+            <a href="/setting"><i class="fa-solid fa-gear"></i> Nastavení </a>
+        </li>
+
+        <li>
+            <a href="#"><i class="fa-solid fa-arrow-right-from-bracket"></i> Odhlásit se  </a>
+        </li>
+
+
+       </ul>
+   </div>
 </nav>
 
 <!-- KONEC NAVIGACE BOČNÍ PC -->

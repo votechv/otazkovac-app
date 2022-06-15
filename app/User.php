@@ -42,6 +42,10 @@ class User extends Authenticatable
         return $this->hasMany('App\Package');
      }
 
+     public function folder(){
+        return $this->hasMany('App\Folder');
+     }
+
      public function question(){
         return $this->hasMany('App\Question');
      }

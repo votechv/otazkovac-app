@@ -9,6 +9,10 @@ import PackageEdit from './components/PackageEdit'
 import NotFound from './components/NotFound'
 import NavodPage from './components/NavodPage'
 
+// FOLDERS 
+
+import MainFolders from './folders/MainFolders'
+
 Vue.use(VueRouter) 
 
 export default new VueRouter({
@@ -19,5 +23,6 @@ export default new VueRouter({
         { path: '/home', component: UserHome },
         { path: '/package/:id/edit', component: PackageEdit },
         { path: '/navod', component: NavodPage },
+        { path: '/folders', component: MainFolders },
     ]
 });

@@ -12,7 +12,7 @@
     "devDependencies": {
         "axios": "^0.19",
         "cross-env": "^5.1",
-        "jquery": "^3.2",
+        "jquery": "^3.6.0",
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.13",
         "popper.js": "^1.12",
@@ -20,13 +20,20 @@
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
         "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.14"
+        "vue-template-compiler": "^2.5.17"
     },
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.4",
         "animate.css": "^4.1.1",
         "composer": "^4.1.0",
+        "flickity": "^3.0.0",
         "gsap": "^3.9.1",
-        "vue-router": "^3.5.2"
+        "vue-carousel": "^0.18.0",
+        "vue-emoji-picker": "^1.0.3",
+        "vue-flickity": "^1.2.1",
+        "vue-owl-carousel": "^2.0.3",
+        "vue-router": "^3.5.2",
+        "vue-split-carousel": "^2.2.3",
+        "vue3-carousel": "^0.1.40"
     }
 }

@@ -1,45 +1,23 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use App\Package;
 use App\Question;
 use App\User;
+use App\Folder;
 use Illuminate\Http\Request;
 
-class PackageController extends Controller
+class FolderController extends Controller
 {
     /**
      * Display a listing of the resource.
-     * 
+     *
      * @return \Illuminate\Http\Response
      */
     public function index()
     {
         return view('index',[
-            'packages' => Package::all()
-        ]);
-    }
-
-    public function home()
-    {
-        return view('home',[
-            'packages' => Package::all(),
-            'users' => User::all(),
-        ]);
-    }
-
-    public function public(){
-        return view('public',[
-            'packages' => Package::all(),
-            'users' => User::all(),
-        ]);
-    }
-    public function locked(){
-        return view('locked',[
-            'packages' => Package::all(),
-            'users' => User::all(),
-            'questions' => Question::all(),
+            'folders' => Folder::all()
         ]);
     }
 
@@ -67,23 +45,21 @@ class PackageController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Package  $package
+     * @param  \App\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function show(Package $package)
+    public function show(Folder $folder)
     {
-        return view('questions.single',[
-            'package' => $package
-        ]);
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Package  $package
+     * @param  \App\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function edit(Package $package)
+    public function edit(Folder $folder)
     {
         //
     }
@@ -92,10 +68,10 @@ class PackageController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Package  $package
+     * @param  \App\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Package $package)
+    public function update(Request $request, Folder $folder)
     {
         //
     }
@@ -103,10 +79,10 @@ class PackageController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Package  $package
+     * @param  \App\Folder  $folder
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Package $package)
+    public function destroy(Folder $folder)
     {
         //
     }

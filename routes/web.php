@@ -12,7 +12,7 @@
 */
 
 Route::get('/', 'PackageController@index');
-Route::get('/public-package', 'PackageController@public');
+Route::get('/public-packages', 'PackageController@public');
 Route::get('/locked-package', 'PackageController@locked');
 Route::get('/profil', 'HomeController@profil');
 Route::get('/scheduled', 'HomeController@scheduled');
@@ -41,4 +41,7 @@ Route::get('/navod', function(){
     return view('layouts.admin');
 });
 
+Route::get('/folders', function(){
+    return view('layouts.admin');
+});
 
