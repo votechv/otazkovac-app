@@ -9,7 +9,7 @@ use Illuminate\Database\Eloquent\Model;
    class Package extends Model
    {
       protected $fillable = [
-        'text', 'user_id', 'name', 'folder_id'
+          'user_id', 'name', 'folder_id'
       ];
    
        public function user(){

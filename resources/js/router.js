@@ -8,6 +8,7 @@ import UserHome from './components/UserHome'
 import PackageEdit from './components/PackageEdit'
 import NotFound from './components/NotFound'
 import NavodPage from './components/NavodPage'
+import StudyRoom from './studyroom/StudyRoom'
 
 // FOLDERS 
 
@@ -24,5 +25,6 @@ export default new VueRouter({
         { path: '/package/:id/edit', component: PackageEdit },
         { path: '/navod', component: NavodPage },
         { path: '/folders', component: MainFolders },
+        { path: '/studyroom', component: StudyRoom },
     ]
 });

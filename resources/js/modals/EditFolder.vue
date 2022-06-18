@@ -1,0 +1,137 @@
+<template>
+       <div class="popup-form" @keyup.enter="submitForm(name, input)">
+            <div class="popup-form__inner">
+                   <form class="delete-message" >
+                       <input type="text" v-model="newName" placeholder="Název složky...">
+                  
+                    <a class="closepopup" @click.prevent="closePopup()"> <i class="fas fa-times"></i></a>
+            
+
+    <emoji-picker @emoji="append">
+           
+      <div
+        class=""
+        slot="emoji-invoker"
+        slot-scope="{ events: { click: clickEvent } }"
+        @click.stop="clickEvent"
+      >
+        <input slot="emoji-invoker"  @click.stop="clickEvent" class="emoji-input" disabled="disabled"  v-model="input" placeholder="👆 Vyber emoji...">
+      </div>
+      <div slot="emoji-picker" slot-scope="{ emojis, insert, display }">
+        <div class="emoji-picker" :style="{ top: display.y + 'px', left: display.x + 'px' }">
+      
+          <div>
+            <h5> Vlajky států </h5>
+          <span class="cursor-poninter" @click="insert('🇨🇿')"> 🇨🇿 </span> 
+          <span class="cursor-poninter" @click="insert('🇬🇧')"> 🇬🇧 </span> 
+          <span class="cursor-poninter" @click="insert('🇺🇲')"> 🇺🇲 </span> 
+          <span class="cursor-poninter" @click="insert('🇩🇪')"> 🇩🇪 </span> 
+          <span class="cursor-poninter" @click="insert('🇪🇸')"> 🇪🇸 </span> 
+          <span class="cursor-poninter" @click="insert('🇺🇦')"> 🇺🇦 </span> 
+          <span class="cursor-poninter" @click="insert('🇩🇰')"> 🇩🇰 </span> 
+          <span class="cursor-poninter" @click="insert('🇵🇱')"> 🇵🇱 </span> 
+          <span class="cursor-poninter" @click="insert('🇨🇳')"> 🇨🇳 </span> 
+          <span class="cursor-poninter" @click="insert('🇫🇷')"> 🇫🇷 </span> 
+          <span class="cursor-poninter" @click="insert('🇸🇪')"> 🇸🇪 </span> 
+          <span class="cursor-poninter" @click="insert('🇦🇪')"> 🇦🇪 </span> 
+          <span class="cursor-poninter" @click="insert('🇯🇵')"> 🇯🇵 </span> 
+          <span class="cursor-poninter" @click="insert('🇺🇦🇷🇺')"> 🇷🇺 </span> 
+           <h5> Nejpoužívanější</h5>
+            <div v-for="(emojiGroup, category) in emojis" :key="category">
+ 
+
+              
+              <div class="emojis">
+                <span
+                
+                  v-for="(emoji, emojiName) in emojiGroup"
+                  :key="emojiName"
+                  @click="insert(emoji)"
+                  :title="emojiName"
+                >{{ emoji }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </emoji-picker>
+
+
+     <a @click.prevent="editFolder()" > <i class="far fa-save save-ico-pop"></i></a>
+              </form>
+            </div>
+
+</div>
+</template>
+
+<script>
+import EmojiPicker from 'vue-emoji-picker'
+
+export default {
+   name: "ModalTemplate",
+
+    data() {
+        return {
+            name: '',
+            input: '',
+            newName: '',
+            newEmoji: '',
+        }
+    },
+
+    created() {
+         this.newName = this.folder.name;
+        this.input = this.folder.emoji;
+    },
+
+  
+
+methods: {
+    append(emoji) {
+        if(this.input != ''){
+            this.input = '';
+            this.input += emoji;
+        }else{
+
+            this.input += emoji
+        }
+    },
+
+    editFolder(){
+        let data = {
+            name: this.newName,
+            emoji: this.input
+        }
+       
+       axios.patch('/api/folders/'+this.folder.id, data).then(response => {
+            this.closePopup();
+            this.$emit('reloadFolder');
+        });; 
+
+          
+
+       
+    },
+
+        closePopup(){
+           this.$emit('closemodal');
+        }
+
+            },
+
+   directives: {
+    focus: {
+      inserted(el) {
+        el.focus()
+      },
+    },
+  },
+
+     components: {
+    EmojiPicker, 
+  },
+
+  props:['folder'],
+
+}
+</script>

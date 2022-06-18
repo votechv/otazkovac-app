@@ -68,7 +68,16 @@ class FolderController extends Controller
      */
     public function update(Request $request, Folder $folder)
     {
-        //
+        $request->validate([
+            'name' => 'required',
+            'emoji' => 'required',
+        ]);
+        if($folder['user_id'] === auth('api')->user()->id){  
+        $folder->update(
+            $request->all()
+        );
+    }
+
     }
 
     /**

@@ -41,7 +41,7 @@
          
  -->
 
- <list-packages :packages="packages" />
+ <list-packages :packages="packages" :folder="currentFolderId" :emoji="this.folders[this.currentIndex]" v-on:refreshPackage="getPackages()" />
 
 
 
@@ -125,7 +125,6 @@ import ListPackages from '../packages/ListPackages'
                 this.loadingcl = false
 
             });
-
            
 
             axios.get('./api/folders/').then(response => {
@@ -152,9 +151,6 @@ import ListPackages from '../packages/ListPackages'
                 
             });
 
-
-            
-            
 
 
         },

@@ -1,6 +1,13 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@import url(https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;
 
-0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);@import url(https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;1,100;1,300;1,400&display=swap);.four-hundred-and-four {
+0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap);@import url(https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;1,100;1,300;1,400&display=swap);@font-face {
+  font-family: "BoardFont";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/KgHoloceneRegular-lgjKy.ttf");
+}
+
+.four-hundred-and-four {
   width: 100%;
   height: 92vh;
   display: flex;
@@ -2217,6 +2224,23 @@ a.password-forgot {
   border-radius: 15px;
   position: relative;
   padding: 40px;
+  height: 180px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.listPackages__single::after {
+  content: "?";
+  font-family: "Font Awesome 6 Free";
+  font-weight: 900;
+  position: absolute;
+  font-size: 10rem;
+  width: 100%;
+  height: 100%;
+  left: 5px;
+  top: 10px;
+  color: rgba(128, 128, 128, 0.158);
 }
 
 .listPackages__single h2 {
@@ -2235,11 +2259,13 @@ a.password-forgot {
   position: absolute;
   bottom: 20px;
   right: 20px;
+  z-index: 5;
 }
 
 .listPackages__single--play i {
   font-size: 40px;
   color: #2e279d;
+  cursor: pointer;
 }
 
 .listPackages__edits {
@@ -2260,6 +2286,163 @@ a.password-forgot {
   color: white;
   padding: 0 5px;
   font-size: 17px;
+  cursor: pointer;
+}
+
+.studyroom {
+  width: 100%;
+  height: 100%;
+  padding: 40px;
+}
+
+.studyroom__intro {
+  width: 100%;
+}
+
+.studyroom__intro h1 {
+  font-size: 4rem;
+  text-align: center;
+  text-transform: uppercase;
+  color: black;
+}
+
+.studyroom__intro p {
+  text-align: center;
+  font-style: italic;
+  font-size: 15px;
+}
+
+.studyroom__intro--name {
+  color: gray;
+  font-size: 12px;
+}
+
+.studyroom__modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+  background-color: rgba(0, 0, 0, 0.281);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "BoardFont";
+  color: black;
+}
+
+.studyroom__modal--window {
+  width: 800px;
+  background: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 80px;
+  position: relative;
+}
+
+.studyroom__modal--window i {
+  font-size: 50px;
+  color: #2e279d;
+  padding: 20px 0px;
+}
+
+.studyroom__modal--window h2 {
+  font-size: 29px;
+  padding: 0px 0px 20px 0px;
+  color: #2e279d;
+}
+
+.studyroom__modal--window p {
+  text-align: center;
+  font-family: "Fira Sans", sans-serif !important;
+}
+
+.studyroom__modal--close {
+  position: absolute;
+  right: 7px;
+  top: -20px;
+  cursor: pointer;
+}
+
+.studyroom__modal--close i {
+  font-size: 30px;
+}
+
+.studyroom__mix {
+  width: 100%;
+  padding: 50px 0px;
+}
+
+.studyroom__mix h2 {
+  text-align: center;
+  text-transform: uppercase;
+  font-family: "BoardFont";
+  border-bottom: 2px dotted #2e279d;
+  font-size: 30px;
+}
+
+.studyroom__mix h2 i {
+  font-size: 20px;
+  cursor: pointer;
+  transition: 0.5s ease all;
+}
+
+.studyroom__mix h2 i:hover {
+  color: #2e279d;
+}
+
+.studyroom__mix--single {
+  background: white;
+  width: 300px;
+  text-align: center;
+  margin: 50px 0px;
+  display: flex;
+  flex-direction: row;
+  position: relative;
+  padding: 18px;
+  z-index: 1;
+  border: 1px solid transparent;
+  border-radius: 20px;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.studyroom__mix--single span {
+  position: absolute;
+  top: 0px;
+  left: 50%;
+  font-size: 55px;
+  transform: translate(-50%, -50%);
+}
+
+.studyroom__mix--single h2 {
+  padding: 20px 0px;
+  font-family: "Fira Sans", sans-serif !important;
+  font-size: 20px;
+  border: none;
+}
+
+.studyroom__mix--single h2 i {
+  font-size: 15px;
+}
+
+.studyroom__mix--single button {
+  width: 150px;
+  background: white;
+  border: 1px solid black;
+  border-radius: 20px;
+  padding: 10px;
+  transition: 0.5s ease-out all;
+  cursor: pointer;
+}
+
+.studyroom__mix--single button:hover {
+  background: black;
+  color: white;
 }
 
 .cursor-poninter {
