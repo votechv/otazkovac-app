@@ -2032,13 +2032,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
 
 
 
@@ -2713,6 +2706,7 @@ __webpack_require__.r(__webpack_exports__);
         text: this.newQuestion,
         user_id: this.user.id,
         package_id: this.packages.id,
+        folder_id: this.packages.folder_id,
         package_userid: this.packages.user_id,
         "package": this.packages
       };
@@ -3469,6 +3463,140 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/studyroom/MixApp.vue?vue&type=script&lang=js&":
+/*!****************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/studyroom/MixApp.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      packages: [],
+      choose: 'Aplikaci spustíte stisknutím tlačítka',
+      singleuser: '',
+      visible: true,
+      loading: false,
+      loadingcl: true,
+      folders: []
+    };
+  },
+  created: function created() {
+    var _this = this;
+
+    axios.get('/api/users').then(function (response) {
+      _this.singleuser = response.data;
+      _this.loading = true;
+      _this.loadingcl = false;
+    })["catch"](function (error) {
+      return _this.$router.push('../404');
+    });
+    axios.get('/api/folders/' + this.$route.params.id).then(function (response) {
+      _this.packages = response.data;
+    })["catch"](function (error) {
+      return _this.$router.push('../404');
+    });
+  },
+  computed: {
+    numbersArray: function numbersArray() {
+      return this.createArrayOfNumber(0, this.packages.question.length - 1);
+    },
+    lengthArray: function lengthArray() {
+      return this.numbersArray.length;
+    }
+  },
+  methods: {
+    getRandomNumber: function getRandomNumber(min, max) {
+      var totalEle = max - min;
+      var result = Math.floor(Math.random() * totalEle) + min;
+      return result;
+    },
+    createArrayOfNumber: function createArrayOfNumber(start, end) {
+      var myArray = [];
+
+      for (var i = start; i <= end; i++) {
+        myArray.push(i);
+      }
+
+      return myArray;
+    },
+    random: function random() {
+      var _this2 = this;
+
+      var randomIndex = this.getRandomNumber(0, this.numbersArray.length - 1);
+      var randomNumber = this.numbersArray[randomIndex];
+      this.numbersArray.splice(randomIndex, 1);
+
+      if (randomNumber > -2 && this.packages.question.length > 0) {
+        this.visible = false;
+        setTimeout(function () {
+          return _this2.choose = _this2.packages.question[randomNumber].text;
+        }, 300);
+        setTimeout(function () {
+          return _this2.visible = true;
+        }, 300);
+      } else if (this.packages.question.length < 1) {
+        this.choose = 'Naplňte svůj balíček otázkami 😊';
+      } else {
+        setTimeout(function () {
+          return _this2.choose = 'Hurá 🎉 prošli jste všechny otázky v balíčku!';
+        }, 300);
+      }
+    },
+    procent: function procent() {
+      var vysledek = 100 * this.numbersArray.length / this.lengthArray;
+      return vysledek;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/studyroom/StudyRoom.vue?vue&type=script&lang=js&":
 /*!*******************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/studyroom/StudyRoom.vue?vue&type=script&lang=js& ***!
@@ -3535,18 +3663,108 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
       showinfoMix: false,
-      showinfoMegaMix: false
+      showinfoMegaMix: false,
+      folders: '',
+      loadingFolder: false
     };
   },
   components: {
     InfoModal: _InfoModal__WEBPACK_IMPORTED_MODULE_0__["default"],
     carousel: vue_owl_carousel__WEBPACK_IMPORTED_MODULE_1___default.a
+  },
+  created: function created() {
+    this.getFolders();
+  },
+  methods: {
+    getFolders: function getFolders() {
+      var _this = this;
+
+      // TATO FUNKCE NAČÍTÁ SLOŽKY. ZÁROVEŇ PŘI NAČTENÍ STRÁNKY URČUJE, KTERÁ SLOŽKA BUDE ZOBRAZENA JAKO OTEVŘENÁ. 
+      this.loadingFolder = false;
+      axios.get('./api/folders').then(function (response) {
+        _this.folders = response.data;
+        _this.loadingFolder = true;
+        _this.currentFolderId = response.data[0].id;
+        console.log("ReloadFolders: id" + response.data[0].id);
+
+        _this.getPackages();
+      })["catch"](function (error) {});
+    }
   }
 });
 
@@ -41222,83 +41440,72 @@ var render = function () {
               },
             },
           },
-          [
-            _vm._v(
-              "\n\n       \n        " +
-                _vm._s(_vm.popup2) +
-                "\n       \n\n\n\n        \n        "
-            ),
-            _vm._l(_vm.folders, function (folder, index) {
-              return _c(
-                "div",
-                {
-                  key: index,
-                  staticClass: "user-home__category--single",
-                  class: {
-                    "active-category-class": index === _vm.indexOfCurrent,
-                  },
+          _vm._l(_vm.folders, function (folder, index) {
+            return _c(
+              "div",
+              {
+                key: index,
+                staticClass: "user-home__category--single",
+                class: {
+                  "active-category-class": index === _vm.indexOfCurrent,
                 },
-                [
-                  _c("span", { staticClass: "user-home__category--emoji" }, [
-                    _vm._v(" " + _vm._s(folder.emoji) + " "),
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "user-home__category--informations" },
-                    [
-                      _c("h2", [_vm._v(" " + _vm._s(folder.name) + " ")]),
+              },
+              [
+                _c("span", { staticClass: "user-home__category--emoji" }, [
+                  _vm._v(" " + _vm._s(folder.emoji) + " "),
+                ]),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "user-home__category--informations" },
+                  [
+                    _c("h2", [_vm._v(" " + _vm._s(folder.name) + " ")]),
+                    _vm._v(" "),
+                    _c("div", { staticClass: "user-home__category--buttons" }, [
+                      _c(
+                        "button",
+                        {
+                          on: {
+                            click: function ($event) {
+                              return _vm.chooseFolder(folder.id, index)
+                            },
+                          },
+                        },
+                        [_c("i", { staticClass: "fas fa-play" })]
+                      ),
                       _vm._v(" "),
                       _c(
-                        "div",
-                        { staticClass: "user-home__category--buttons" },
-                        [
-                          _c(
-                            "button",
-                            {
-                              on: {
-                                click: function ($event) {
-                                  return _vm.chooseFolder(folder.id, index)
-                                },
-                              },
+                        "button",
+                        {
+                          on: {
+                            click: function ($event) {
+                              $event.preventDefault()
+                              return _vm.editFolder(folder)
                             },
-                            [_c("i", { staticClass: "fas fa-play" })]
-                          ),
-                          _vm._v(" "),
-                          _c(
-                            "button",
-                            {
-                              on: {
-                                click: function ($event) {
-                                  $event.preventDefault()
-                                  return _vm.editFolder(folder)
-                                },
-                              },
-                            },
-                            [_c("i", { staticClass: "fas fa-pen" })]
-                          ),
-                        ]
-                      ),
-                    ]
-                  ),
-                  _vm._v(" "),
-                  _c(
-                    "span",
-                    {
-                      staticClass: "user-home__category--delete",
-                      on: {
-                        click: function ($event) {
-                          return _vm.openPopUpFolder(folder.id)
+                          },
                         },
+                        [_c("i", { staticClass: "fas fa-pen" })]
+                      ),
+                    ]),
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    staticClass: "user-home__category--delete",
+                    on: {
+                      click: function ($event) {
+                        return _vm.openPopUpFolder(folder.id)
                       },
                     },
-                    [_c("i", { staticClass: "fas fa-trash-alt" })]
-                  ),
-                ]
-              )
-            }),
-          ],
-          2
+                  },
+                  [_c("i", { staticClass: "fas fa-trash-alt" })]
+                ),
+              ]
+            )
+          }),
+          0
         ),
         _vm._v(" "),
         _vm.showDeleteFolder
@@ -42119,7 +42326,7 @@ var render = function () {
               _vm._v(" "),
               _c("p", [_vm._v(" " + _vm._s(_vm.packages.text))]),
             ]),
-            _vm._v(" "),
+            _vm._v("\n    " + _vm._s(_vm.packages.folder_id) + "\n        "),
             _c("div", { staticClass: "editpackage__table" }, [
               _c(
                 "table",
@@ -43520,6 +43727,105 @@ render._withStripped = true
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/studyroom/MixApp.vue?vue&type=template&id=7c7f15e4&scoped=true&":
+/*!********************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/studyroom/MixApp.vue?vue&type=template&id=7c7f15e4&scoped=true& ***!
+  \********************************************************************************************************************************************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
+var render = function () {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", {
+      staticClass: "loadingdesign",
+      class: { loadingclass: _vm.loadingcl },
+    }),
+    _vm._v(" "),
+    _vm.loading
+      ? _c("div", { staticClass: "app-spin" }, [
+          _c("div", { staticClass: "app-spin__content" }, [
+            _c("h2", [_vm._v(" " + _vm._s(_vm.packages.name) + " - mix ")]),
+            _vm._v(" "),
+            _c("h1", [_vm._v(" " + _vm._s(_vm.numbersArray.length))]),
+          ]),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "prograssbar",
+              staticStyle: {
+                width: "100%",
+                background: "white",
+                height: "5px",
+              },
+            },
+            [
+              _c("div", {
+                staticClass: "prograssbarr",
+                style:
+                  "width:" +
+                  _vm.procent() +
+                  "% ; height: 5px; background: black;",
+              }),
+            ]
+          ),
+          _vm._v("\n\n\n" + _vm._s(_vm.procent()) + "\n\n\n    \n\n    "),
+          _c("div", { staticClass: "app-spin__spin" }, [
+            _c(
+              "div",
+              { staticClass: "app-spin__question" },
+              [
+                _c(
+                  "transition",
+                  {
+                    attrs: {
+                      "enter-active-class":
+                        "animate__animated animate__backInDown",
+                      "leave-active-class":
+                        "animate__animated animate__backOutDown",
+                    },
+                  },
+                  [
+                    _vm.visible
+                      ? _c("h3", [_vm._v(" " + _vm._s(_vm.choose))])
+                      : _vm._e(),
+                  ]
+                ),
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                on: {
+                  click: function ($event) {
+                    $event.preventDefault()
+                    return _vm.random()
+                  },
+                },
+              },
+              [_vm._v("SPIN")]
+            ),
+          ]),
+        ])
+      : _vm._e(),
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+
+
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/studyroom/StudyRoom.vue?vue&type=template&id=1a863a6b&scoped=true&":
 /*!***********************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/studyroom/StudyRoom.vue?vue&type=template&id=1a863a6b&scoped=true& ***!
@@ -43588,9 +43894,108 @@ var render = function () {
             }),
           ]),
           _vm._v(" "),
+          _vm.loadingFolder
+            ? _c(
+                "carousel",
+                {
+                  staticStyle: { width: "100%" },
+                  attrs: {
+                    stagePadding: 30,
+                    responsiveClass: true,
+                    loop: false,
+                    nav: false,
+                    dots: false,
+                    responsive: {
+                      0: { items: 1 },
+                      1000: { items: 2 },
+                      1300: { items: 4 },
+                      1600: { items: 4 },
+                    },
+                  },
+                },
+                [
+                  _c("div", { staticClass: "studyroom__mix--single" }, [
+                    _c(
+                      "span",
+                      { staticClass: "studyroom__mix--single--emoji" },
+                      [_vm._v(" 🌎  ")]
+                    ),
+                    _vm._v(" "),
+                    _c("h2", [
+                      _vm._v(" MegaMix "),
+                      _c("i", {
+                        staticClass: "fa-solid fa-circle-info",
+                        on: {
+                          click: function ($event) {
+                            $event.preventDefault()
+                            _vm.showinfoMegaMix = true
+                          },
+                        },
+                      }),
+                    ]),
+                    _vm._v(" "),
+                    _c("button", [
+                      _c("i", { staticClass: "fa-solid fa-shuffle" }),
+                      _vm._v(" PROCVIČIT "),
+                    ]),
+                  ]),
+                  _vm._v(" "),
+                  _vm._l(_vm.folders, function (item, index) {
+                    return _c(
+                      "div",
+                      { key: index, staticClass: "studyroom__mix--single" },
+                      [
+                        _c(
+                          "span",
+                          { staticClass: "studyroom__mix--single--emoji" },
+                          [_vm._v(" " + _vm._s(item.emoji) + " ")]
+                        ),
+                        _vm._v(" "),
+                        _c("h2", [
+                          _vm._v(" " + _vm._s(item.name) + " "),
+                          _c("i", {
+                            staticClass: "fa-solid fa-circle-info",
+                            on: {
+                              click: function ($event) {
+                                $event.preventDefault()
+                                _vm.showinfoMegaMix = true
+                              },
+                            },
+                          }),
+                        ]),
+                        _vm._v(" "),
+                        _c(
+                          "router-link",
+                          { attrs: { to: "/mixapp/" + item.id } },
+                          [
+                            _c("button", [
+                              _c("i", { staticClass: "fa-solid fa-shuffle" }),
+                              _vm._v(" PROCVIČIT "),
+                            ]),
+                          ]
+                        ),
+                      ],
+                      1
+                    )
+                  }),
+                ],
+                2
+              )
+            : _vm._e(),
+        ],
+        1
+      ),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "studyroom__packages" },
+        [
+          _c("h2", [_vm._v(" Dneska nezapomeň na tyto balíčky")]),
+          _vm._v(" "),
           _c(
             "carousel",
             {
+              staticStyle: { margin: "30px" },
               attrs: {
                 stagePadding: 30,
                 responsiveClass: true,
@@ -43601,86 +44006,202 @@ var render = function () {
                   0: { items: 1 },
                   1000: { items: 2 },
                   1300: { items: 4 },
-                  1600: { items: 4 },
+                  1600: { items: 3 },
                 },
               },
             },
             [
-              _c("div", { staticClass: "studyroom__mix--single" }, [
-                _c("span", { staticClass: "studyroom__mix--single--emoji" }, [
-                  _vm._v(" 🌎  "),
-                ]),
-                _vm._v(" "),
-                _c("h2", [
-                  _vm._v(" MegaMix "),
-                  _c("i", {
-                    staticClass: "fa-solid fa-circle-info",
-                    on: {
-                      click: function ($event) {
-                        $event.preventDefault()
-                        _vm.showinfoMegaMix = true
-                      },
-                    },
-                  }),
-                ]),
-                _vm._v(" "),
-                _c("button", [
-                  _c("i", { staticClass: "fa-solid fa-shuffle" }),
-                  _vm._v(" PROCVIČIT "),
-                ]),
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass: "listPackages__single",
+                  staticStyle: { margin: "30px" },
+                },
+                [
+                  _c("span", { staticClass: "listPackages__single--emoji" }, [
+                    _vm._v(" 🍔 "),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "listPackages__single--information" },
+                    [
+                      _c("h2", [_vm._v(" :) ")]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "listPackages__single--play" },
+                        [
+                          _c("router-link", { attrs: { to: "/package/" } }, [
+                            _c("i", { staticClass: "fas fa-play" }),
+                          ]),
+                        ],
+                        1
+                      ),
+                    ]
+                  ),
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "studyroom__mix--single" }, [
-                _c("span", { staticClass: "studyroom__mix--single--emoji" }, [
-                  _vm._v(" 💔 "),
-                ]),
-                _vm._v(" "),
-                _c("h2", [_vm._v(" Název balíčku ")]),
-                _vm._v(" "),
-                _c("button", [
-                  _c("i", { staticClass: "fa-solid fa-shuffle" }),
-                  _vm._v(" PROCVIČIT "),
-                ]),
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass: "listPackages__single",
+                  staticStyle: { margin: "30px" },
+                },
+                [
+                  _c("span", { staticClass: "listPackages__single--emoji" }, [
+                    _vm._v(" 🍔 "),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "listPackages__single--information" },
+                    [
+                      _c("h2", [_vm._v(" :) ")]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "listPackages__single--play" },
+                        [
+                          _c("router-link", { attrs: { to: "/package/" } }, [
+                            _c("i", { staticClass: "fas fa-play" }),
+                          ]),
+                        ],
+                        1
+                      ),
+                    ]
+                  ),
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "studyroom__mix--single" }, [
-                _c("span", { staticClass: "studyroom__mix--single--emoji" }, [
-                  _vm._v(" 💔 "),
-                ]),
-                _vm._v(" "),
-                _c("h2", [_vm._v(" Název balíčku ")]),
-                _vm._v(" "),
-                _c("button", [
-                  _c("i", { staticClass: "fa-solid fa-shuffle" }),
-                  _vm._v(" PROCVIČIT "),
-                ]),
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass: "listPackages__single",
+                  staticStyle: { margin: "30px" },
+                },
+                [
+                  _c("span", { staticClass: "listPackages__single--emoji" }, [
+                    _vm._v(" 🍔 "),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "listPackages__single--information" },
+                    [
+                      _c("h2", [_vm._v(" :) ")]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "listPackages__single--play" },
+                        [
+                          _c("router-link", { attrs: { to: "/package/" } }, [
+                            _c("i", { staticClass: "fas fa-play" }),
+                          ]),
+                        ],
+                        1
+                      ),
+                    ]
+                  ),
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "studyroom__mix--single" }, [
-                _c("span", { staticClass: "studyroom__mix--single--emoji" }, [
-                  _vm._v(" 💔 "),
-                ]),
-                _vm._v(" "),
-                _c("h2", [_vm._v(" Název balíčku ")]),
-                _vm._v(" "),
-                _c("button", [
-                  _c("i", { staticClass: "fa-solid fa-shuffle" }),
-                  _vm._v(" PROCVIČIT "),
-                ]),
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass: "listPackages__single",
+                  staticStyle: { margin: "30px" },
+                },
+                [
+                  _c("span", { staticClass: "listPackages__single--emoji" }, [
+                    _vm._v(" 🍔 "),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "listPackages__single--information" },
+                    [
+                      _c("h2", [_vm._v(" :) ")]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "listPackages__single--play" },
+                        [
+                          _c("router-link", { attrs: { to: "/package/" } }, [
+                            _c("i", { staticClass: "fas fa-play" }),
+                          ]),
+                        ],
+                        1
+                      ),
+                    ]
+                  ),
+                ]
+              ),
               _vm._v(" "),
-              _c("div", { staticClass: "studyroom__mix--single" }, [
-                _c("span", { staticClass: "studyroom__mix--single--emoji" }, [
-                  _vm._v(" 💔 "),
-                ]),
-                _vm._v(" "),
-                _c("h2", [_vm._v(" Název balíčku ")]),
-                _vm._v(" "),
-                _c("button", [
-                  _c("i", { staticClass: "fa-solid fa-shuffle" }),
-                  _vm._v(" PROCVIČIT "),
-                ]),
-              ]),
+              _c(
+                "div",
+                {
+                  staticClass: "listPackages__single",
+                  staticStyle: { margin: "30px" },
+                },
+                [
+                  _c("span", { staticClass: "listPackages__single--emoji" }, [
+                    _vm._v(" 🍔 "),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "listPackages__single--information" },
+                    [
+                      _c("h2", [_vm._v(" :) ")]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "listPackages__single--play" },
+                        [
+                          _c("router-link", { attrs: { to: "/package/" } }, [
+                            _c("i", { staticClass: "fas fa-play" }),
+                          ]),
+                        ],
+                        1
+                      ),
+                    ]
+                  ),
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "listPackages__single",
+                  staticStyle: { margin: "30px" },
+                },
+                [
+                  _c("span", { staticClass: "listPackages__single--emoji" }, [
+                    _vm._v(" 🍔 "),
+                  ]),
+                  _vm._v(" "),
+                  _c(
+                    "div",
+                    { staticClass: "listPackages__single--information" },
+                    [
+                      _c("h2", [_vm._v(" :) ")]),
+                      _vm._v(" "),
+                      _c(
+                        "div",
+                        { staticClass: "listPackages__single--play" },
+                        [
+                          _c("router-link", { attrs: { to: "/package/" } }, [
+                            _c("i", { staticClass: "fas fa-play" }),
+                          ]),
+                        ],
+                        1
+                      ),
+                    ]
+                  ),
+                ]
+              ),
             ]
           ),
         ],
@@ -60320,9 +60841,11 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_NotFound__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/NotFound */ "./resources/js/components/NotFound.vue");
 /* harmony import */ var _components_NavodPage__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/NavodPage */ "./resources/js/components/NavodPage.vue");
 /* harmony import */ var _studyroom_StudyRoom__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./studyroom/StudyRoom */ "./resources/js/studyroom/StudyRoom.vue");
-/* harmony import */ var _folders_MainFolders__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./folders/MainFolders */ "./resources/js/folders/MainFolders.vue");
+/* harmony import */ var _studyroom_MixApp__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./studyroom/MixApp */ "./resources/js/studyroom/MixApp.vue");
+/* harmony import */ var _folders_MainFolders__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./folders/MainFolders */ "./resources/js/folders/MainFolders.vue");
 
  // COMPONENTS
+
 
 
 
@@ -60352,10 +60875,13 @@ vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODU
     component: _components_NavodPage__WEBPACK_IMPORTED_MODULE_6__["default"]
   }, {
     path: '/folders',
-    component: _folders_MainFolders__WEBPACK_IMPORTED_MODULE_8__["default"]
+    component: _folders_MainFolders__WEBPACK_IMPORTED_MODULE_9__["default"]
   }, {
     path: '/studyroom',
     component: _studyroom_StudyRoom__WEBPACK_IMPORTED_MODULE_7__["default"]
+  }, {
+    path: '/mixapp/:id',
+    component: _studyroom_MixApp__WEBPACK_IMPORTED_MODULE_8__["default"]
   }]
 }));
 
@@ -60425,6 +60951,75 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InfoModal_vue_vue_type_template_id_4be80146_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_InfoModal_vue_vue_type_template_id_4be80146_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+
+
+
+/***/ }),
+
+/***/ "./resources/js/studyroom/MixApp.vue":
+/*!*******************************************!*\
+  !*** ./resources/js/studyroom/MixApp.vue ***!
+  \*******************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _MixApp_vue_vue_type_template_id_7c7f15e4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./MixApp.vue?vue&type=template&id=7c7f15e4&scoped=true& */ "./resources/js/studyroom/MixApp.vue?vue&type=template&id=7c7f15e4&scoped=true&");
+/* harmony import */ var _MixApp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./MixApp.vue?vue&type=script&lang=js& */ "./resources/js/studyroom/MixApp.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+
+
+
+
+
+/* normalize component */
+
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
+  _MixApp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _MixApp_vue_vue_type_template_id_7c7f15e4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _MixApp_vue_vue_type_template_id_7c7f15e4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+  false,
+  null,
+  "7c7f15e4",
+  null
+  
+)
+
+/* hot reload */
+if (false) { var api; }
+component.options.__file = "resources/js/studyroom/MixApp.vue"
+/* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/studyroom/MixApp.vue?vue&type=script&lang=js&":
+/*!********************************************************************!*\
+  !*** ./resources/js/studyroom/MixApp.vue?vue&type=script&lang=js& ***!
+  \********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MixApp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./MixApp.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/studyroom/MixApp.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_MixApp_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/studyroom/MixApp.vue?vue&type=template&id=7c7f15e4&scoped=true&":
+/*!**************************************************************************************!*\
+  !*** ./resources/js/studyroom/MixApp.vue?vue&type=template&id=7c7f15e4&scoped=true& ***!
+  \**************************************************************************************/
+/*! exports provided: render, staticRenderFns */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MixApp_vue_vue_type_template_id_7c7f15e4_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./MixApp.vue?vue&type=template&id=7c7f15e4&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/studyroom/MixApp.vue?vue&type=template&id=7c7f15e4&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MixApp_vue_vue_type_template_id_7c7f15e4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_MixApp_vue_vue_type_template_id_7c7f15e4_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

@@ -16,4 +16,7 @@ class Folder extends Model
        public function package(){
           return $this->hasMany('App\Package');
        }
+       public function question(){
+         return $this->hasMany('App\Question');
+      }
 }

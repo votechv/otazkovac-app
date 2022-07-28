@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     protected $fillable = [
-        'text', 'user_id', 'package_id'
+        'text', 'user_id', 'package_id', 'folder_id'
       ];
 
     public function user(){
@@ -16,6 +16,9 @@ class Question extends Model
      public function package(){
         return $this->belongsTo('App\Package');
      }
+     public function folder(){
+      return $this->belongsTo('App\Folder');
+   }
  
     
 }

@@ -7,7 +7,7 @@
 
     <div class="topmenu__user">
         <ul>
-            <li><img src="./cdn/profile-picture.png"> <div class="topmenu__userinfo"> <span class="topmenu__name"> Vojtěch Vaněk </span> <span class="topmenu__position"> Uživatel </span> </div>
+            <li><img src="/cdn/profile-picture.png"> <div class="topmenu__userinfo"> <span class="topmenu__name"> Vojtěch Vaněk </span> <span class="topmenu__position"> Uživatel </span> </div>
                 <ul class="topmenu__submenu">
                     <li> <a href="#"> Nastavení</a></li>
                     <li> <a href="#"> Návod</a></li>
@@ -64,13 +64,16 @@
 
 <nav class="mainmenu">
    <div class="mainmenu__logo">
-    <img src="https://otazkovac.cz/cdn/otazkovac.png" alt="">
+    <img src="/cdn/otazkovac.png" alt="">
    </div>
 
    <div class="mainmenu__links">
        <ul>
            <li>
                <a href="/dashboard"> <i class="fa-solid fa-chart-line"></i> Můj přehled </a>
+           </li>
+           <li>
+               <a href="/studyroom"> <i class="fa-solid fa-calendar-days"></i>Plánovač </a>
            </li>
            <li>
                <a href="/studyroom"> <i class="fa-solid fa-graduation-cap"></i> Studovna </a>

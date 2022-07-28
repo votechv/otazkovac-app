@@ -51,6 +51,11 @@ class FolderController extends Controller
                  $query->where('user_id', auth('api')->user()->id)->orwhere('user_id', 1);
                  
              }]);
+
+             $folder->load(['question' => function ($query) {
+                $query->where('user_id', auth('api')->user()->id)->orwhere('user_id', 1);
+                
+            }]);
              
              return $folder;
              

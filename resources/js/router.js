@@ -9,6 +9,7 @@ import PackageEdit from './components/PackageEdit'
 import NotFound from './components/NotFound'
 import NavodPage from './components/NavodPage'
 import StudyRoom from './studyroom/StudyRoom'
+import MixApp from './studyroom/MixApp'
 
 // FOLDERS 
 
@@ -26,5 +27,6 @@ export default new VueRouter({
         { path: '/navod', component: NavodPage },
         { path: '/folders', component: MainFolders },
         { path: '/studyroom', component: StudyRoom },
+        { path: '/mixapp/:id', component: MixApp },
     ]
 });

@@ -16,13 +16,6 @@
         <router-link :to="'/folders'">  <button class="user-home__category--mainButton"> Otevřít</button></router-link>
     </div>
         <carousel style="width:80%; margin: 0 auto;" :stagePadding="30" :responsiveClass="true" :loop="false" :nav="false" :dots="false" :responsive="{0:{items:1},1000:{items:2},1300:{items:4}, 1600:{items:4}}">
-
-           
-            {{popup2}}
-           
-    
-
-
             
             <div
             class="user-home__category--single"

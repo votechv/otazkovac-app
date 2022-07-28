@@ -11,7 +11,7 @@
             <h1>  {{packages.name}}<a @click.prevent="addFormData(packages)"> <i class="fas fa-pen"></i></a> </h1>
             <p> {{packages.text}}</p>
         </div>
-
+    {{packages.folder_id}}
         <div class="editpackage__table"> 
         <table>
             <tr>
@@ -133,6 +133,7 @@ import {ref} from 'vue';
                     text: this.newQuestion,
                     user_id: this.user.id,
                     package_id: this.packages.id,
+                    folder_id: this.packages.folder_id,
                     package_userid: this.packages.user_id,
                     package: this.packages
                 }

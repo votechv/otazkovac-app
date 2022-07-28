@@ -28,6 +28,10 @@ Route::get('/package/{any?}', function(){
     return view('layouts.admin');
 })->where('any', '.*')->middleware('auth');
 
+Route::get('/mixapp/{any?}', function(){
+    return view('layouts.admin');
+})->where('any', '.*')->middleware('auth');
+
 Route::get('/404', function(){
     return view('layouts.admin');
 });
