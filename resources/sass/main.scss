@@ -5,7 +5,7 @@
 }
 
 body, html{
-    font-family: 'Fira Sans', sans-serif !important;
+    font-family: 'Montserrat', sans-serif;
     min-height: 100vh;
     height: auto;
 }
@@ -47,10 +47,11 @@ padding: 40px 0px;
 // MAIN !!!!!
 
 .content{
-    background: #e9e9f9;
+    background: #f5f7fb;
+    min-height: 100vh;
     height: 100%;
-    width: calc(100% - $menuWidth);
-    margin-left: $menuWidth;
+    width: calc(100% - 290px);
+    margin-left: 290px;
     transition: 0.5s margin-left;
     padding-top: 80px;
     position: relative;

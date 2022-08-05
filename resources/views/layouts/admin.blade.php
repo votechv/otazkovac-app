@@ -18,17 +18,44 @@
     @endauth
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
-    <script src="https://unpkg.com/flickity@2/dist/flickity.pkgd.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
+        <!-- Scripts -->
+        <script src="{{ asset('js/app.js') }}" defer></script>
+        <script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+        <!-- Styles -->
+        <link rel="stylesheet" type="text/css" href="{{asset('css/fontawesome.css')}}">
+    <!-- ico-font-->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/icofont.css')}}">
+    <!-- Themify icon-->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/themify.css')}}">
+    <!-- Flag icon-->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/flag-icon.css')}}">
+    <!-- Feather icon-->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/feather-icon.css')}}">
+    <!-- Plugins css start-->
+    @stack('css')
+    <!-- Plugins css Ends-->
+    <!-- Bootstrap css-->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/bootstrap.css')}}">
+    <!-- App css-->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/style.css')}}">
+    <link id="color" rel="stylesheet" href="{{asset('css/color-1.css')}}" media="screen">
+    <!-- Responsive css-->
+    <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
+        <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+        <script src="/path/to/flickity.pkgd.min.js"></script>
+    
+
 
 </head>
 <body>
 
-@include('navigation')
+    <div class="page-wrapper compact-wrapper" id="pageWrapper">
+    @include('navigation')
 
     <div class="content">
 
@@ -38,10 +65,24 @@
             </div>
 
     </div>
+</div>
 
-v>
 
 
+
+
+<script src="{{asset('js/jquery-3.5.1.min.js')}}"></script>
+<!-- feather icon js-->
+<script src="{{asset('js/icons/feather-icon/feather.min.js')}}"></script>
+<script src="{{asset('js/icons/feather-icon/feather-icon.js')}}"></script>
+<!-- Sidebar jquery-->
+<script src="{{asset('js/sidebar-menu.js')}}"></script>
+
+<!-- Bootstrap js-->
+
+    <!-- Plugins JS Ends-->
+    <!-- Theme js-->
+    <script src="{{asset('js/script.js')}}"></script>
 
 </body>
 

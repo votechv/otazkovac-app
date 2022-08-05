@@ -25,9 +25,12 @@
     "dependencies": {
         "@fortawesome/fontawesome-free": "^5.15.4",
         "animate.css": "^4.1.1",
+        "apexcharts": "^3.35.4",
         "composer": "^4.1.0",
         "flickity": "^3.0.0",
         "gsap": "^3.9.1",
+        "moment": "^2.29.4",
+        "vue-apexcharts": "^1.6.2",
         "vue-carousel": "^0.18.0",
         "vue-emoji-picker": "^1.0.3",
         "vue-flickity": "^1.2.1",

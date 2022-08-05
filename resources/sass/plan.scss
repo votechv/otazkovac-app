@@ -1,0 +1,330 @@
+.plan{
+    min-height: calc(100vh - 83px);
+
+    &__app{
+        width:100%;
+        padding: 50px;
+        display: grid;
+        grid-template-columns: 1fr ;
+        gap: 30px;
+        max-width: 1000px;
+        margin: 0 auto;
+        &--single{
+            background: #48484bfa;
+            padding: 18px;
+            border-radius: 20px;
+            color: white;
+            position: relative;
+            display: flex;
+            align-items: center;
+            h2{
+                font-size: 22px;
+                font-weight: bold;
+            }
+
+
+
+            $green: #80d100;
+
+
+
+.approve_icon {
+	width: 56px;
+	height: 56px;
+	border-radius: 50%;
+	display: block;
+	stroke-width: 2;
+	stroke: #fff;
+	stroke-miterlimit: 10;
+	margin: 10% auto;
+	box-shadow: inset 0px 0px 0px $green;
+	animation: fill 0.4s ease-in-out 0.4s forwards,
+		scale 0.3s ease-in-out 0.9s both;
+}
+
+.approve_icon_circle {
+	stroke-dasharray: 166;
+	stroke-dashoffset: 166;
+	stroke-width: 2;
+	stroke-miterlimit: 10;
+	stroke: $green;
+	fill: none;
+	animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.approve_icon_check {
+	transform-origin: 50% 50%;
+	stroke-dasharray: 48;
+	stroke-dashoffset: 48;
+	animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+	100% {
+		stroke-dashoffset: 0;
+	}
+}
+
+@keyframes scale {
+	0%,
+	100% {
+		transform: none;
+	}
+
+	50% {
+		transform: scale3d(1.1, 1.1, 1);
+	}
+}
+
+@keyframes fill {
+	100% {
+		box-shadow: inset 0px 0px 0px 30px $green;
+	}
+}
+
+        }
+
+        &--icon{
+            width: 8%;
+            text-align: center;
+            p{
+                font-size: 45px;
+                margin: 0px;
+            }
+        }
+
+        &--content{
+            width: 84%;
+        }
+
+        &--done{
+            width: 8%;
+            &--ico{
+            width: 50px;
+            border: 5px solid #984ff3 ;
+            border-radius: 100%;
+            height: 50px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+        }
+    }
+
+    &__info{
+        width: 100%;
+        padding: 30px 60px;
+        display: flex;
+        align-items: center;
+
+        &--head{
+            width: 50%;
+            h2{
+                font-weight: bold;
+            }
+        }
+
+        &--buttons{
+            width: 50%; 
+            justify-content: flex-end;
+            display: flex;
+        }
+    }
+}
+
+
+.createHabit{
+$adc-button-primary: #80d100;
+$input-border-color: #f0f0f0;
+padding: 20px 40px;
+display: flex;
+flex-direction: column;
+
+
+button{
+  width: 180px;
+  margin: 0 auto;
+  padding: 8px;
+  margin-top: 30px;
+  background: #48484bfa;
+  color: white;
+  border: none;
+  border-radius: 20px;;
+  &:hover{
+    background: #5b5b5ffa;
+  }
+}
+input{
+    padding: 10px 15px;
+    border: none;
+    border-bottom: 1px solid gray;
+    margin: 5px 0px;
+    background: rgba(72, 72, 75, 0.9803921569);
+    border-radius: 9px;
+    color: white;
+
+    &::placeholder{
+      color: rgba(255, 255, 255, 0.63);
+    }
+}
+
+input.emoji-input{
+    border: none !important;
+text-align: center;
+width: 100%;
+background: #48484bfa !important;
+
+::placeholder{
+  color: black !important;
+}
+}
+
+
+.day-picker {
+  font-family: "Mark Pro";
+  display: inline-block;
+  margin: 20px 0px;
+  padding: 0px 0px;
+  height: 32px;
+  text-align: center;
+  
+  li {
+    position: relative;
+    display: inline-block;
+    height: 32px;
+    width: 40px;
+    list-style: none;
+    text-align: center;
+    
+    input[type=checkbox] {
+      
+      position: absolute;
+      top: 0;
+      left: 0;
+      margin: 0;
+      width: 40px;
+      height: 40px;
+      opacity: 0;
+      z-index: 5; 
+      color: black;
+
+    &:not(:checked):hover ~ .ui-input {
+      color: transparent;
+      box-shadow: inset 0 0 0 32px   rgba(72, 72, 75, 0.9803921569);;
+      transition: box-shadow .1s;
+      &:before,&:after {
+        content: "";
+      }
+    } 
+
+     &:not(:checked):focus ~ .ui-input {
+      border-color: $adc-button-primary;
+    }
+
+    &~ .ui-input {
+      position: relative;
+      display: inline-block;
+      width: 40px;
+      line-height: 40px;
+      padding: 0;
+      background: rgba(72, 72, 75, 0.9803921569);
+      color: white;
+      border: 1px solid $input-border-color;
+      border-radius: 100%;
+      box-shadow: inset 0 0 0 0px $adc-button-primary;
+      transition: box-shadow .2s;
+    
+      &:before {    
+        display: block;
+        position: absolute;
+        height: 2px;
+        width: 5px;
+        background-color: $adc-button-primary;
+        top: 20px;
+        left: 14px;;
+        transform: rotate(45deg)
+      }
+
+      &:after {    
+        display: block;
+        transform: rotate(-45deg);
+        position: absolute;
+        height: 2px;
+        width: 11px;
+        background-color: $adc-button-primary;
+        top: 19px;
+        left: 16px;
+      }
+    }
+
+    &:disabled {
+      &:not(:checked) {
+        &:hover ~ .ui-input {
+          box-shadow: inset 0 0 0 0  lighten($adc-button-primary,30%);
+        } 
+        &:focus ~ .ui-input {
+          border-color: $input-border-color;
+        }
+        ~ .ui-input:after {
+          content:"";
+          transform: rotate(0deg);
+          width: 8px;
+          left: 3px;
+        }
+      }
+
+      &~ .ui-input {
+        background: lighten($input-border-color,5);
+      }
+    }
+
+    &:checked ~ .ui-input {
+      border-color: $adc-button-primary;
+      color: #fff;
+     box-shadow: inset 0 0 0 32px $adc-button-primary;
+    }
+
+    &:checked:disabled ~ .ui-input {
+      border-color: #D0D0D0;
+     /*  background: $cyan-blue; */
+     box-shadow: inset 0 0 0 10px #D0D0D0;
+    }
+
+    &:checked ~ .ui-input:before,
+    &:checked ~ .ui-input:after {
+      
+    }
+  }
+}
+    
+      
+    }
+}
+
+.modalAllHabits{
+  .plan__app--single{
+      padding: 3px 8px;
+      h2{
+          font-size: 12px;
+      }
+
+      p{
+          font-size: 30px;
+
+      }
+
+      span{
+          font-size: 8px;
+      }
+
+      i{
+        cursor: pointer;
+        transition: 0.5s ease all;
+
+        &:hover{
+          color: rgb(214, 0, 0);
+        }
+      }
+  }
+}

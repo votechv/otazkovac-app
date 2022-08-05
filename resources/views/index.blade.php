@@ -50,14 +50,16 @@
             if ($time >= "19") {
                 echo "Dobrý večer!";
             }
-            ?>
 
-          <p> Teď je ten správný čas na procvičování vašich otázek! </p>
+            ?>
+          <p> Teď je ten správný čas na procvičování vašich otázek! :) </p>
       
     
-         </h1>    
-
-        
+         </h1>   
+ 
+        @foreach ($plantimes as $item)
+            <?php echo $item->name?>
+        @endforeach
             @endauth
         </div>
 

@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Package;
 use App\Question;
 use App\User;
+use App\Plan;
+use App\Plantime;
 use Illuminate\Http\Request;
 
 class PackageController extends Controller
@@ -17,7 +19,9 @@ class PackageController extends Controller
     public function index()
     {
         return view('index',[
-            'packages' => Package::all()
+            'packages' => Package::all(),
+            'plans' => Plan::all(),
+            'plantimes' => Plantime::all(),
         ]);
     }
 

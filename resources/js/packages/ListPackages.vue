@@ -1,9 +1,9 @@
 <template>
 <div class="listPackages">
-<h1> Balíčky: Název složky  </h1>
+<h1> Balíčky: {{name}} </h1>
    
    <create-package-modal v-if="createPackageModalShow" :folder_id="folder" v-on:refreshPackage="reloadPackage()" v-on:closeModalCreatePackage="closeModalCrFolders()" :user="users"/>
-   <div class="listPackages__buttons">
+   <div class="listPackages__buttons" v-if="showEdit">
           <button @click="createPackageModalShow = true" class="listPackages__buttons--button"> Vytvořit nový balíček </button>
         <router-link :to="'/packages'">  <button class="listPackages__buttons--button"> Otevřít</button></router-link>
     </div>
@@ -20,7 +20,7 @@
             </div>
         </div>
 
-        <div class="listPackages__edits">
+        <div class="listPackages__edits" v-if="showEdit">
             <router-link :to="'/package/' + item.id + '/edit/'">  <i class="fas fa-pen"></i></router-link>
             <a  @click.prevent="deleteSend(item.id)">  <i class="fas fa-trash-alt"></i></a>
         </div>
@@ -91,7 +91,7 @@ import DeleteModal from '../modals/DeleteModal'
             },
     },
 
-    props:['packages', 'folder', 'emoji']
+    props:['packages', 'folder', 'emoji', 'showEdit', 'name']
         
            
 }

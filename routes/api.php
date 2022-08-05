@@ -24,7 +24,9 @@ Route::apiResources([
     'packages' => 'API\PackageController',
     'questions' => 'API\QuestionController',
     'users' => 'API\UserController',
-    'folders' => 'API\FolderController'
+    'folders' => 'API\FolderController',
+    'plans' => 'API\PlanController',
+    'plantimes' => 'API\PlantimeController'
 ]);
 
 });

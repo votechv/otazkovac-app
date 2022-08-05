@@ -50,6 +50,13 @@ class User extends Authenticatable
         return $this->hasMany('App\Question');
      }
 
+     public function plan(){
+        return $this->hasMany('App\Plan');
+     }
+     public function plantime(){
+        return $this->hasMany('App\Plantime');
+     }
+
      public function sendPasswordResetNotification($token)
      {
          $this->notify(new PasswordReset($token));

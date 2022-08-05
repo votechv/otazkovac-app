@@ -1,5 +1,5 @@
 .user-home{
-    font-family: 'Fira Sans', sans-serif;
+  //  font-family: 'Fira Sans', sans-serif;
 
     &__content{
     width: 100%;
@@ -21,7 +21,7 @@
 
 .loadingclass{
     width: 100%;
-    height: 5px;
+    height: 8px;
     position: absolute;
     overflow: hidden;
     background-color: #ddd;
@@ -33,7 +33,7 @@
         content: "";
         position: absolute;
         left: -50%;
-        height: 5px;
+        height: 8px;
         width: 40%;
         background-color: $blue;
         -webkit-animation: lineAnim 1s linear infinite;

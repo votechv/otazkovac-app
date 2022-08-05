@@ -16,15 +16,18 @@ Route::get('/public-packages', 'PackageController@public');
 Route::get('/locked-package', 'PackageController@locked');
 Route::get('/profil', 'HomeController@profil');
 Route::get('/scheduled', 'HomeController@scheduled');
-Route::get('/dashboard', 'HomeController@dashboard');
 Route::get('/studyroom', 'HomeController@studyroom');
-Route::get('/setting', 'HomeController@setting');
+Route::get('/setting', 'HomeController@scheduled');
 
 
 Auth::routes();
 
 
 Route::get('/package/{any?}', function(){
+    return view('layouts.admin');
+})->where('any', '.*')->middleware('auth');
+
+Route::get('/folder/{any?}', function(){
     return view('layouts.admin');
 })->where('any', '.*')->middleware('auth');
 
@@ -42,6 +45,9 @@ Route::get('/home/{any?}', function(){
 })->where('any', '.*')->middleware('auth');
 
 Route::get('/navod', function(){
+    return view('layouts.admin');
+});
+Route::get('/dashboard', function(){
     return view('layouts.admin');
 });
 

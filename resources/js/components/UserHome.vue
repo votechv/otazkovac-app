@@ -41,7 +41,7 @@
          
  -->
 
- <list-packages :packages="packages" :folder="currentFolderId" :emoji="this.folders[this.currentIndex]" v-on:refreshPackage="getPackages()" />
+ <list-packages :packages="packages" :folder="currentFolderId" :showEdit="true" :emoji="this.folders[this.currentIndex]" v-on:refreshPackage="getPackages()" />
 
 
 
@@ -82,7 +82,6 @@
 </template>
 
 <script>
-import MessageOk from './MessageOk'
 import ListFolders from './ListFolders'
 import ListPackages from '../packages/ListPackages'
 
@@ -105,6 +104,7 @@ import ListPackages from '../packages/ListPackages'
                 folder: [],
                 currentFolderId: null,
                 currentIndex: 0,
+                
         }
         },
           props: {
@@ -116,7 +116,6 @@ import ListPackages from '../packages/ListPackages'
 
 
            created() {
-
             axios.get('./api/users', ).then(response => {
 
                 this.users = response.data
@@ -144,8 +143,10 @@ import ListPackages from '../packages/ListPackages'
                 this.reloadFolders();
                 this.getPackages();
                      
-                    
+                
                  }
+
+                 
             })
              .catch(error => {
                 
@@ -159,7 +160,7 @@ import ListPackages from '../packages/ListPackages'
 
 
         components:{
-            MessageOk, ListFolders, ListPackages,
+            ListFolders, ListPackages,
         
         },
         methods: {

@@ -5,18 +5,15 @@ $bg-color: #4dc8f8;
 $menuWidth: 230px;
 $fialova: #2e279d;
 // Fonts
-@font-face {
-    font-family: 'BoardFont';
-    font-style: normal;
-    font-weight: 400;
-    src: url('/fonts/KgHoloceneRegular-lgjKy.ttf');
-}
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800&display=swap');
 
 @import url('https://fonts.googleapis.com/css?family=Nunito');
 @import url('https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100;0,200;0,300;0,400;1,100;1,300;1,400&display=swap');
 
 // Import
+@import 'bootstrap';
+@import 'template';
 @import 'variables';
 @import '404';
 @import 'main';
@@ -35,6 +32,10 @@ $fialova: #2e279d;
 @import 'modalTemplate';
 @import 'listPackages';
 @import 'studyRoom';
+@import 'plan';
+@import 'mainModal';
+@import 'mainFolders';
+@import 'dashboard';
 
 
 .cursor-poninter{

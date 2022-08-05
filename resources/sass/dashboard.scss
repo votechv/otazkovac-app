@@ -1,0 +1,22 @@
+.dashboard{
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+}
+.HabitDone{
+    width: 500px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    h2{
+        font-size: 19px;
+        font-weight: bold;
+        margin-bottom: 0px;
+    }
+}
+
+.HabitDays{
+    width: 800px;
+}
