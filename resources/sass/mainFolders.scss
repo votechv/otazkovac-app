@@ -1,6 +1,6 @@
 .mainFolders{
     h2{
-        padding: 30px 60px;
+       // padding: 30px 60px;
         font-weight: bold;
     }
   &__grid{
@@ -9,8 +9,52 @@
     grid-template-columns: 1fr 1fr 1fr;
     padding: 80px;
     gap: 40px;
+
+    @media screen and (max-width: 1450px){
+        gap: 20px;
+        padding: 40px;
+    }
+    @media screen and (max-width: 1449px){
+        grid-template-columns: 1fr 1fr;
+        gap: 30px;
+    }
+    @media screen and (max-width: 620px){
+        grid-template-columns: 1fr;
+    }
 }
 
+&__empty{
+    width: 100%;
+    padding: 100px 0px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 50vh;
+    p{
+        font-size: 29px;
+    }
+}
+
+&__ico{
+    position: absolute;
+    right: -20px;
+    bottom: -20px;
+    font-size: 65px;
+    color: #bbbbbb;
+    cursor: pointer;
+    transition: 0.5s ease all;
+    &:hover{
+        color:#24695c;;
+    }
+}
+
+    &__single-wrap{
+        width: 100%;
+        display: flex;
+        gap: 25px;
+    }
 
     &__single{
         position: relative;
@@ -25,7 +69,6 @@
         cursor: pointer;
         transform-style: preserve-3d;
         z-index: 1;
-        gap: 25px;
        // transform-style: preserve-3d;
         &:hover{  
             background: rgb(236, 236, 236);
@@ -38,6 +81,15 @@
         }
 
 
+        &--color{
+            color:#24695c;
+            &:hover{
+                color:#bbbbbb;;
+            }
+        }
+
+        
+
         &--emoji{
             width: 30%;
             text-align: center;
@@ -49,6 +101,10 @@
            p{   
                font-size: 68px;
                margin-bottom: 0px;
+
+               @media screen and(max-width: 1540px){
+                   font-size: 55px;
+               }
             } 
         }
 
@@ -57,7 +113,7 @@
             display: flex;
             justify-content: center;
             flex-direction: column;
-            
+            padding-right: 6px;
             h2{
                 margin-bottom: 0px;
                 padding: 0px !important;

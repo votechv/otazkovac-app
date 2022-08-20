@@ -59,10 +59,10 @@
 
     <div class="content">
 
-        <div id="app">
+        <div id="app" class="padding-top: 80px">
 
-
-            </div>
+            
+        </div>
 
     </div>
 </div>

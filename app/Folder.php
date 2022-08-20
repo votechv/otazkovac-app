@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Folder extends Model
 {
     protected $fillable = [
-        'emoji', 'user_id', 'name'
+        'emoji', 'user_id', 'name', 'learn', 'last'
       ];
    
        public function user(){

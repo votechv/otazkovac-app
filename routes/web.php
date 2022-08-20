@@ -50,6 +50,12 @@ Route::get('/navod', function(){
 Route::get('/dashboard', function(){
     return view('layouts.admin');
 });
+Route::get('/checklist', function(){
+    return view('layouts.admin');
+});
+Route::get('/edit-folders', function(){
+    return view('layouts.admin');
+});
 
 Route::get('/folders', function(){
     return view('layouts.admin');

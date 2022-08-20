@@ -31,8 +31,9 @@ class FolderController extends Controller
     public function store(Request $request)
     {
         if($request['user_id'] === auth('api')->user()->id){
-
+        
             $folders = Folder::create($request->all());
+
         }
     
     }

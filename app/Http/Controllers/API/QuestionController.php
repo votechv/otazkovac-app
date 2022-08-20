@@ -71,9 +71,6 @@ class QuestionController extends Controller
     {
 
         
-        $request->validate([
-            'text' => 'required',
-        ]);
         if($question['user_id'] === auth('api')->user()->id){  
         $question->update(
             $request->all()

@@ -6,22 +6,25 @@
 
     <template v-else>
         <div class="app-spin" v-if="loading">
- 
+        
             <div class="app-spin__content">
                <div class="app-spin__content-left">
                     <p> {{folderEmoji}} {{folderName}} </p>   
                     <h2> {{packages.name}} </h2>
                 </div>
-               <div class="app-spin__content-right">
-                    <router-link :to="packages.id + '/edit'"> <i class="fas fa-pen"></i> </router-link>
-                </div>
+     
             </div> 
 
+            
+
                 <div class="prograssbar" style="width: 100%; background: transparent; height: 5px;" >
-        <div class="prograssbarr" :style="'width:'+howMuchDone() +'%; height: 2px; background: #24695c;'">
-        
-        </div>
+                     <div class="prograssbarr" :style="'width:'+howMuchDone() +'%; height: 2px; background: #24695c;'">
+                 </div>
+                
+                <a class="app-spin__button-answer" @click="openAnswerModal" v-if="answer != null && answer != ''"> <i class="fa-solid fa-circle-question"></i> </a>                
     </div>
+
+
 
     
             <div class="app-spin__spin">
@@ -33,17 +36,23 @@
             </div>
             
              <div class="app-spin__button">
-                <button @click.prevent=" random()">SPIN</button>
+
+                <button @click.prevent="random()">SPIN</button>
+            
             </div>
 
 </div>
 
 </template>
 
+<answer-modal v-if="answerModal" @closeAnswerModal="closeAnswerModal" :content="answer" />
 </div>
 </template>
 
 <script>
+import AnswerModal from '../modals/AnswerModal'
+
+import moment from 'moment'
     export default {
         data() {
             return {
@@ -56,12 +65,30 @@
                 folders: [],
                 folderName: '',
                 folderEmoji: '',
+                answerModal: false,
+                answer: null,
+                today: '',
+                youCanSpin: true, 
             }
+        },
+
+        components:{
+            AnswerModal,
         },
     
         created() {
            this.getPackages();
            this.getUsers();
+
+        const d = new Date();
+        this.date = d.getDay();
+
+        var dateObj = new Date();
+        var month = dateObj.getUTCMonth() + 1; 
+        var day = dateObj.getUTCDate();
+        var year = dateObj.getUTCFullYear();
+
+        this.today = moment().format("YYYY-MM-DD");
         },
               
               computed: {
@@ -94,7 +121,8 @@
             },
 
         random(){
-
+        if(this.youCanSpin == true){
+        this.youCanSpin = false
         let randomIndex = this.getRandomNumber(0, this.numbersArray.length - 1);
         let randomNumber = this.numbersArray[randomIndex];
         this.numbersArray.splice(randomIndex, 1);
@@ -105,6 +133,10 @@
 
         setTimeout(() => this.choose = this.packages.question[randomNumber].text, 300);
         setTimeout(() => this.visible = true, 300);
+
+        this.answer = this.packages.question[randomNumber].answer;
+
+        console.log(this.packages.question[randomNumber].answer);
         }
 
         else if(this.packages.question.length < 1){
@@ -113,9 +145,15 @@
 
         else{
             setTimeout(() => this.choose = 'Hurá 🎉 prošli jste všechny otázky v balíčku!', 300);  
-        
+            this.sendLastUpdate();
          }
-        },
+
+         setTimeout(() => {
+             this.youCanSpin = true
+         }, 1000);
+    }
+
+     },
 
        async getPackages(){
            await axios.get('/api/packages/'+this.$route.params.id).then(response => {
@@ -154,10 +192,34 @@
             });
         },
 
+        async sendLastUpdate(){
+         let data = {
+          name: this.folder.name,
+          emoji: this.folder.emoji,
+          last: this.today,
+        }
+
+        if(this.folder.learn){
+            await  axios.put('/api/folders/'+this.folder.id, data).then(response => {
+                  this.getFolders();
+              })
+                 .catch(error => {
+                  //return this.$router.push('../../404')
+              });
+        }
+        },
+
         howMuchDone(){
           let vysledek = 100-((100 * this.numbersArray.length) / this.lengthArray);
             return vysledek;
-        }
+        },
+
+        closeAnswerModal(){
+            this.answerModal = false;
+        },
+        openAnswerModal(){
+            this.answerModal = true;
+        },
 
 
 

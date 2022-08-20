@@ -24,60 +24,6 @@
         }
     }
 
-    &__modal{
-        position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        z-index: 999;
-        background-color: rgba(0, 0, 0, 0.281);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: 'BoardFont';
-        color: black;
-
-        &--window{
-            width: 800px;
-            background: white;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            padding: 80px;
-            position: relative;
-
-            i{
-                font-size: 50px;
-                color: $fialova;
-                padding: 20px 0px;
-            }
-
-            h2{
-                font-size: 29px;
-                padding: 0px 0px 20px 0px;
-                color: $fialova;
-            }
-
-            p{
-                text-align: center;
-                font-family: 'Fira Sans', sans-serif !important;
-            }
-        }
-
-        &--close{
-            position: absolute;
-            right: 7px;
-            top: -20px;
-            cursor: pointer;
-            i{
-                font-size: 30px;
-            }
-        }
-
-    }
-
     &__mix{
         width: 100%;
         padding: 50px 0px;

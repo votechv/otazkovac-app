@@ -11,7 +11,7 @@
             <h1>  {{packages.name}}<a @click.prevent="addFormData(packages)"> <i class="fas fa-pen"></i></a> </h1>
             <p> {{packages.text}}</p>
         </div>
-    {{packages.folder_id}}
+  
         <div class="editpackage__table"> 
         <table>
             <tr>
@@ -23,8 +23,10 @@
             
                     <td class="long-question-text" :contenteditable="editing"> {{ question.text }} </td>
 
-                    <td class="long-edit-links">  <a @click="deleteQuestion(question)"> <i class="fas fa-trash-alt"></i> </a> 
+                    <td class="long-edit-links">  
                     <a @click.prevent="addFormOtazka(question)"> <i class="fas fa-pen"></i> </a> 
+                    <a @click.prevent="addAnswer(question)"> <i class="fa-solid fa-circle-plus"></i> </a> 
+                     <a @click="deleteQuestion(question)"> <i class="fas fa-trash-alt"></i> </a> 
                     </td> 
                     
             </tr>
@@ -53,10 +55,24 @@
             <div class="popup-form__inner">
                    <form >
                         <input @keydown.enter.prevent="editData(packages)" type="text" v-model="name">
-                        <input @keydown.enter.prevent="editData(packages)" class="text-popup" type="text" v-model="text">
+                    
                         <a @click.prevent="editData(packages)" > <i class="far fa-save save-ico-pop"></i></a>
                     </form>
                     <a class="closepopup" @click.prevent="visiblepop2 = false"> <i class="fas fa-times"></i></a>
+            </div>
+        </div>
+    </transition>
+
+    <transition  enter-active-class="animate__animated animate__fadeIn animate__faster" leave-active-class="animate__animated animate__fadeOut animate__faster">
+        <div class="popup-form" v-if="visibleAddAnswer">
+            <div class="popup-form__inner">
+                        <p> Zde můžete zadat odpověď na otázku: </p>
+
+                        
+                        <textarea class="form-control w-100 p-3"  @keydown.enter.prevent="editAnswer()" type="text" v-model="newAnswer"> </textarea>
+                    
+                        <a @click.prevent="editAnswer()" > <i class="far fa-save save-ico-pop"></i></a>
+                    <a class="closepopup" @click.prevent="visibleAddAnswer = false"> <i class="fas fa-times"></i></a>
             </div>
         </div>
     </transition>
@@ -91,6 +107,9 @@ import {ref} from 'vue';
                     visiblepop2: false,
                     loading: false,
                     loadingcl: true, 
+                    visibleAddAnswer: false,
+                    newAnswer: '',
+                    answer_id: '',
 
 
                 }
@@ -151,6 +170,13 @@ import {ref} from 'vue';
 
                 
             },
+
+            addAnswer(question){
+                this.visibleAddAnswer = true;
+                this.newAnswer = question.answer;
+                this.answer_id = question.id;
+            },
+
 
 
               deleteQuestion(question){
@@ -213,10 +239,26 @@ import {ref} from 'vue';
 
 
             },
+
+            editAnswer(otazka){
+                let data = {
+                    answer: this.newAnswer,
+                }
+
+
+                  axios.patch('/api/questions/'+this.answer_id, data).then(response => {
+                    this.refresh();
+                   });; 
+
+          
+
+                  this.visibleAddAnswer = false;
+
+
+            },
             editData(information){
                 let data = {
                     name: this.name,
-                    text: this.text,
                 }
 
                 axios.patch('/api/packages/'+information.id, data).then(response => {

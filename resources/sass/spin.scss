@@ -10,9 +10,9 @@
     align-items: center;
     padding: 10px 20px;
     background: #24695c50;
-
+    position: relative;
     @media screen and (max-width: 547px){
-        padding: 10px 0px;
+        padding: 10px 12px;
     }
         h2{
             padding: 0;
@@ -46,9 +46,15 @@
         justify-content: flex-end;
         display: flex;
         align-items: center;
-
+        gap: 20px;
         i{
             font-size: 18px;
+            
+        }
+       a i{
+            font-size: 18px;
+            color: #24695c;
+            cursor: pointer;
         }
     }
 
@@ -82,10 +88,6 @@
             height: 65vh !important;
         }
 
-        @media screen and(max-width: 550px){
-            min-height: calc(100vh - 110px);
-        }
-
        
 
         h3{ 
@@ -116,8 +118,18 @@
             &:focus{
                 outline: none;
             }
+
+            
         }
     }
+    
+  &__button-answer{
+      position: absolute;
+      right: 20px;
+      top: 80px;
+      font-size: 20px;
+      cursor: pointer;
+  }
 
     &__button{
         width: 100%;
@@ -129,6 +141,8 @@
         text-align: center;
         left: 0;
         bottom: 0;
+   //     gap: 15px;
+    
 
         button{
             width: 300px;
@@ -139,7 +153,7 @@
             cursor: pointer;
             border: none;
             border-radius: 20px;
-
+            position: relative;
             &:hover{
                 background-image: radial-gradient( circle farthest-corner at 10% 20%,  rgb(44, 49, 53) 0%, rrgb(73, 222, 252)90.1% );
 

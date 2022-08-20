@@ -20,6 +20,7 @@
     data() {
         return {
             packageName: '',
+            newPackageId: ''
         }
     },
 
@@ -27,31 +28,32 @@
            closeCreatePackage(){
                this.$emit('closeModalCreatePackage');
            },
-           reloadPackage(){
-                this.$emit('refreshPackage');
+           reloadPackage(id){
+                this.$emit('refreshPackage', id);
            },
             createPackage() {
                 // VYTVOŘENÍ NOVÉHO BALÍČKU V PODSLOŽKÁCH JIŽ!!!
                 let data = {
                     name: this.packageName,
                     user_id: this.user.id,
-                    folder_id: this.folder_id
+                    folder_id: this.folderid
                 }
 
                 this.newName = '',
                 this.newText = ''
 
-                   axios.post('./api/packages', data).then(response => {
+                   axios.post('/api/packages', data).then(response => {
                        //this.$router.push('/package/' + response.data.id.id + '/edit/')
+                        this.newPackageId = response.data.id.id;
                         this.closeCreatePackage();
-                        this.reloadPackage();
+                        this.reloadPackage(this.newPackageId);
                    });
 
 
             },
         },
 
-        props:['title', 'user', 'folder_id'],
+        props:['title', 'user', 'folderid'],
         
            
 }  

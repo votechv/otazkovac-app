@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Question extends Model
 {
     protected $fillable = [
-        'text', 'user_id', 'package_id', 'folder_id'
+        'text', 'user_id', 'package_id', 'folder_id', 'answer'
       ];
 
     public function user(){

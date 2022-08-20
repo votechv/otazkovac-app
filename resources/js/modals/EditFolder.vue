@@ -1,5 +1,5 @@
 <template>
-       <div class="popup-form" @keyup.enter="submitForm(name, input)">
+       <div class="popup-form" @keyup.enter="editFolder()">
             <div class="popup-form__inner">
                    <form class="delete-message" >
                        <input type="text" v-model="newName" placeholder="Název složky...">
@@ -100,7 +100,7 @@ methods: {
     editFolder(){
         let data = {
             name: this.newName,
-            emoji: this.input
+            emoji: this.input,
         }
        
        axios.patch('/api/folders/'+this.folder.id, data).then(response => {

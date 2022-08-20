@@ -80,7 +80,6 @@ class PackageController extends Controller
       
         $request->validate([
             'name' => 'required',
-            'text' => 'required',
         ]);
         if($package['user_id'] === auth('api')->user()->id){  
         $package->update(

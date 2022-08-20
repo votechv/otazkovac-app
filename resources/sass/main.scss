@@ -53,15 +53,18 @@ padding: 40px 0px;
     width: calc(100% - 290px);
     margin-left: 290px;
     transition: 0.5s margin-left;
-    padding-top: 80px;
+    padding-top: 74px;
     position: relative;
 
-    @media screen and(max-width: 780px){
+    @media screen and(max-width: 974px){
         &{
-           margin: 0px;
+            margin-left: 0px;
            width: 100%;
-           padding: 0px;
         }
+    }
+
+    @media screen and (max-width: 959px){
+        padding-top: 64px;
     }
 }
 
@@ -99,6 +102,162 @@ padding: 40px 0px;
     }
 
 }
+
+
+.headtop{
+    &__info{
+        width: 100%;
+        padding: 30px 60px;
+        display: flex;
+        align-items: center;
+
+        @media screen and(max-width: 655px){
+            flex-direction: column;
+        }
+        
+        @media screen and (max-width:1399px){
+            padding: 15px 30px;
+        }
+        &--head{
+            display: flex;
+            width: 50%;
+            h2{
+                font-weight: bold;
+            }
+
+            @media screen and (max-width:1399){
+                width: 20%;
+            }
+
+            @media screen and(max-width: 655px){
+                width: 100%;
+            }
+        }
+
+        &--buttons{
+            width: 50%; 
+            justify-content: flex-end;
+            display: flex;
+            @media screen and(max-width: 655px){
+                width: 100%;
+                justify-content: center;
+                align-items: center;
+                margin: 20px 0px;
+            }
+        }
+
+    
+    }
+
+    &--mainButton{
+        background: rgba(36, 105, 92, 0.1);
+        border: none;
+        padding: 10px 10px;
+        font-weight: bold;
+        color: #24695c;;
+        transition: 0.5s ease all;
+        margin-left: 30px;
+       display: block;
+       cursor: pointer;
+
+       &:hover{
+        background: #24695c;
+        color: white;
+       }
+
+       i{
+           padding-right: 6px;
+       }
+       
+    }
+
+    &--delete{
+        background: rgba(121, 17, 17, 0.1);
+        color: #692424;
+
+        &:hover{
+            background: rgb(121, 17, 17);
+            color: white;
+        }
+    }
+    &--singleButton{
+        background: transparent;
+        border: none;
+        padding: 0px 10px;
+        font-weight: bold;
+        font-size: 25px;
+       &:hover{
+        color: #24695c;
+       }
+
+   
+       
+    }
+}
+
+
+.AnswerModal{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    z-index: 999;
+    background-color: rgba(0, 0, 0, 0.281);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'BoardFont';
+    color: black;
+
+
+
+    &__window{
+        width: 800px;
+        background: white;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 80px;
+        position: relative;
+        
+        @media screen and (min-width: 975px) {
+            margin-left: 280px;
+        }
+
+        i{
+            font-size: 50px;
+            color: #24695c;
+            padding: 20px 0px;
+        }
+
+        h2{
+            font-size: 20px;
+            padding: 0px 0px 20px 0px;
+            color: #24695c;
+            text-align: center;
+        }
+
+        p{
+            text-align: center;
+            font-family: 'Fira Sans', sans-serif !important;
+        }
+    }
+
+    &__close{
+        position: absolute;
+        right: 7px;
+        top: -20px;
+        cursor: pointer;
+        i{
+            font-size: 30px;
+        }
+    }
+
+}
+
+
 
 
 

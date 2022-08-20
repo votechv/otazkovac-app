@@ -97,3 +97,37 @@
     cursor: pointer;
   }
   
+
+  .okmessage{
+    padding: 10px 15px;
+    background: green;
+    color: white;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    max-width: 400px;
+    z-index: 5;
+    &__smile{
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      font-size: 30px;
+    }
+    &__content{
+      h2{
+        font-size: 18px;
+        font-weight: bold;
+        margin: 0px;
+        padding: 6px 0px;
+      }
+      p{
+        font-size: 12px;
+        margin: 0px;
+        line-height: 15px;
+      }
+    }
+  }

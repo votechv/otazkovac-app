@@ -8,7 +8,6 @@ import UserHome from './components/UserHome'
 import PackageEdit from './components/PackageEdit'
 import NotFound from './components/NotFound'
 import NavodPage from './components/NavodPage'
-import StudyRoom from './studyroom/StudyRoom'
 import MixApp from './studyroom/MixApp'
 import PlanRoom from './planroom/PlanRoom'
 import Dashboard from './dashboard/App'
@@ -17,6 +16,14 @@ import Dashboard from './dashboard/App'
 
 import MainFolders from './folders/MainFolders'
 import SingleFolder from './folders/SingleFolder'
+import FoldersEdit from './folders/FoldersEdit'
+import SingleFolderEdit from './folders/SingleFolderEdit'
+
+
+//CHECKLIST
+import Checklist from './checklist/App'
+
+import Setting from './components/Setting.vue'
 
 Vue.use(VueRouter) 
 
@@ -28,11 +35,14 @@ export default new VueRouter({
         { path: '/folder/:id', component: SingleFolder},
         { path: '/home', component: UserHome },
         { path: '/package/:id/edit', component: PackageEdit },
+        { path: '/folder/:id/edit', component: SingleFolderEdit },
         { path: '/navod', component: NavodPage },
         { path: '/folders', component: MainFolders },
-        { path: '/studyroom', component: StudyRoom },
         { path: '/scheduled', component: PlanRoom },
         { path: '/mixapp/:id', component: MixApp },
         { path: '/dashboard', component: Dashboard },
+        { path: '/edit-folders', component: FoldersEdit },
+        { path: '/setting', component: Setting },
+        { path: '/checklist', component: Checklist },
     ]
 });

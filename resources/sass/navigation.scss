@@ -4,3 +4,29 @@
     top: 12px;
     display: flex !important;
 }
+
+.logo-wrapper img {
+    max-width: 200px !important;
+}
+
+@media screen and (max-width: 1366px){
+.page-main-header .main-header-right .nav-right .nav-menus {
+    padding: 20px 35px;
+}
+}
+
+
+@media screen and (min-width: 975px){
+    .toggle-sidebar{
+        display: none;
+    }
+}
+
+@media screen and (min-width: 975px){
+    .page-main-header .main-header-right .main-header-left {
+        padding: 0px;
+        text-align: center;
+        display: flex;
+        justify-content: center;
+    } 
+}

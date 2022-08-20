@@ -6,9 +6,18 @@
     &__wrap{
         width: 100%;
         display: grid;
-        padding: 10px 60px;
+        padding: 65px 80px;
         grid-template-columns: 1fr 1fr 1fr;
-        grid-gap: 50px;
+        grid-gap: 40px;
+
+        @media screen and(max-width:1399px){
+            grid-template-columns: 1fr 1fr;
+        }
+        @media screen and(max-width:710px){
+            grid-template-columns: 1fr;
+            gap: 40px;
+            padding: 30px 40px;
+        }
     }
 
     &__buttons{
@@ -21,7 +30,7 @@
             background: #dddcfe;
             border: none;
             padding: 10px 10px;
-            color: $fialova;
+            color: #24695c;
             font-weight: 600;
             -webkit-box-shadow: -24px 0px 0px 0px rgba(47,39,157,0.08);
             -moz-box-shadow: -24px 0px 0px 0px rgba(47,39,157,0.08);
@@ -30,6 +39,13 @@
            display: block;
            cursor: pointer;
         }
+    }
+
+    &__single-hover{ 
+        &:hover{
+            background: rgb(241, 241, 241);
+        }
+        cursor: pointer;
     }
     &__single{
         text-align: left;
@@ -41,6 +57,7 @@
         display: flex;
         justify-content: center;
         align-items: center;
+
 
         &::after{
             content: '\3f';
@@ -56,7 +73,6 @@
         }
 
         h2{
-            padding-bottom: 15px;
            
         }
 
@@ -75,9 +91,13 @@
             z-index: 5;
 
             i{
-                font-size: 40px;
-                color: $fialova;
+                font-size: 60px;
+                color: #24695c;
                 cursor: pointer;
+
+              &:hover{
+                color: #195349;
+              }
 
             }
         }
@@ -85,22 +105,31 @@
 
     &__edits{
         position: absolute;
-        right: -20px;
+        right: -15px;
         top: -10px;
-        background: $fialova;
-        width: 80px;
-        height: 50px;
+        width: 40px;
+        background: rgba(109, 0, 0, 0.534);
+        height: 40px;
         border-radius: 45px;
         display: flex;
         justify-content: center;
         align-items: center;
         z-index: 4;
+        transition: 0.5s ease all;
+        cursor: pointer;
 
         i{
-            color: white;
+            color: rgba(109, 0, 0, 0.904);
             padding: 0 5px;
             font-size: 17px;
-            cursor: pointer;
+        }
+
+        &:hover{
+            background: rgb(109, 0, 0);
+
+            i{
+                color: white;
+            }
         }
     }
 

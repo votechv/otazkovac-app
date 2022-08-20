@@ -1,46 +1,56 @@
 <template>
-  
   <div> 
+    <template v-if="loadingbar"> 
+        <div class="loadingdesign loadingclass"> </div>
+    </template>
 
-   <div class="loadingdesign"  :class="{loadingclass : loadingcl}"> 
-   </div>
-<div v-cloak class="app-spin" v-if="loading">
-
- 
-    <div v-cloak class="app-spin__content">
-        <h2> {{packages.name}} - mix </h2>
-        <h1> {{numbersArray.length}}</h1>
-    </div> 
-
-    <div class="prograssbar" style="width: 100%; background: white; height: 5px;" >
-        <div class="prograssbarr" :style="'width:'+procent() +'% ; height: 5px; background: black;'">
+    <template v-else>
+        <div class="app-spin" v-if="loading">
         
-        </div>
+            <div class="app-spin__content">
+               <div class="app-spin__content-left">
+                    <p> Mix složky </p>   
+                    <h2> {{packages.emoji}} {{packages.name}} </h2>
+                </div>
+            
+            </div> 
+
+            
+
+                <div class="prograssbar" style="width: 100%; background: transparent; height: 5px;" >
+                     <div class="prograssbarr" :style="'width:'+howMuchDone() +'%; height: 2px; background: #24695c;'">
+                 </div>
+                
+                <a class="app-spin__button-answer" @click="openAnswerModal" v-if="answer != null"> <i class="fa-solid fa-circle-question"></i> </a>                
     </div>
 
-
-{{procent()}}
 
 
     
+            <div class="app-spin__spin">
+                <div class="app-spin__question"> 
+                    <transition enter-active-class="animate__animated animate__backInDown" leave-active-class="animate__animated animate__backOutDown">
+                        <h3 v-if="visible"> {{choose}}</h3>
+                    </transition>
+                </div>
+            </div>
+            
+             <div class="app-spin__button">
 
-    <div class="app-spin__spin">
-        <div class="app-spin__question"> 
-            <transition enter-active-class="animate__animated animate__backInDown" leave-active-class="animate__animated animate__backOutDown">
-                 <h3 v-if="visible"> {{choose}}</h3>
-            </transition>
-        </div>
-        <button @click.prevent=" random()">SPIN</button>
-    </div>
-
+                <button @click.prevent=" random()">SPIN</button>
+            
+            </div>
 
 </div>
-</div>
-
 
 </template>
 
+<answer-modal v-if="answerModal" @closeAnswerModal="closeAnswerModal" :content="answer" />
+</div>
+</template>
+
 <script>
+import AnswerModal from '../modals/AnswerModal'
     export default {
         data() {
             return {
@@ -49,39 +59,32 @@
                 singleuser: '',
                 visible: true,
                 loading: false,
-                loadingcl: true,
-                folders: []
+                loadingbar: true,
+                folders: [],
+                folderName: '',
+                folderEmoji: '',
+                answerModal: false,
+                answer: null,
+                youCanSpin: true,
             }
+        },
+
+        components:{
+            AnswerModal
         },
     
         created() {
-
-            axios.get('/api/users').then(response => {
-                this.singleuser = response.data
-                this.loading = true
-
-                this.loadingcl = false
-            })
-             .catch(error => {
-                return this.$router.push('../404')
-            })
-            ;
-
-            axios.get('/api/folders/'+this.$route.params.id).then(response => {
-                this.packages = response.data
-            })
-             .catch(error => {
-               return this.$router.push('../404')
-            });
-
-   
+           this.getPackages();
+           this.getUsers();
         },
               
               computed: {
                 numbersArray() {        
-                    return this.createArrayOfNumber(0, this.packages.question.length -1);
+                     return this.createArrayOfNumber(0, this.packages.question.length -1);
+                    
                 },
-                lengthArray() {        
+
+                    lengthArray() {        
                     return this.numbersArray.length;
                 },
             },
@@ -106,7 +109,8 @@
             },
 
         random(){
-
+        if(this.youCanSpin == true){
+        this.youCanSpin = false
         let randomIndex = this.getRandomNumber(0, this.numbersArray.length - 1);
         let randomNumber = this.numbersArray[randomIndex];
         this.numbersArray.splice(randomIndex, 1);
@@ -117,6 +121,9 @@
 
         setTimeout(() => this.choose = this.packages.question[randomNumber].text, 300);
         setTimeout(() => this.visible = true, 300);
+
+        this.answer = this.packages.question[randomNumber].answer;
+
         }
 
         else if(this.packages.question.length < 1){
@@ -126,20 +133,53 @@
         else{
             setTimeout(() => this.choose = 'Hurá 🎉 prošli jste všechny otázky v balíčku!', 300);  
         
-        }
-},
+         }
 
+           setTimeout(() => {
+             this.youCanSpin = true
+         }, 1000);
 
-        procent(){
-          let vysledek = (100 * this.numbersArray.length) / this.lengthArray;
+     }
+        },
 
-            return vysledek;
+       async getPackages(){
+           await axios.get('/api/folders/'+this.$route.params.id).then(response => {
+                        this.packages = response.data
+                        this.getFolders();
+                        this.folderName = response.data.name;
+                        this.folderEmoji = response.data.emoji;
+                    })
+                    .catch(error => {
+                       // return this.$router.push('../404')
+                    });
+        },
+
+        async getUsers(){
+
+           await axios.get('/api/users').then(response => {
+                this.singleuser = response.data
+                this.loading = true
+
+                this.loadingbar = false
+            })
+             .catch(error => {
+              //  return this.$router.push('../404')
+            });
+
         },
 
 
-            
+        howMuchDone(){
+          let vysledek = 100-((100 * this.numbersArray.length) / this.lengthArray);
+            return vysledek;
+        },
 
-           
+        closeAnswerModal(){
+            this.answerModal = false;
+        },
+        openAnswerModal(){
+            this.answerModal = true;
+        },
 
         
         }

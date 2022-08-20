@@ -1,8 +1,14 @@
 <template>
 <div>
   <div class="mainFolders">
-      <h2 class="mainFolderh2">Vaše složky</h2>
-     <div class="mainFolders__grid">
+       <div class="headtop__info">          
+        <div class="headtop__info--head">   
+             <h2> Vaše složky </h2>
+        </div>
+    
+    </div>
+      <template v-if="folders.length > 0"> 
+      <div class="mainFolders__grid">
         <div @click="$router.push('/folder/' + folder.id)" class="mainFolders__single" v-for="folder in folders" :key="folder.id">
        <div class="mainFolders__pseudo"> </div>
         <div class=" mainFolders__single--emoji">      
@@ -12,11 +18,14 @@
                 <h2> {{folder.name}}</h2>
                 <p> Vytvořeno: {{getDate(folder.created_at)}}</p>
             </div>
-
-
-        
         </div>
-     </div>
+         </div>
+        </template>
+        <template v-else>
+          <div class="mainFolders__empty">
+          <p> Vytvořte si ve <router-link to="/edit-folders"> <i class="fa-solid fa-file-pen"></i> správci balíčků </router-link> svou první složku</p>
+        </div>
+        </template>
   </div>
 </div>
 </template>

@@ -1,9 +1,9 @@
 <template>
    <div class="plan"> 
-  
+ 
     <div class="plan__info">
         <div class="plan__info--head">   
-             <h2> Dnes máte v plánu:</h2>
+             <h2> Dnes máte v plánu:  {{date}}</h2>
         </div>
         <div class="plan__info--buttons">
             <button class="user-home__category--mainButton" @click="openModal('add')"> <i class="fa-solid fa-plus"></i> Přidat </button> 
