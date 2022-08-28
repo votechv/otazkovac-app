@@ -1,4 +1,4 @@
-@extends('layouts.body')
+@extends('layouts.offline')
 
 @section('title', 'hlavní stránka')
 
@@ -6,148 +6,136 @@
 
 
     
-
-<div class="hp-top">
-    <div class="hp-top__content">
-        <div class="hp-top__content-left
-        @auth
-        left-auth-ok
-    @endauth
-        ">
-                @guest
-            <h2> Bezplatný a zábavný způsob jak otestovat své vědomosti</h2>
-            <p> Potřebujete se nechat vyzkoušet na zítřejší test? Nebo chcete s přáteli hrát některou z poznávacích her, ale nevíte na jaké otázky se ptát? Otázkovač vám pomůže!  </p>
-           <div class="hp-buttons"> 
-            <a href="/register"><button class="start"> Začít </button></a>
-            <a href="/login"><button> Již mám účet</button></a>
-        </div>
-            @endguest
-
-            @auth
-        <h1>  
-            <?php
-            $time = date("H");
-           
-            $timezone = date("e");
-            
-            if ($time < "9") {
-                echo "Dobré ráno!";
-            } else
-
-            if ($time >= "9"  && $time < "12") {
-                echo "Dobré dopoledne!";
-            } else
-           
-            if ($time >= "12" && $time < "17") {
-                echo "Dobré odpoledne!";
-            } else
-            
-            if ($time >= "17" && $time < "19") {
-                echo "Dobrý podvečer!";
-            } else
-            
-           
-            if ($time >= "19") {
-                echo "Dobrý večer!";
-            }
-
-            ?>
-          <p> Teď je ten správný čas na procvičování vašich otázek! :) </p>
-      
+<div class="homepage" id="offline">
     
-         </h1>   
- 
-        @foreach ($plantimes as $item)
-            <?php echo $item->name?>
-        @endforeach
-            @endauth
+    <div class="homepage__main">  
+        <video autoplay muted id="mainvideo">
+         <source src="../videos/black.mp4" type="video/mp4">
+         Váš prohlížeč nepodporuje HTML5 :( 
+       </video>
+
+       <div class="homepage__main--bg"></div>
+
+       <div class="homepage__main-title">
+           <div class="homepage__main-title--bg"></div>
+           <h1> Knowli </h1>
         </div>
 
-        <div class="hp-top__content-right
-        @auth
-        img-auth-ok
-        @endauth
-        " >
-            <img src="https://vojtechvanek.com/comp-otazkovac.png" alt="imac">
+       <div class="homepage__main-subtitle">
+           <div class="homepage__main-subtitle--bg"></div>
+               <h2> Váš průvodce učením </h2>
+       </div>
+
+       <i class="fa-solid fa-angles-down homepage-arrow"></i>
+    </div>
+
+
+
+      <div class="homepage__citation" id="homepage-citation-1">
+          <div class="homepage__citation-content">
+              <div class="homepage__citation--question"><i class="fa-solid fa-question"></i></div>
+              <cite> „Věděli jste, že nejefektivnější metodou učení je <strong class="homepage__citate-strong">  aktivní učení? </strong> Např. testování sama sebe místo čtení textu pořád dokola“ </cite>
+          </div>
+      </div>
+
+
+      <div class="homepage__left-content" id="homepage-content-1">
+          <div class="homepage__left-content-wrap">
+          <div class="homepage__left-text">
+                <h2> Otázkovač </h2>
+                <p>Při učení píšete otázky které vás napadnou a náš algoritmus vás následně vyzkouší.</p>
+          </div>
+
+          <div class="homepage__left-image">
+            <video autoplay muted loop  id="">
+                <source src="../videos/otazkovac02.mp4" type="video/mp4">
+                Váš prohlížeč nepodporuje HTML5 :( 
+              </video>
+          </div>
+        </div>
+      </div>
+
+      <div class="homepage__left-content" id="homepage-content-2">
+          <div class="homepage__left-content-wrap">
+              <div class="homepage__left-image">
+                <video autoplay muted loop  class="homepage__left-image--skew2">
+                    <source src="../videos/mainApp.mp4" type="video/mp4">
+                    Váš prohlížeč nepodporuje HTML5 :( 
+                  </video>
+              </div>
+          <div class="homepage__left-text">
+                <p><strong>  „Mluvit anglicky se naučíš jen když budeš mluvit!“ </strong>Ale co když nemám s kým?  Otázkovač má pro vás veřejných tisíce otázek ve 4 jazycích!  🇬🇧 🇩🇪 🇪🇸 🇫🇷</p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="homepage__banner">
+        <div class="homepage__banner-content">
+            <h2 class="homepage__banner--title"> <a href="/register">Pojďte do toho!</a>  100% Zdarma! </h2>
         </div>
     </div>
-</div>
+
+    
+      <div class="homepage__citation"  id="homepage-citation-2">
+        <div class="homepage__citation-content">
+            <div class="homepage__citation--question"><i class="fa-solid fa-question"></i></div>
+            <cite> „Věděli jste, že většina lidí, kteří dělají rychle změny ve svém životě dříve nebo později selžou? <strong>Důležité je postupné budování malých návyků </strong>“</cite>
+        </div>
+    </div>
 
 
+    <div class="homepage__left-content" id="homepage-content-3">
+        <div class="homepage__left-content-wrap">
+        <div class="homepage__left-text">
+              <h2> Budování návyků </h2>
+              <p>Budujte s Knowli svoje návyky. Zadejte svůj návyk a každý den  jej po splnění odškrtněte! Časem se z něj stane samozřejmost. </p>
+        </div>
 
-           
- <div class="wrap-content-index">   
-     <h2 class="main"> Naše balíčky pro vás</h2>
-     <div class="wrap-content-index__content">     
-<h2 class="title"> Jazyky 🇬🇧</h2>
-    <div class="indexpackage package-height">  
-        <div class="indexpackage__wrap wrap-border"> 
-                    
-            @foreach ($packages as $package)
-            @if ($package->user_id === 1 && $package->category == "anj")
-            
-            <div class="indexpackage__single">
-            <h2> {{$package->name}} </h2>
-            <p> {{$package->text}} </p>
-            <div class="indexpackage__content">
-                <div class="indexpackage__content__middle"> 
-                    @auth
-                    <a href="/package/{{$package->id}} "> <i class="fas fa-play"></i> </a>
-                    @endauth
-                    @guest
-                    <a href="/locked-package"> <i class="fas fa-eye"></i> </a>    
-                    @endguest
-                </div>
+        <div class="homepage__left-image">
+          <video autoplay muted loop  id="">
+              <source src="../videos/otazkovac02.mp4" type="video/mp4">
+              Váš prohlížeč nepodporuje HTML5 :( 
+            </video>
+        </div>
+      </div>
+    </div>
+
+
+    <div class="homepage__citation" id="homepage-citation-3">
+        <div class="homepage__citation-content">
+            <div class="homepage__citation--question"><i class="fa-solid fa-question"></i></div>
+            <cite> „Věděli jste, že pokud lidé drží své povinnosti v hlavě <strong> pociťují častěji úzkosti?  </strong> Nosit všechny úkoly v hlavě je obrovská zátěž, napište si je!“</cite>
+        </div>
+    </div>
+
+
+    <div class="homepage__left-content" id="homepage-content-4">
+        <div class="homepage__left-content-wrap">
+            <div class="homepage__left-image">
+              <video autoplay muted loop  class="homepage__left-image--skew2">
+                  <source src="../videos/mainApp.mp4" type="video/mp4">
+                  Váš prohlížeč nepodporuje HTML5 :( 
+                </video>
             </div>
+        <div class="homepage__left-text">
+              <p><strong>  „Mluvit anglicky se naučíš jen když budeš mluvit!“ </strong>Ale co když nemám s kým?  Otázkovač má pro vás veřejných tisíce otázek ve 4 jazycích!  🇬🇧 🇩🇪 🇪🇸 🇫🇷</p>
         </div>
-    @endif
-    @endforeach
-   
-        </div>
+
+      </div>
     </div>
 
-    <h2 class="title"> Zábava 🤪 </h2> 
 
-<div class="indexpackage package-height">  
-    <div class="indexpackage__wrap"> 
-        @foreach ($packages as $package)
-        @if ($package->user_id === 1 && $package->category == "fun")
 
-        <div class="indexpackage__single">
-        <h2 > {{$package->name}} </h2>
-        <p> {{$package->text}} </p>
-        <div class="indexpackage__content">
-            <div class="indexpackage__content__middle"> 
-                    @auth
-                    <a href="/package/{{$package->id}} "> <i class="fas fa-play"></i> </a>
-                    @endauth
-                    @guest
-                    <a href="/locked-package"> <i class="fas fa-eye"></i> </a>    
-                    @endguest            </div>
-        </div>
-        </div>
-        @endif
-        @endforeach
 
-    </div>
+    
+
+
+
+
+    
+
+
 </div>
-
-
-
-
-</div> 
-</div>   
-
-
-<div class="hp-top">
-        <div class="hp-top__content">
-            <div class="hp-top__center">
-                    <h2> A mnoho dalších </h2>
-                   <a href="/public"> <h2> <i class="fas fa-forward"></i></h2></a>
-
-            </div>
-        </div>
-    </div>
-
 
 @endsection

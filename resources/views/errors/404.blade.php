@@ -1,14 +1,15 @@
-@extends('layouts.body')
+@extends('layouts.offline')
+
+@section('title', 'hlavní stránka')
 
 @section('content')
 
-<div class="four-hundred-and-four">
-        <h1> 404 </h1>
-        <h4> To co jste hledali zde není! </h4>
-       <a href="/"> <button> <i class="fas fa-backward"></i> </button></a>
+<div class="offline-error">
+    <div class="offline-error__content">
+            <h1>Error 404</h1>
     </div>
-
-           
+</div>
+    
 
 
 @endsection

@@ -1,3 +1,140 @@
+.login-page{
+    width: 100%;
+    height: calc(100vh - 59px);
+    background: whitesmoke;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Poppins, sans-serif;
+    &__wrap{
+        width: 100%;
+        background: white;
+        max-width: 1000px;
+        display: flex;
+        gap: 40px;
+
+        @media screen and (max-width: 1049px){
+            flex-direction: column;
+        }
+    }
+
+    &__left{
+        background: rgb(36,105,92);
+        width: 40%;
+        color: white;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        text-align: center;
+        padding: 0px 20px;
+        background: linear-gradient(180deg, rgba(36,105,92,1) 0%, rgba(92,179,49,1) 100%);
+        @media screen and (max-width: 1049px){
+            display: none;
+        }
+        h2{
+            font-family: Poppins-bold, sans-serif;
+            font-size: 40px;
+            padding: 15px 0px;
+        }
+        p{
+            padding: 15px 0px;
+            font-size: 15px;
+        }
+
+        button{
+            background: none;
+            color: white;
+            border: 1px solid white;
+            border-radius: 20px;
+            padding: 10px 0px;
+            width: 200px;
+            margin: 15px 0px;
+            transition: 0.5s ease background;
+            cursor: pointer;
+
+            &:hover{
+                background: rgba(209, 209, 209, 0.205);
+            }
+        }
+    }
+
+    &__right{
+        width: 60%;
+        padding: 80px 0px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        @media screen and (max-width: 1049px){
+            width: 100%;
+        }
+        h2{
+            color: #24695c;
+            font-weight: bold;
+            font-family: Poppins-bold, sans-serif;
+            font-size: 40px;
+            padding: 15px 0px;
+        }
+        form{
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 300px;
+            justify-content: center;
+            align-items: center;
+
+            input{
+                width: 100%;
+                max-width: 600px;
+                font-size: 15px;
+                margin: 5px 0px;
+                padding: 10px 7px;
+                border: none;
+                background: rgba(241, 241, 241, 0.781);
+            }
+        }
+
+        button{
+            background: #24695c;
+            color: white;
+            border: none;
+            padding: 10px 0px;
+            text-align: center;
+            width: 200px;
+            border-radius: 20px;
+            text-transform: uppercase;
+            font-size: 14px;
+            font-family: Poppins-bold, sans-serif;
+            cursor: pointer;
+            transition: 0.5s ease background;
+            &:hover{
+                background: #054438; 
+            }
+        }
+    }
+
+    &__remember{
+        margin: 12px 0px;
+        display: flex;
+        font-size: 11px;
+        align-items: center;
+        input{
+            width: 50px !important;
+        }
+    }
+
+    &__resetpsw{
+        font-size: 11px;
+        padding-top: 10px;
+        color: #24695c;
+        
+    }
+}
+
+.btn-register{
+    margin-top: 15px;
+}
 .loginform{
     width: 100%;
     background: rgb(236, 236, 236);

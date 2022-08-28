@@ -1,16 +1,30 @@
 <template>
     <div>
-        <router-view />
+        <Menu />
+        <div class="app-content">
+            <router-view/>
+        </div>
     </div>
 </template>
 
 <script>
 import MainApp from './components/MainApp'
-
+import Menu from './Menu.vue'
     export default {
         components:{
-            MainApp
+            MainApp, Menu
         },
+        data() {
+            return {
+                refresh: true,
+            }
+        },
+
+        methods:{
+            refFalse(){
+                this.refresh = false;
+            }
+        }
     }
 </script>
 

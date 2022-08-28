@@ -8,7 +8,7 @@
 
          
         <div class="editpackage__data">
-            <h1>  {{packages.name}}<a @click.prevent="addFormData(packages)"> <i class="fas fa-pen"></i></a> </h1>
+            <h1>  {{packages.name}}<a @click.prevent="addFormData(packages)"> <i class="fas fa-pen"></i></a>  <a @click.prevent="adminPublicModal =true"><i class="fa-solid fa-earth-americas"></i></a></h1>
             <p> {{packages.text}}</p>
         </div>
   
@@ -84,6 +84,22 @@
 </div>
 
         </div>
+
+        <main-modal v-if="adminPublicModal && user.id == 1"  @close="adminPublicModal = false" title="Publikace složky"> 
+  <template v-slot:content>
+  <div class="text-center"> 
+    <h2 style="text-center">  {{packages.name}} </h2>
+    <p> Slug musí být vyplněn!!</p>
+   
+ 
+    <input type="text" style="background: #7a0000; color: white; font-weight:bold; border: none; padding: 10px 7px; font-size: 15px;" v-model="adminSlug">
+
+    <button class="btn btn-primary" @click="justAdminSlug()"> Uložit</button>
+
+    <p> Aktuální slug {{packages.slug}}</p>
+    </div>
+    </template>
+</main-modal>
         </div>
 
 
@@ -92,6 +108,7 @@
 
 <script>
 import {ref} from 'vue';
+import MainModal from '../components/MainModal.vue'
     export default {
             data() {
                 return {
@@ -110,15 +127,23 @@ import {ref} from 'vue';
                     visibleAddAnswer: false,
                     newAnswer: '',
                     answer_id: '',
+                    adminPublicModal: false,
+                    adminSlug: '',
+                    done: ''
 
 
                 }
             },
 
+            components:{
+                MainModal
+            },
+
            
             created() {
                 axios.get('/api/packages/'+this.$route.params.id).then(response => {
-                this.packages = response.data
+                this.packages = response.data;
+                this.adminSlug = response.data.slug;
             })
              .catch(error => {
                 return this.$router.push('../../404')
@@ -162,6 +187,7 @@ import {ref} from 'vue';
 
                 axios.post('/api/questions', data).then(response => {
                     this.refresh();
+                    this.$emit('refquestion');
                 })
 
                 
@@ -270,6 +296,17 @@ import {ref} from 'vue';
                 this.visiblepop2 = false;
 
 
+            },
+
+            justAdminSlug(){
+                let data = {
+                    name: this.packages.name,
+                    slug: this.adminSlug
+                }
+
+                axios.patch('/api/packages/'+this.packages.id, data).then(response => {
+                    this.refresh();
+                   });; 
             }
 
 

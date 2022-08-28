@@ -39,22 +39,9 @@ padding: 40px 0px;
 }
 }
 
-
-
-
-
-
-// MAIN !!!!!
-
-.content{
-    background: #f5f7fb;
-    min-height: 100vh;
-    height: 100%;
+.app-content{
     width: calc(100% - 290px);
     margin-left: 290px;
-    transition: 0.5s margin-left;
-    padding-top: 74px;
-    position: relative;
 
     @media screen and(max-width: 974px){
         &{
@@ -66,6 +53,21 @@ padding: 40px 0px;
     @media screen and (max-width: 959px){
         padding-top: 64px;
     }
+}
+
+
+
+
+// MAIN !!!!!
+
+.content{
+    background: #f5f7fb;
+    min-height: 100vh;
+    height: 100%;
+    width: 100%;
+    transition: 0.5s margin-left;
+    padding-top: 74px;
+    position: relative;
 }
 
 #check:checked ~ .content{
@@ -255,6 +257,32 @@ padding: 40px 0px;
         }
     }
 
+}
+
+.offline-error{
+    display: table;
+    width: 100%;
+    height: 100vh  !important;
+    text-align: center;
+    color: #888;
+    &__content{
+        display: table-cell;
+        vertical-align: middle;
+
+        h1{
+            font-size: 50px;
+            display: inline-block;
+            padding-right: 12px;
+            animation: erroroffline .5s alternate infinite;
+      }
+  }
+  
+}
+
+
+@keyframes erroroffline{
+	  from{box-shadow: inset -3px 0px 0px #888;}
+	  to{box-shadow: inset -3px 0px 0px transparent;}
 }
 
 

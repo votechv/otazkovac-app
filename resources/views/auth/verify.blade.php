@@ -1,4 +1,4 @@
-@extends('layouts.body')
+@extends('layouts.offline')
 
 @section('title', 'ověření')
 

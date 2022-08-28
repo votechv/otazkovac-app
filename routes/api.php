@@ -31,3 +31,8 @@ Route::apiResources([
 
 });
 
+
+
+Route::apiResource('foldersoffline', 'API\FolderOfflineController')->parameters([
+    'foldersoffline' => 'folder'
+]);

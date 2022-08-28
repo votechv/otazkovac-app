@@ -40,6 +40,11 @@ class HomeController extends Controller
         return view('page.dashboard');
     }
 
+    public function error(){
+        return view('page.404');
+    }
+
+
     public function studyroom(){
         return view('page.studyroom');
     }

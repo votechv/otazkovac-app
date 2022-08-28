@@ -6,6 +6,7 @@ use App\Package;
 use App\Question;
 use App\User;
 use App\Plan;
+use App\Folder;
 use App\Plantime;
 use Illuminate\Http\Request;
 
@@ -36,6 +37,7 @@ class PackageController extends Controller
     public function public(){
         return view('public',[
             'packages' => Package::all(),
+            'folders' => Folder::all(),
             'users' => User::all(),
         ]);
     }
@@ -45,6 +47,9 @@ class PackageController extends Controller
             'users' => User::all(),
             'questions' => Question::all(),
         ]);
+    }
+    public function error(){
+        return view('page.404');
     }
 
     /**

@@ -4,7 +4,6 @@ import VueRouter from 'vue-router';
 // COMPONENTS
 
 import MainApp from './components/MainApp'
-import UserHome from './components/UserHome'
 import PackageEdit from './components/PackageEdit'
 import NotFound from './components/NotFound'
 import NavodPage from './components/NavodPage'
@@ -25,6 +24,13 @@ import Checklist from './checklist/App'
 
 import Setting from './components/Setting.vue'
 
+// PUBLIC
+
+import publicFolders from './public/publicFolders.vue'
+import publicPackages from './public/publicPackages.vue'
+import publicApp from './public/publicApp.vue'
+
+
 Vue.use(VueRouter) 
 
 export default new VueRouter({
@@ -33,7 +39,6 @@ export default new VueRouter({
         { path: '/404', component: NotFound},
         { path: '/package/:id', component: MainApp},
         { path: '/folder/:id', component: SingleFolder},
-        { path: '/home', component: UserHome },
         { path: '/package/:id/edit', component: PackageEdit },
         { path: '/folder/:id/edit', component: SingleFolderEdit },
         { path: '/navod', component: NavodPage },
@@ -44,5 +49,8 @@ export default new VueRouter({
         { path: '/edit-folders', component: FoldersEdit },
         { path: '/setting', component: Setting },
         { path: '/checklist', component: Checklist },
+        { path: '/public', component: publicFolders },
+        { path: '/public/:slug', component: publicPackages },
+        { path: '/public/:slug/:slug2', component: publicApp },
     ]
 });

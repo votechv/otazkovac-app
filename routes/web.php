@@ -20,6 +20,13 @@ Route::get('/studyroom', 'HomeController@studyroom');
 Route::get('/setting', 'HomeController@scheduled');
 
 
+Route::get('/404', 'PackageController@error');
+
+
+
+Route::get('/public/{any?}', 'PackageController@public')->where('any', '.*');
+
+
 Auth::routes();
 
 
@@ -35,9 +42,9 @@ Route::get('/mixapp/{any?}', function(){
     return view('layouts.admin');
 })->where('any', '.*')->middleware('auth');
 
-Route::get('/404', function(){
+Route::get('/error', function(){
     return view('layouts.admin');
-});
+})->middleware('auth');
 
 
 Route::get('/home/{any?}', function(){

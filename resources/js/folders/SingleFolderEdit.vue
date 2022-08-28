@@ -5,6 +5,7 @@
              <h2> {{folders.emoji}} {{folders.name}}</h2>
         </div>
         <div class="headtop__info--buttons">
+            <button class="headtop--mainButton" v-if="user.id == 1" @click="adminPublicModal = true"> <i class="fa-solid fa-earth-americas"></i> Publikovat </button> 
             <button class="headtop--mainButton" @click="createPackageModalOpen()"> <i class="fa-solid fa-plus"></i> Přidat balíček </button> 
             <button  class="headtop--mainButton" @click="editFolderModalOpen()"><i class="fa-solid fa-marker"></i>Upravit složku</button>
             <button  class="headtop--mainButton headtop--delete" @click="deleteFolderModalOpen()"><i class="fa-solid fa-trash"></i>Smazat složku</button>
@@ -57,6 +58,24 @@
 
 <edit-folder v-if="eidtFolderModalShow" :folder="folders" v-on:closemodal="editFolderModalClose" v-on:reloadFolder="getFolders"/>
 
+<main-modal v-if="adminPublicModal && user.id == 1"  @close="adminPublicModal = false" title="Publikace složky"> 
+  <template v-slot:content>
+  <div class="text-center"> 
+    <h2 style="text-center">  {{folders.name}} {{folders.emoji}}</h2>
+    <p> Slug musí být vyplněn!!</p>
+   
+ 
+    <input type="text" style="background: #7a0000; color: white; font-weight:bold; border: none; padding: 10px 7px; font-size: 15px;" v-model="adminSlug">
+
+    <button class="btn btn-primary" @click="justAdminPublic(true)"> Zveřejnit</button>
+    <button class="btn btn-secondary" @click="justAdminPublic(false)"> Skrýt</button>
+
+
+    <p>Tento balíček je momentálně: <span v-if="folders.public == 0"> Neveřejný </span> <span v-if="folders.public == 1"> Veřejný </span></p>
+    <p> {{done}}</p>
+    </div>
+    </template>
+</main-modal>
     </div>
 </template>
 
@@ -65,6 +84,7 @@ import ListPackages from '../packages/ListPackages'
 import CreatePackageModal from '../modals/CreatePackageModal'
 import DeleteModal from '../modals/DeleteModal'
 import EditFolder from '../modals/EditFolder'
+import MainModal from '../components/MainModal.vue'
 
     export default {
         data() {
@@ -79,10 +99,14 @@ import EditFolder from '../modals/EditFolder'
                 eidtFolderId: null,
                 eidtFolderModalShow: false,
                 showDeleteFolderModal: false,
+                adminPublic: '',
+                adminSlug: '',
+                done: '',
+                adminPublicModal: false,
             }
         },
         components:{
-            ListPackages, CreatePackageModal, DeleteModal, EditFolder
+            ListPackages, CreatePackageModal, DeleteModal, EditFolder, MainModal
         },
         mounted() {
             this.getFolders();
@@ -94,7 +118,7 @@ import EditFolder from '../modals/EditFolder'
                 axios.get('/api/folders/'+this.$route.params.id).then(response => {
                     this.folders = response.data;
                     this.packages = response.data.package;
-                   
+                    this.adminSlug = response.data.slug
                     
                     console.log(this.folders);
                     })
@@ -102,6 +126,22 @@ import EditFolder from '../modals/EditFolder'
                         //return this.$router.push('../404')
                     });
             },
+
+            justAdminPublic(answer){
+                    this.adminPublic = answer;
+                let data = {
+                    emoji: this.folders.emoji,
+                    name: this.folders.name,
+                    public: this.adminPublic,
+                    slug: this.adminSlug,
+                }
+
+
+                  axios.put('/api/folders/'+this.$route.params.id, data).then(response => {
+                    this.getFolders();
+                   });; 
+
+                },
 
             getUser(){
                 axios.get('/api/users', ).then(response => {

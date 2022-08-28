@@ -16,10 +16,8 @@ class FolderController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        //return Folder::latest('id')->get();
+    {    
         return auth()->user()->folder()->latest()->get();
-
     }
 
     /**
@@ -78,11 +76,16 @@ class FolderController extends Controller
             'name' => 'required',
             'emoji' => 'required',
         ]);
+
+        if(auth('api')->user()->id != 1){
+            $request["public"] = 0;
+        }
+     
         if($folder['user_id'] === auth('api')->user()->id){  
-        $folder->update(
-            $request->all()
-        );
-    }
+            $folder->update(
+                $request->all()
+            );
+        }
 
     }
 

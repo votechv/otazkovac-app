@@ -1,14 +1,17 @@
 <?php
 
 namespace App;
+use App\User;
 
 use Illuminate\Database\Eloquent\Model;
 
 class Folder extends Model
 {
+   
     protected $fillable = [
-        'emoji', 'user_id', 'name', 'learn', 'last'
+        'emoji', 'user_id', 'name', 'learn', 'last', 'public', 'slug',
       ];
+
    
        public function user(){
           return $this->belongsTo('App\User');
