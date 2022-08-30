@@ -3260,7 +3260,7 @@ __webpack_require__.r(__webpack_exports__);
     HabitDays: _HabitDays__WEBPACK_IMPORTED_MODULE_1__["default"]
   },
   mounted: function mounted() {
-    this.getPlantimes();
+    //   this.getPlantimes();
     var date = new Date(this.today);
     var day = date.getDay(); //   var array = []
 
@@ -4700,13 +4700,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     }), _ref;
   },
   mounted: function mounted() {
-    this.getUser();
-    this.getPlantimes();
+    this.getUser(); //    this.getPlantimes();
+
     this.getPlan();
   },
   computed: {
     getDayArray: function getDayArray() {
-      return [this.day1, this.day2, this.day3, this.day4, this.day5, this.day6, this.day7];
+      return [this.day7, this.day1, this.day2, this.day3, this.day4, this.day5, this.day6];
     }
   },
   components: {
@@ -4729,13 +4729,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
       axios.get('/api/plantimes').then(function (response) {
         _this.plantimes = response.data;
-        _this.plantimesTime = [];
-
-        for (var i = 0; i < _this.plantimes.length; i++) {
-          if (_this.plantimes[i].time == _this.date) {
-            _this.plantimesTime.push(_this.plantimes[i]);
-          }
-        }
 
         _this.countProcent();
       })["catch"](function (error) {
@@ -4813,7 +4806,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
               var datatimes = {
                 user_id: _this4.user_id,
                 plan_id: response.data.id.id,
-                time: i + 1
+                time: i
               };
               axios.post('./api/plantimes', datatimes).then(function (response) {
                 console.log(datatimes);
@@ -71941,7 +71934,7 @@ var render = function () {
           _vm._m(0),
           _c("router-link", { attrs: { to: "/profil" } }, [
             _c("h6", { staticClass: "mt-3 f-14 f-w-600" }, [
-              _vm._v("\n           " + _vm._s(_vm.user.name) + " \n      "),
+              _vm._v("\n           " + _vm._s(_vm.user.name) + "\n      "),
             ]),
           ]),
           _vm._v(" "),

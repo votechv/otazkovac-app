@@ -25,7 +25,7 @@ import moment from 'moment'
         },
 
         mounted() {
-            this.getPlantimes();
+         //   this.getPlantimes();
 
 
                 var date = new Date(this.today);
@@ -39,12 +39,12 @@ import moment from 'moment'
                     moment(String( newDate )).format('MM/DD/YYYY') // can replace format with format you want.
                     console.log(newDate);
                 }
-                    else 
+                    else
                     this.arrayDays.push(date);
                 }
 
                 this.arrayDays = newDate;
-           
+
         },
 
 
@@ -53,7 +53,7 @@ import moment from 'moment'
         this.date = d.getDay();
 
         var dateObj = new Date();
-        var month = dateObj.getUTCMonth() + 1; 
+        var month = dateObj.getUTCMonth() + 1;
         var day = dateObj.getUTCDate();
         var year = dateObj.getUTCFullYear();
 
@@ -96,7 +96,7 @@ import moment from 'moment'
             });
             },
         },
-        
+
     }
 </script>
 
