@@ -10,12 +10,13 @@ import moment from 'moment'
 import Public from './public/App.vue'
 import Hero from './public/hero.js'
 import Navigation from './public/navigation.js'
-
+import VCalendar from 'v-calendar';
 
 require('./bootstrap');
 window.Vue = require('vue');
 
 Vue.use(VueApexCharts)
+
 
 window.addEventListener("load", function () {
     new Offline();
@@ -31,9 +32,8 @@ Vue.component('apexchart', VueApexCharts);
 if (document.getElementById("app")) {
   const app = new Vue({
       router,
-  
      render: h => h(App)
-  }).$mount('#app')
+  },).$mount('#app')
 }
 if (document.getElementById("offline-app")) {
   const app2 = new Vue({

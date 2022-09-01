@@ -84,12 +84,6 @@ a {
   }
 }
 
-@media screen and (max-width: 959px) {
-  .app-content {
-    padding-top: 64px;
-  }
-}
-
 .content {
   background: #f5f7fb;
   min-height: 100vh;
@@ -2855,19 +2849,34 @@ a.password-forgot {
   margin: 0 auto;
 }
 
+@media screen and (max-width: 550px) {
+  .plan__app {
+    padding: 22px;
+  }
+}
+
 .plan__app--single {
-  background: rgba(72, 72, 75, 0.9803921569);
-  padding: 18px;
+  background: rgba(36, 105, 92, 0.21);
+  padding: 9px 22px;
   border-radius: 20px;
-  color: white;
+  color: black;
   position: relative;
-  display: flex;
+  display: grid;
+  grid-template-columns: 55px 1fr 60px;
+  gap: 20px;
   align-items: center;
+}
+
+@media screen and (max-width: 550px) {
+  .plan__app--single {
+    grid-template-columns: 55px 1fr 60px !important;
+  }
 }
 
 .plan__app--single h2 {
   font-size: 22px;
   font-weight: bold;
+  margin: 0px;
 }
 
 .plan__app--single .approve_icon {
@@ -2966,35 +2975,396 @@ a.password-forgot {
 }
 
 .plan__app--done--ico {
-  width: 50px;
-  border: 5px solid #984ff3;
+  width: 60px;
+  border: 5px solid #24695c;
   border-radius: 100%;
-  height: 50px;
+  height: 60px;
   display: flex;
   justify-content: center;
   align-items: center;
   text-align: center;
+  cursor: pointer;
 }
 
 .plan__info {
   width: 100%;
   padding: 30px 60px;
-  display: flex;
+  display: grid;
+  grid-template-columns: 1fr 300px;
   align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
 }
 
-.plan__info--head {
-  width: 50%;
+@media screen and (max-width: 550px) {
+  .plan__info {
+    padding: 22px;
+  }
 }
 
-.plan__info--head h2 {
-  font-weight: bold;
+@media screen and (max-width: 1130px) {
+  .plan__info {
+    grid-template-columns: 1fr;
+  }
 }
 
 .plan__info--buttons {
-  width: 50%;
   justify-content: flex-end;
   display: flex;
+}
+
+@media screen and (max-width: 1130px) {
+  .plan__info--buttons {
+    grid-row: 1;
+    padding-bottom: 50px;
+  }
+}
+
+.plan__info-daypicker ul {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+@media screen and (max-width: 550px) {
+  .plan__info-daypicker ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+  }
+}
+
+.plan__info-daypicker ul .plan {
+  min-height: calc(100vh - 83px);
+}
+
+.plan__info-daypicker ul .plan__app {
+  width: 100%;
+  padding: 50px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 550px) {
+  .plan__info-daypicker ul .plan__app {
+    padding: 10px;
+  }
+}
+
+.plan__info-daypicker ul .plan__app--single {
+  background: rgba(36, 105, 92, 0.21);
+  padding: 9px 22px;
+  border-radius: 20px;
+  color: black;
+  position: relative;
+  display: grid;
+  grid-template-columns: 55px 1fr 50px 50px;
+  gap: 20px;
+  align-items: center;
+}
+
+.plan__info-daypicker ul .plan__app--single h2 {
+  font-size: 22px;
+  font-weight: bold;
+  margin: 0px;
+}
+
+.plan__info-daypicker ul .plan__app--single .approve_icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  display: block;
+  stroke-width: 2;
+  stroke: #fff;
+  stroke-miterlimit: 10;
+  margin: 10% auto;
+  box-shadow: inset 0px 0px 0px #80d100;
+  -webkit-animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+          animation: fill 0.4s ease-in-out 0.4s forwards, scale 0.3s ease-in-out 0.9s both;
+}
+
+.plan__info-daypicker ul .plan__app--single .approve_icon_circle {
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  stroke-width: 2;
+  stroke-miterlimit: 10;
+  stroke: #80d100;
+  fill: none;
+  -webkit-animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+          animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+}
+
+.plan__info-daypicker ul .plan__app--single .approve_icon_check {
+  transform-origin: 50% 50%;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  -webkit-animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+          animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+}
+
+@keyframes stroke {
+  100% {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes scale {
+  0%, 100% {
+    transform: none;
+  }
+
+  50% {
+    transform: scale3d(1.1, 1.1, 1);
+  }
+}
+
+@keyframes fill {
+  100% {
+    box-shadow: inset 0px 0px 0px 30px #80d100;
+  }
+}
+
+.plan__info-daypicker ul .plan__app--icon {
+  width: 8%;
+  text-align: center;
+}
+
+.plan__info-daypicker ul .plan__app--icon p {
+  font-size: 45px;
+  margin: 0px;
+}
+
+.plan__info-daypicker ul .plan__app--content {
+  width: 84%;
+}
+
+.plan__info-daypicker ul .plan__app--done {
+  width: 8%;
+}
+
+.plan__info-daypicker ul .plan__app--done--ico {
+  width: 60px;
+  border: 5px solid #24695c;
+  border-radius: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  cursor: pointer;
+}
+
+.plan__info-daypicker ul .plan__info {
+  width: 100%;
+  padding: 30px 60px;
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  align-items: center;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+@media screen and (max-width: 550px) {
+  .plan__info-daypicker ul .plan__info {
+    padding: 22px;
+  }
+}
+
+@media screen and (max-width: 1130px) {
+  .plan__info-daypicker ul .plan__info {
+    grid-template-columns: 1fr;
+  }
+}
+
+.plan__info-daypicker ul .plan__info--buttons {
+  justify-content: flex-end;
+  display: flex;
+}
+
+@media screen and (max-width: 1130px) {
+  .plan__info-daypicker ul .plan__info--buttons {
+    grid-row: 1;
+    padding-bottom: 50px;
+  }
+}
+
+.plan__info-daypicker ul .plan__info-daypicker ul {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+}
+
+.plan__info-daypicker ul .plan__info-daypicker ul li {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  background: rgba(36, 105, 92, 0.99);
+  color: white;
+  border: 1px solid #f0f0f0;
+  border-radius: 100%;
+  box-shadow: inset 0 0 0 0px #80d100;
+  transition: box-shadow 0.2s;
+}
+
+.plan__info-daypicker ul .plan__info-daypicker ul input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  z-index: 5;
+  cursor: pointer !important;
+  color: black;
+}
+
+.plan__info-daypicker ul .plan__info-daypicker ul label {
+  padding: 0;
+  margin: 0;
+}
+
+.plan__info-daypicker ul .createHabit {
+  padding: 20px 40px;
+  display: flex;
+  flex-direction: column;
+}
+
+.plan__info-daypicker ul .createHabit button {
+  width: 180px;
+  margin: 0 auto;
+  padding: 8px;
+  background: rgba(36, 105, 92, 0.1);
+  color: #24695c;
+  margin-top: 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  transition: 0.5s ease all;
+}
+
+.plan__info-daypicker ul .createHabit button:hover {
+  background: #24695c;
+  color: white;
+}
+
+.plan__info-daypicker ul .createHabit input {
+  width: 400px;
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px solid black;
+  text-align: center;
+  padding: 7px 0px;
+  margin: 0 auto;
+}
+
+.plan__info-daypicker ul .createHabit input::-moz-placeholder {
+  color: gray;
+}
+
+.plan__info-daypicker ul .createHabit input:-ms-input-placeholder {
+  color: gray;
+}
+
+.plan__info-daypicker ul .createHabit input::placeholder {
+  color: gray;
+}
+
+.plan__info-daypicker ul .createHabit ul {
+  margin-top: 25px;
+  grid-template-columns: repeat(7, 60px) !important;
+  justify-content: center;
+}
+
+.plan__info-daypicker ul .createHabit input.emoji-input {
+  border: none !important;
+  text-align: center;
+  width: 100%;
+}
+
+.plan__info-daypicker ul .createHabit input.emoji-input ::-moz-placeholder {
+  color: black !important;
+}
+
+.plan__info-daypicker ul .createHabit input.emoji-input :-ms-input-placeholder {
+  color: black !important;
+}
+
+.plan__info-daypicker ul .createHabit input.emoji-input ::placeholder {
+  color: black !important;
+}
+
+.plan__info-daypicker ul .modalAllHabits .plan__app--single {
+  padding: 3px 8px;
+  grid-template-columns: 25px 1fr 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.plan__info-daypicker ul .modalAllHabits .plan__app--single h2 {
+  font-size: 12px;
+}
+
+.plan__info-daypicker ul .modalAllHabits .plan__app--single p {
+  font-size: 30px;
+}
+
+.plan__info-daypicker ul .modalAllHabits .plan__app--single span {
+  font-size: 8px;
+}
+
+.plan__info-daypicker ul .modalAllHabits .plan__app--single i {
+  cursor: pointer;
+  transition: 0.5s ease all;
+}
+
+.plan__info-daypicker ul .modalAllHabits .plan__app--single i:hover {
+  color: rgb(214, 0, 0);
+}
+
+.plan__info-daypicker li {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 50px;
+  height: 50px;
+  padding: 0;
+  background: rgba(36, 105, 92, 0.99);
+  color: white;
+  border: 1px solid #f0f0f0;
+  border-radius: 100%;
+  box-shadow: inset 0 0 0 0px #80d100;
+  transition: box-shadow 0.2s;
+}
+
+.plan__info-daypicker input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  margin: 0;
+  width: 50px;
+  height: 50px;
+  opacity: 0;
+  z-index: 5;
+  color: black;
+  cursor: pointer;
+}
+
+.plan__info-daypicker label {
+  padding: 0;
+  margin: 0;
+}
+
+.checkDay {
+  background: rgba(36, 105, 92, 0.58) !important;
 }
 
 .createHabit {
@@ -3007,44 +3377,52 @@ a.password-forgot {
   width: 180px;
   margin: 0 auto;
   padding: 8px;
-  margin-top: 30px;
-  background: rgba(72, 72, 75, 0.9803921569);
-  color: white;
+  background: rgba(36, 105, 92, 0.1);
+  color: #24695c;
+  margin-top: 10px;
+  font-weight: bold;
   border: none;
   border-radius: 20px;
+  transition: 0.5s ease all;
 }
 
 .createHabit button:hover {
-  background: rgba(91, 91, 95, 0.9803921569);
-}
-
-.createHabit input {
-  padding: 10px 15px;
-  border: none;
-  border-bottom: 1px solid gray;
-  margin: 5px 0px;
-  background: rgba(72, 72, 75, 0.9803921569);
-  border-radius: 9px;
+  background: #24695c;
   color: white;
 }
 
+.createHabit input {
+  width: 400px;
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px solid black;
+  text-align: center;
+  padding: 7px 0px;
+  margin: 0 auto;
+}
+
 .createHabit input::-moz-placeholder {
-  color: rgba(255, 255, 255, 0.63);
+  color: gray;
 }
 
 .createHabit input:-ms-input-placeholder {
-  color: rgba(255, 255, 255, 0.63);
+  color: gray;
 }
 
 .createHabit input::placeholder {
-  color: rgba(255, 255, 255, 0.63);
+  color: gray;
+}
+
+.createHabit ul {
+  margin-top: 25px;
+  grid-template-columns: repeat(7, 60px) !important;
+  justify-content: center;
 }
 
 .createHabit input.emoji-input {
   border: none !important;
   text-align: center;
   width: 100%;
-  background: rgba(72, 72, 75, 0.9803921569) !important;
 }
 
 .createHabit input.emoji-input ::-moz-placeholder {
@@ -3173,6 +3551,10 @@ a.password-forgot {
 
 .modalAllHabits .plan__app--single {
   padding: 3px 8px;
+  grid-template-columns: 25px 1fr 20px;
+  max-width: 500px;
+  margin: 0 auto;
+  width: 100%;
 }
 
 .modalAllHabits .plan__app--single h2 {
@@ -3212,7 +3594,7 @@ a.password-forgot {
 .mainModal__window {
   max-width: 700px;
   width: 100%;
-  padding: 10px 10px 20px 10px;
+  padding: 20px;
   background: white;
   position: relative;
   max-height: 70vh;
@@ -3516,170 +3898,517 @@ a.password-forgot {
   width: 100%;
   height: 100%;
   position: relative;
-  max-width: 1200px;
   margin: 0 auto;
+  padding: 25px;
+}
+
+.checklist__top {
+  display: grid;
+  grid-template-columns: 1fr 60px;
+}
+
+.checklist__top-info {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.checklist__top-info h2 span {
+  padding: 0px 27px;
+  cursor: pointer;
+  transition: 0.5s ease all;
+}
+
+.checklist__top-info h2 span:hover {
+  color: #24695c;
+}
+
+.checklist__top-calendar {
+  position: relative;
+}
+
+.checklist__top-calendar h2 {
+  background: rgba(36, 105, 92, 0.1);
+  padding: 10px 0px;
+  margin: 0;
+  font-size: 24px;
+  text-align: center;
+  color: #24695c;
+  transition: 0.5s ease all;
+  cursor: pointer;
+  border-radius: 20px;
+}
+
+.checklist__top-calendar h2:hover {
+  background: #24695c;
+  color: white;
 }
 
 .checklist__buttons {
-  display: flex;
-  position: absolute;
-  top: 0;
-  right: 20px;
-}
-
-.checklist__head {
   width: 100%;
   display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
+  justify-content: flex-end;
+  padding: 40px 0px;
+}
+
+.checklist__app {
+  padding-top: 50px;
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  padding-bottom: 400px;
+  gap: 50px;
+  max-width: 1000px;
+  margin: 0 auto;
+  font-family: "Kalam", cursive;
+}
+
+@media screen and (max-width: 739px) {
+  .checklist__app {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+.checklist__app-single {
+  border: 5px solid green;
+  padding: 25px 40px;
+  min-height: 200px;
+  border-radius: 50%;
+  cursor: pointer;
+  background: whitesmoke;
   text-align: center;
-  gap: 20px;
-}
-
-.checklist__list {
-  width: 100%;
-  padding: 40px 10px;
+  position: relative;
   display: flex;
   justify-content: center;
   align-items: center;
-  flex-direction: column;
-  gap: 20px;
 }
 
-.checklist__list span {
-  width: 100%;
-  display: flex;
-  gap: 20px;
-  flex-direction: column;
+@media screen and (max-width: 1219px) {
+  .checklist__app-single {
+    padding: 25px 10px;
+  }
 }
 
-.checklist__list ul {
-  width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  gap: 20px;
-  max-width: 700px;
-  text-align: center;
-}
-
-.checklist__list li {
-  width: 100%;
+.checklist__app-single:hover {
   background-size: auto auto;
   background-color: rgb(255, 255, 255);
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 6px, rgb(250, 82, 82) 6px, rgb(250, 82, 82) 7px);
-  border-radius: 10px;
-  border: solid 2px #41403e;
-  border-radius: 255px 15px 225px 15px/15px 225px 15px 255px;
-  padding: 20px 20px;
-  font-size: 25px;
-  display: flex;
-  position: relative;
-  cursor: pointer;
-  transition: 0.5s ease background;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  color: black;
-  font-family: "Kalam";
-  font-weight: bold;
+  background-image: repeating-linear-gradient(135deg, transparent, transparent 6px, rgb(216, 216, 216) 6px, rgb(216, 216, 216) 9px);
 }
 
-.checklist__list li:hover {
-  background: rgb(224, 224, 224);
+@media screen and (max-width: 739px) {
+  .checklist__app-single::after {
+    content: "->";
+    font-size: 40px;
+    position: absolute;
+    transform: rotate(90deg) translate(-50%, -50%);
+    left: unset;
+    width: 50px !important;
+    height: 50px !important;
+    top: unset !important;
+    right: 50%;
+    bottom: -50%;
+  }
 }
 
-.checklist__list li:before {
-  content: "";
+@media screen and (min-width: 739px) {
+  .checklist__app-single::after {
+    content: "->";
+    font-size: 40px;
+    position: absolute;
+    left: 112%;
+    top: 50%;
+    width: 50px;
+    z-index: 7;
+    transform: translate(-50%, -50%);
+  }
+
+  .checklist__app-single:nth-child(3)::after {
+    content: "->";
+    font-size: 40px;
+    position: absolute;
+    transform: rotate(90deg) translate(-50%, -50%);
+    left: unset;
+    width: 50px !important;
+    height: 50px !important;
+    top: unset !important;
+    right: 50%;
+    bottom: -50%;
+  }
+
+  .checklist__app-single:nth-child(n+4)::after {
+    content: "->";
+    font-size: 40px;
+    position: absolute;
+    top: 22%;
+    left: unset;
+    bottom: unset;
+    right: 112%;
+    transform: rotate(180deg) translate(-50%, -50%);
+  }
+
+  .checklist__app-single:nth-child(6)::after {
+    content: "->";
+    font-size: 40px;
+    position: absolute;
+    transform: rotate(90deg) translate(-50%, -50%);
+    left: unset;
+    width: 50px !important;
+    height: 50px !important;
+    top: unset !important;
+    right: 50%;
+    bottom: -43%;
+  }
+
+  .checklist__app-single:nth-child(n+7)::after {
+    content: "->";
+    font-size: 40px;
+    position: absolute;
+    left: 112%;
+    top: 50%;
+    width: 50px;
+    z-index: 7;
+    transform: translate(-50%, -50%);
+  }
+
+  .checklist__app-single:nth-child(9)::after {
+    content: "->";
+    font-size: 40px;
+    position: absolute;
+    transform: rotate(90deg) translate(-50%, -50%);
+    left: unset;
+    width: 50px !important;
+    height: 50px !important;
+    top: unset !important;
+    right: 50%;
+    bottom: -43%;
+  }
+
+  .checklist__app-single:nth-child(n+10)::after {
+    content: "->";
+    font-size: 40px;
+    position: absolute;
+    top: 22%;
+    left: unset;
+    bottom: unset;
+    right: 112%;
+    transform: rotate(180deg) translate(-50%, -50%);
+  }
+
+  .checklist__app-single:nth-child(12)::after {
+    content: "->";
+    font-size: 40px;
+    position: absolute;
+    transform: rotate(90deg) translate(-50%, -50%);
+    left: unset;
+    width: 50px !important;
+    height: 50px !important;
+    top: unset !important;
+    right: 50%;
+    bottom: -43%;
+  }
+
+  .checklist__app-single:nth-child(n+13)::after {
+    content: "->";
+    font-size: 40px;
+    position: absolute;
+    left: 112%;
+    top: 50%;
+    width: 50px;
+    z-index: 7;
+    transform: translate(-50%, -50%);
+  }
+}
+
+.checklist__app-single:nth-last-child(1)::after {
   display: none;
+}
+
+.checklist__app-single:nth-child(1) {
+  top: 20px !important;
+}
+
+.checklist__app-single:nth-child(2) {
+  top: 40px !important;
+}
+
+.checklist__app-single:nth-child(3) {
+  top: 60px !important;
+}
+
+.checklist__app-single:nth-child(4) {
+  top: 80px !important;
+}
+
+.checklist__app-single:nth-child(5) {
+  top: 100px !important;
+}
+
+.checklist__app-single:nth-child(6) {
+  top: 120px !important;
+}
+
+.checklist__app-single:nth-child(7) {
+  top: 140px !important;
+}
+
+.checklist__app-single:nth-child(8) {
+  top: 160px !important;
+}
+
+.checklist__app-single:nth-child(9) {
+  top: 180px !important;
+}
+
+.checklist__app-single:nth-child(10) {
+  top: 200px !important;
+}
+
+.checklist__app-single:nth-child(11) {
+  top: 220px !important;
+}
+
+.checklist__app-single:nth-child(12) {
+  top: 240px !important;
+}
+
+.checklist__app-single:nth-child(13) {
+  top: 260px !important;
+}
+
+.checklist__app-single:nth-child(14) {
+  top: 280px !important;
+}
+
+.checklist__app-single:nth-child(15) {
+  top: 300px !important;
+}
+
+.checklist__app-single p {
+  font-size: 25px;
+  margin: 0;
+}
+
+.checklist__app-single--time {
+  color: black;
   position: absolute;
-  height: 100%;
-  left: 0;
-  top: 0;
-  width: 100%;
-  border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.664);
-  background-image: repeating-linear-gradient(146deg, transparent, transparent 5px, rgba(20, 152, 0, 0.67) 5px, rgba(20, 152, 0, 0.67) 9px);
-}
-
-.checklist__list--green {
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 6px, rgb(64, 192, 87) 6px, rgb(64, 192, 87) 7px) !important;
-  color: black !important;
-}
-
-.checklist__list--orange {
-  background-image: repeating-linear-gradient(45deg, transparent, transparent 6px, rgb(250, 176, 5) 6px, rgb(250, 176, 5) 7px) !important;
-  color: black !important;
-}
-
-.checklist__list-check {
-  width: 34px;
-  height: 34px;
-  position: absolute;
-  right: -4.5%;
-  top: 50%;
-  z-index: 999;
-  transform: translate(-50%, -50%);
-}
-
-.checklist__list-check--circle {
-  width: 100%;
-  position: relative;
-  height: 100%;
-  border: 1px solid black;
-  border-radius: 255px 50% 225px 50%/50% 225px 50% 255px;
-  background: white;
-}
-
-.checklist__list-content {
-  width: calc(100% - 50px);
-}
-
-.checklist__check {
-  width: 50px !important;
-  height: 100%;
-  top: 0;
-  position: absolute;
-  right: -50px;
-  text-align: center;
-  justify-content: center;
-  align-items: center;
-  background: #3ee302;
-  border-radius: 0px 10px 10px 0px;
-}
-
-.checklist__list-add {
-  border: 1px solid rgb(201, 201, 201);
-  cursor: pointer;
-}
-
-.checklist__list-add li {
-  background: transparent;
-  color: gray;
-}
-
-.checklist__visible {
-  transform: translateX(-50px);
-  border-radius: 0px !important;
-}
-
-.checklist__head-hello {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-  text-align: center;
-}
-
-.checklist__head-hello h3 {
-  font-size: 17px;
+  top: -10px;
+  left: 80%;
+  transform: rotate(29deg);
+  font-size: 22px;
   font-weight: bold;
 }
 
-.checklist__head-hello img {
-  max-width: 220px;
+.checklist__app-single--green {
+  border: 6px solid green;
+}
+
+.checklist__app-single--red {
+  border: 6px solid red;
+}
+
+.checklist__app-single--orange {
+  border: 6px solid orange;
+}
+
+.checklist__app-single--event {
+  border: 5px solid yellow;
+}
+
+.checklist__app-single--done {
+  background-size: auto auto;
+  background-color: rgb(255, 255, 255);
+  background-image: repeating-linear-gradient(135deg, transparent, transparent 6px, rgb(74, 74, 74) 6px, rgb(74, 74, 74) 9px);
+}
+
+.checklist__app-single--done:hover {
+  background-image: repeating-linear-gradient(135deg, transparent, transparent 6px, rgb(0, 0, 0) 6px, rgb(0, 0, 0) 9px);
+}
+
+@media screen and (min-width: 739px) {
+  .checklist__app-single:nth-child(4) {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 3;
+    grid-column-end: 4;
+  }
+
+  .checklist__app-single:nth-child(5) {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+  .checklist__app-single:nth-child(6) {
+    grid-row-start: 2;
+    grid-row-end: 3;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+
+  .checklist__app-single:nth-child(10) {
+    grid-row-start: 4;
+    grid-row-end: 5;
+    grid-column-start: 3;
+    grid-column-end: 4;
+  }
+
+  .checklist__app-single:nth-child(11) {
+    grid-row-start: 4;
+    grid-row-end: 5;
+    grid-column-start: 2;
+    grid-column-end: 3;
+  }
+
+  .checklist__app-single:nth-child(12) {
+    grid-row-start: 4;
+    grid-row-end: 5;
+    grid-column-start: 1;
+    grid-column-end: 2;
+  }
+}
+
+.checklist__table {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Kalam", cursive;
+}
+
+.checklist__table table {
+  width: 800px;
+  border-collapse: collapse;
+  overflow: hidden;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.1);
+  font-size: 20px;
+}
+
+.checklist__table table th,
+.checklist__table table td {
+  padding: 15px;
+  color: black;
+}
+
+.checklist__table table td {
+  border: 1px solid #c4c4c4;
+}
+
+.checklist__table table td i {
+  padding-left: 5px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.5s ease all;
+}
+
+.checklist__table table td i:hover {
+  color: #24695c;
+}
+
+.checklist__table table th {
+  text-align: center;
+}
+
+.checklist__table table thead th {
+  font-weight: bold;
+}
+
+.checklist__table tbody tr:hover {
+  background-color: rgb(241, 241, 241);
+}
+
+.checklist__table--event {
+  background: yellow;
+}
+
+.checklist__table--edit {
+  width: 80px;
+  padding: 10px 0px !important;
+  text-align: center;
+}
+
+.checklist__modal {
+  width: 100%;
+}
+
+.checklist__modal form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.checklist__modal--big {
+  width: 400px;
+  font-size: 20px;
+  border: none;
+  border-bottom: 2px solid black;
+  text-align: center;
+  padding: 7px 0px;
+  margin: 0 auto;
+}
+
+.checklist__modal-send {
+  width: 180px;
+  margin: 0 auto;
+  padding: 8px;
+  background: rgba(36, 105, 92, 0.1);
+  color: #24695c;
+  margin-top: 10px;
+  font-weight: bold;
+  border: none;
+  border-radius: 20px;
+  transition: 0.5s ease all;
+}
+
+.checklist__modal-send:hover {
+  background: #24695c;
+  color: white;
+}
+
+.checklist__modal-colors {
+  display: flex;
+  gap: 20px;
+}
+
+.checklist__modal-colors-single {
+  background: green;
+  width: 100px;
+  height: 40px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 15px;
+}
+
+.checklist__modal-colors-single label,
+.checklist__modal-colors-single input {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.checklist__modal-colors-single input[type=radio] {
+  opacity: 0.011;
+}
+
+.checklist__modal-colors-single input[type=radio]:checked + label {
+  background: #20b8be;
+  border-radius: 15px;
+}
+
+.vc-container.vc-blue {
+  position: absolute;
+  right: 5px;
+  z-index: 12;
 }
 
 .cursor-poninter {

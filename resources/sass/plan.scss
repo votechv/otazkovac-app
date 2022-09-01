@@ -9,17 +9,31 @@
         gap: 30px;
         max-width: 1000px;
         margin: 0 auto;
+
+        @media screen and (max-width: 550px){
+            padding: 22px;
+        }
         &--single{
-            background: #48484bfa;
-            padding: 18px;
+           // background: #48484bfa;
+            background: rgba(36, 105, 92, 0.21);
+            padding: 9px 22px;
             border-radius: 20px;
-            color: white;
+            color: black;
             position: relative;
-            display: flex;
+            display: grid;
+            grid-template-columns: 55px 1fr 60px;
+            gap: 20px;
             align-items: center;
+
+            @media screen and (max-width: 550px){
+                grid-template-columns: 55px 1fr 60px !important;
+            }
+
+
             h2{
                 font-size: 22px;
                 font-weight: bold;
+                margin: 0px;
             }
 
 
@@ -100,14 +114,15 @@
         &--done{
             width: 8%;
             &--ico{
-            width: 50px;
-            border: 5px solid #984ff3 ;
+            width: 60px;
+            border: 5px solid #24695CFF;
             border-radius: 100%;
-            height: 50px;
+            height: 60px;
             display: flex;
             justify-content: center;
             align-items: center;
             text-align: center;
+                cursor: pointer;
         }
         }
     }
@@ -115,24 +130,362 @@
     &__info{
         width: 100%;
         padding: 30px 60px;
-        display: flex;
+        display: grid;
+        grid-template-columns: 1fr 300px;
         align-items: center;
-
-        &--head{
-            width: 50%;
-            h2{
-                font-weight: bold;
-            }
+        max-width: 1000px;
+        margin: 0 auto;
+        @media screen and (max-width: 550px){
+            padding: 22px;
+        }
+        @media screen and(max-width: 1130px){
+            grid-template-columns: 1fr;
         }
 
         &--buttons{
-            width: 50%; 
             justify-content: flex-end;
             display: flex;
+
+            @media screen and(max-width: 1130px){
+                grid-row: 1;
+                padding-bottom: 50px;
+            }
         }
     }
-}
+    &__info-daypicker{
+        ul{
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            @media screen and (max-width: 550px){
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 20px;
+            }
+                .plan{
+                    min-height: calc(100vh - 83px);
 
+                    &__app{
+                        width:100%;
+                        padding: 50px;
+                        display: grid;
+                        grid-template-columns: 1fr ;
+                        gap: 30px;
+                        max-width: 1000px;
+                        margin: 0 auto;
+
+                        @media screen and (max-width: 550px){
+                            padding: 10px;
+                        }
+                        &--single{
+                            // background: #48484bfa;
+                            background: rgba(36, 105, 92, 0.21);
+                            padding: 9px 22px;
+                            border-radius: 20px;
+                            color: black;
+                            position: relative;
+                            display: grid;
+                            grid-template-columns: 55px 1fr 50px 50px;
+                            gap: 20px;
+                            align-items: center;
+
+
+
+                            h2{
+                                font-size: 22px;
+                                font-weight: bold;
+                                margin: 0px;
+                            }
+
+
+
+                            $green: #80d100;
+
+
+
+                            .approve_icon {
+                                width: 56px;
+                                height: 56px;
+                                border-radius: 50%;
+                                display: block;
+                                stroke-width: 2;
+                                stroke: #fff;
+                                stroke-miterlimit: 10;
+                                margin: 10% auto;
+                                box-shadow: inset 0px 0px 0px $green;
+                                animation: fill 0.4s ease-in-out 0.4s forwards,
+                                scale 0.3s ease-in-out 0.9s both;
+                            }
+
+                            .approve_icon_circle {
+                                stroke-dasharray: 166;
+                                stroke-dashoffset: 166;
+                                stroke-width: 2;
+                                stroke-miterlimit: 10;
+                                stroke: $green;
+                                fill: none;
+                                animation: stroke 0.6s cubic-bezier(0.65, 0, 0.45, 1) forwards;
+                            }
+
+                            .approve_icon_check {
+                                transform-origin: 50% 50%;
+                                stroke-dasharray: 48;
+                                stroke-dashoffset: 48;
+                                animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
+                            }
+
+                            @keyframes stroke {
+                                100% {
+                                    stroke-dashoffset: 0;
+                                }
+                            }
+
+                            @keyframes scale {
+                                0%,
+                                100% {
+                                    transform: none;
+                                }
+
+                                50% {
+                                    transform: scale3d(1.1, 1.1, 1);
+                                }
+                            }
+
+                            @keyframes fill {
+                                100% {
+                                    box-shadow: inset 0px 0px 0px 30px $green;
+                                }
+                            }
+
+                        }
+
+                        &--icon{
+                            width: 8%;
+                            text-align: center;
+                            p{
+                                font-size: 45px;
+                                margin: 0px;
+                            }
+                        }
+
+                        &--content{
+                            width: 84%;
+                        }
+
+                        &--done{
+                            width: 8%;
+                            &--ico{
+                                width: 60px;
+                                border: 5px solid #24695CFF;
+                                border-radius: 100%;
+                                height: 60px;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                text-align: center;
+                                cursor: pointer;
+                            }
+                        }
+                    }
+
+                    &__info{
+                        width: 100%;
+                        padding: 30px 60px;
+                        display: grid;
+                        grid-template-columns: 1fr 300px;
+                        align-items: center;
+                        max-width: 1000px;
+                        margin: 0 auto;
+                        @media screen and (max-width: 550px){
+                            padding: 22px;
+                        }
+                        @media screen and(max-width: 1130px){
+                            grid-template-columns: 1fr;
+                        }
+
+                        &--buttons{
+                            justify-content: flex-end;
+                            display: flex;
+
+                            @media screen and(max-width: 1130px){
+                                grid-row: 1;
+                                padding-bottom: 50px;
+                            }
+                        }
+                    }
+                    &__info-daypicker{
+                        ul{
+                            display: grid;
+                            grid-template-columns: repeat(7, 1fr);
+
+                            li{
+                                position: relative;
+                                display: flex;
+                                justify-content: center;
+                                align-items: center;
+                                width: 50px;
+                                height: 50px;
+                                padding: 0;
+                                background: rgba(36, 105, 92, 0.99);
+                                color: white;
+                                border: 1px solid #f0f0f0;
+                                border-radius: 100%;
+                                box-shadow: inset 0 0 0 0px #80d100;
+                                transition: box-shadow 0.2s;
+
+                            }
+                            input{
+                                position: absolute;
+                                top: 0;
+                                left: 0;
+                                margin: 0;
+                                width: 50px;
+                                height: 50px;
+                                opacity: 0;
+                                z-index: 5;
+                                cursor: pointer !important;
+                                color: black;
+                            }
+
+                            label{
+                                padding:0;
+                                margin: 0;
+                            }
+                        }
+                    }
+                }
+
+
+
+                .createHabit{
+                    $adc-button-primary: #80d100;
+                    $input-border-color: #f0f0f0;
+                    padding: 20px 40px;
+                    display: flex;
+                    flex-direction: column;
+
+
+                    button{
+                        width: 180px;
+                        margin: 0 auto;
+                        padding: 8px;
+                        background: rgba(36, 105, 92, 0.1);
+                        color: #24695c;
+                        margin-top: 10px;
+                        font-weight: bold;
+                        border: none;
+                        border-radius: 20px;
+                        transition: 0.5s ease all;
+                        &:hover{
+                            background: #24695c;
+                            color: white;
+                        }
+                    }
+                    input{
+                        width: 400px;
+                        font-size: 20px;
+                        border: none;
+                        border-bottom: 2px solid black;
+                        text-align: center;
+                        padding: 7px 0px;
+                        margin: 0 auto;
+
+                        &::placeholder{
+                            color: gray;
+                        }
+                    }
+
+                    ul{
+                        margin-top: 25px;
+                        grid-template-columns: repeat(7, 60px) !important;
+                        justify-content: center;
+                    }
+
+                    input.emoji-input{
+                        border: none !important;
+                        text-align: center;
+                        width: 100%;
+
+                        ::placeholder{
+                            color: black !important;
+                        }
+                    }
+                }
+
+                .modalAllHabits{
+                    .plan__app--single{
+                        padding: 3px 8px;
+                        grid-template-columns: 25px 1fr 20px;
+                        max-width: 500px;
+                        margin: 0 auto;
+                        width: 100%;
+                        h2{
+                            font-size: 12px;
+                        }
+
+                        p{
+                            font-size: 30px;
+
+                        }
+
+                        span{
+                            font-size: 8px;
+                        }
+
+                        i{
+                            cursor: pointer;
+                            transition: 0.5s ease all;
+
+                            &:hover{
+                                color: rgb(214, 0, 0);
+                            }
+                        }
+                    }
+                }
+
+            }
+            li{
+                position: relative;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 50px;
+                height: 50px;
+                padding: 0;
+                background: rgba(36, 105, 92, 0.99);
+                color: white;
+                border: 1px solid #f0f0f0;
+                border-radius: 100%;
+                box-shadow: inset 0 0 0 0px #80d100;
+                transition: box-shadow 0.2s;
+
+            }
+            input{
+                position: absolute;
+                top: 0;
+                left: 0;
+                margin: 0;
+                width: 50px;
+                height: 50px;
+                opacity: 0;
+                z-index: 5;
+                color: black;
+                cursor: pointer;
+            }
+
+
+            label{
+                padding:0;
+                margin: 0;
+            }
+        }
+    }
+
+
+
+.checkDay{
+    background: rgba(36, 105, 92, 0.58) !important;
+}
 
 .createHabit{
 $adc-button-primary: #80d100;
@@ -146,34 +499,42 @@ button{
   width: 180px;
   margin: 0 auto;
   padding: 8px;
-  margin-top: 30px;
-  background: #48484bfa;
-  color: white;
+  background: rgba(36, 105, 92, 0.1);
+  color: #24695c;
+  margin-top: 10px;
+  font-weight: bold;
   border: none;
-  border-radius: 20px;;
+  border-radius: 20px;
+  transition: 0.5s ease all;
   &:hover{
-    background: #5b5b5ffa;
+    background: #24695c;
+    color: white;
   }
 }
 input{
-    padding: 10px 15px;
+    width: 400px;
+    font-size: 20px;
     border: none;
-    border-bottom: 1px solid gray;
-    margin: 5px 0px;
-    background: rgba(72, 72, 75, 0.9803921569);
-    border-radius: 9px;
-    color: white;
+    border-bottom: 2px solid black;
+    text-align: center;
+    padding: 7px 0px;
+    margin: 0 auto;
 
     &::placeholder{
-      color: rgba(255, 255, 255, 0.63);
+      color: gray;
     }
 }
+
+    ul{
+        margin-top: 25px;
+        grid-template-columns: repeat(7, 60px) !important;
+        justify-content: center;
+    }
 
 input.emoji-input{
     border: none !important;
 text-align: center;
 width: 100%;
-background: #48484bfa !important;
 
 ::placeholder{
   color: black !important;
@@ -188,7 +549,7 @@ background: #48484bfa !important;
   padding: 0px 0px;
   height: 32px;
   text-align: center;
-  
+
   li {
     position: relative;
     display: inline-block;
@@ -196,9 +557,9 @@ background: #48484bfa !important;
     width: 40px;
     list-style: none;
     text-align: center;
-    
+
     input[type=checkbox] {
-      
+
       position: absolute;
       top: 0;
       left: 0;
@@ -206,7 +567,7 @@ background: #48484bfa !important;
       width: 40px;
       height: 40px;
       opacity: 0;
-      z-index: 5; 
+      z-index: 5;
       color: black;
 
     &:not(:checked):hover ~ .ui-input {
@@ -216,7 +577,7 @@ background: #48484bfa !important;
       &:before,&:after {
         content: "";
       }
-    } 
+    }
 
      &:not(:checked):focus ~ .ui-input {
       border-color: $adc-button-primary;
@@ -234,8 +595,8 @@ background: #48484bfa !important;
       border-radius: 100%;
       box-shadow: inset 0 0 0 0px $adc-button-primary;
       transition: box-shadow .2s;
-    
-      &:before {    
+
+      &:before {
         display: block;
         position: absolute;
         height: 2px;
@@ -246,7 +607,7 @@ background: #48484bfa !important;
         transform: rotate(45deg)
       }
 
-      &:after {    
+      &:after {
         display: block;
         transform: rotate(-45deg);
         position: absolute;
@@ -262,7 +623,7 @@ background: #48484bfa !important;
       &:not(:checked) {
         &:hover ~ .ui-input {
           box-shadow: inset 0 0 0 0  lighten($adc-button-primary,30%);
-        } 
+        }
         &:focus ~ .ui-input {
           border-color: $input-border-color;
         }
@@ -293,18 +654,22 @@ background: #48484bfa !important;
 
     &:checked ~ .ui-input:before,
     &:checked ~ .ui-input:after {
-      
+
     }
   }
 }
-    
-      
+
+
     }
 }
 
 .modalAllHabits{
   .plan__app--single{
       padding: 3px 8px;
+      grid-template-columns: 25px 1fr 20px;
+      max-width: 500px;
+      margin: 0 auto;
+      width: 100%;
       h2{
           font-size: 12px;
       }

@@ -1,9 +1,10 @@
 <template>
    <div class="plan">
-
     <div class="plan__info">
-        <div class="plan__info--head">
-             <h2> Dnes máte v plánu:  {{date}}</h2>
+        <div class="plan__info-daypicker">
+            <ul>
+                <li v-for="item in sortpickarray" @click="getPlan()" :key="item.index" class="pick" :class="{ checkDay: date == item.value }"><input type="radio" v-model="date" :value="item.value" name="check-day"><label>{{item.name}}</label></li>
+            </ul>
         </div>
         <div class="plan__info--buttons">
             <button class="user-home__category--mainButton" @click="openModal('add')"> <i class="fa-solid fa-plus"></i> Přidat </button>
@@ -11,28 +12,22 @@
         </div>
     </div>
 
-
-  <div id="card">
-        <div id="chart">
-        <apexchart  type="radialBar" height="300" :options="chartOptions" :series="series"></apexchart>
-      </div>
-      </div>
         <div class="plan__app">
-            <div class="plan__app--single" v-for="plantime in plantimesTime" :key="plantime.id">
+
+            <div class="plan__app--single" v-for="plan in plans" :key="plan.id">
                 <div class="plan__app--icon">
-                    <p>{{plantime.plan.emoji}}</p>
+                    <p>{{plan.emoji}}</p>
                 </div>
 
                 <div class="plan__app--content">
-                    <span class="plan__app--minutes">{{plantime.plan.time}} minut</span>
-                    <h2>{{plantime.plan.name}}</h2>
+                    <h2>{{plan.name}}</h2>
                 </div>
 
-                <div @click="todayDone(plantime)" class="plan__app--done" v-if="plantime.last !== today">
-                    <div class="plan__app--done--ico">{{plantime.plan.count}}</div>
+                <div @click="todayDone(plantime)" class="plan__app--done" >
+                    <div class="plan__app--done--ico"><span v-if="date === todayDay"> 🔥 {{plan.count}} </span></div>
                 </div>
 
-                <div class="wrapper" v-if="plantime.last == today">
+                <div class="wrapper" v-if="false">
                   <svg class="approve_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                     <circle class="approve_icon_circle" cx="26" cy="26" r="25" fill="none" />
                     <path class="approve_icon_check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
@@ -52,19 +47,20 @@
         <div class="createHabit">
 
                 <input type="text" name="newName" v-model="newName" placeholder="Návyk: Např. učit se španělsky">
-                <input type="text" name="newTime" v-model="newTime" placeholder="Kolik minut denně? Např. 15">
 
+            <div class="plan__info-daypicker">
 
-                  <ul class="day-picker">
-
-                    <li><input v-model="day1" type="checkbox"><label class='ui-input'>Po</label></li>
-                    <li><input v-model="day2" type="checkbox"><label class='ui-input'>Út</label></li>
-                    <li><input v-model="day3" type="checkbox"><label class='ui-input'>St</label></li>
-                    <li><input v-model="day4" type="checkbox"><label class='ui-input'>Čt</label></li>
-                    <li><input v-model="day5" type="checkbox"><label class='ui-input'>Pá</label></li>
-                    <li><input v-model="day6" type="checkbox"><label class='ui-input'>So</label></li>
-                    <li><input v-model="day7" type="checkbox"><label class='ui-input'>Ne</label></li>
-                  </ul>
+                {{sendDay}}
+                <ul>
+                    <li><input type="checkbox" v-model="day1" value="1" name="check-day"><label>Po</label></li>
+                    <li><input type="checkbox" v-model="day2" value="2" name="check-day"><label>Út</label></li>
+                    <li><input type="checkbox" v-model="day3" value="3" name="check-day"><label>St</label></li>
+                    <li><input type="checkbox" v-model="day4" value="3" name="check-day"><label>Čt</label></li>
+                    <li><input type="checkbox" v-model="day5" value="3" name="check-day"><label>Pá</label></li>
+                    <li><input type="checkbox" v-model="day6" value="3" name="check-day"><label>So</label></li>
+                    <li><input type="checkbox" v-model="day0" value="3" name="check-day"><label>Ne</label></li>
+                </ul>
+            </div>
 
                <emoji-picker @emoji="append">
 
@@ -120,7 +116,7 @@
     <div v-if="error" class="alert alert-danger" role="alert">
       Varovnání
     </div>
-    <button @click="sendHabit()"> Odeslat</button>
+    <button @click="sendHabit()"> <i class="fa-solid fa-floppy-disk"></i> Odeslat</button>
     </div>
   </template>
 </MainModal>
@@ -136,7 +132,6 @@
                 </div>
 
                 <div class="plan__app--content">
-                    <span class="plan__app--minutes">{{plan.time}} minut</span>
                     <h2>{{plan.name}}</h2>
                 </div>
 
@@ -158,6 +153,7 @@ import MainModal from '../components/MainModal'
 import EmojiPicker from 'vue-emoji-picker'
 import gsap from 'gsap'
 import moment from 'moment'
+import {forEach} from "lodash";
     export default {
         data() {
             return {
@@ -175,78 +171,62 @@ import moment from 'moment'
                day4: false,
                day5: false,
                day6: false,
-               day7: false,
+               day0: false,
                everyday: false,
                user_id: '',
                plan_id: '',
                plantimesTime: [],
                today: '',
+               todayDay :'',
                procenta: '',
-               plans: '',
+               plans: [],
+                error: '',
+                sendDay: '',
                modalAllHab: false,
-
-            series: [0],
-          chartOptions: {
-           colors:['#80d100'],
-            chart: {
-              height: 350,
-              type: 'radialBar',
-              offsetY: -10,
-
-                animations: {
-                  enabled: true,
-                  easing: 'easeinout',
-                  speed: 1200,
-                  animateGradually: {
-                      enabled: true,
-                      delay: 150
-                  },
-                  dynamicAnimation: {
-                      enabled: true,
-                      speed: 350
-                  }
-              }
-
-            },
-
-            plotOptions: {
-              radialBar: {
-                startAngle: -135,
-                endAngle: 135,
-                dataLabels: {
-                  value: {
-                    offsetY: 76,
-                    fontSize: '36px',
-                    color: undefined,
-                    formatter: function (val) {
-                      return val + "%";
-                    }
-                  },
-
-                }
-              }
-            },
-
-            stroke: {
-              dashArray: 4
-            },
-            labels: [''],
-          },
-
-
+                indexsDays: [],
+                daypick :'',
+                pickarray:[
+                    { name: 'Ne', value: 0, },
+                    { name: 'Po', value: 1, },
+                    { name: 'Út', value: 2, },
+                    { name: 'St', value: 3, },
+                    { name: 'Čt', value: 4, },
+                    { name: 'Pá', value: 5, },
+                    { name: 'So', value: 6, },
+                ],
+                sortpickarray:[],
         }
     },
 
       mounted() {
         this.getUser();
-    //    this.getPlantimes();
         this.getPlan();
-      },
+        this.showDayPicker();
+       this.reoder(this.pickarray, this.indexsDays, this.pickarray.length);
+        console.log(this.getDayArray);
+       },
 
       computed:{
         getDayArray(){
-          return [this.day7, this.day1, this.day2, this.day3, this.day4, this.day5, this.day6]
+         const array =  [this.day0, this.day1, this.day2, this.day3, this.day4, this.day5, this.day6];
+         const array2 = [];
+
+            array.forEach((element, index) => {
+               if(element == true){
+                   array2.push(index);
+               }else if(element == false){
+
+               }else{
+                   console.log("ERROR!!")
+               }
+            });
+
+            const string1 = array2.join(",");
+
+            return string1;
         },
+
+
       },
 
         components:{
@@ -257,6 +237,7 @@ import moment from 'moment'
         created() {
         const d = new Date();
         this.date = d.getDay();
+        this.todayDay = d.getDay();
 
         var dateObj = new Date();
         var month = dateObj.getUTCMonth() + 1;
@@ -269,19 +250,20 @@ import moment from 'moment'
 
 
         methods:{
-
-            getPlantimes(){
-            axios.get('/api/plantimes').then(response => {
-                    this.plantimes = response.data;
-                      this.countProcent();
-                })
-             .catch(error => {
-                console.log("404");
-            });
-            },
             getPlan(){
             axios.get('/api/plans').then(response => {
-                    this.plans = response.data;
+                this.plans = [];
+                console.log(response.data);
+                response.data.forEach((element, index) => {
+
+                     const array = element.days.split(",");
+                    const istoday = array.some((x) => x == this.date );
+                    console.log(istoday);
+                     if(istoday){
+                        this.plans.push(element);
+                     }
+
+                });
                 })
              .catch(error => {
                 console.log("404");
@@ -298,6 +280,12 @@ import moment from 'moment'
                 }
             },
 
+            reoder(arr, index, n){
+                const output = index.map(i => arr[i]);
+
+                this.sortpickarray = output;
+            },
+
             closeModal(info){
                 if(info == 'add'){
                   this.mainModal = false;
@@ -310,6 +298,18 @@ import moment from 'moment'
 
             taskDone(){
                 // DODĚLAT GSAP ANIMACI
+            },
+
+            showDayPicker(){
+                var array = [];
+                for(let i=1; i<8; i++){
+                    var day = moment().add(i,'days').day();
+
+                    array.push(day);
+                }
+
+                this.indexsDays = array;
+
             },
 
             selectAll(){
@@ -354,37 +354,13 @@ import moment from 'moment'
                 user_id: this.user_id,
                 name: this.newName,
                 emoji: this.newEmoji,
-                time: this.newTime,
                 count: 0,
+                days: this.getDayArray,
               }
-
-
                 axios.post('./api/plans', data).then(response => {
 
-                      for(let i = 0; i<8; i++){
-                        if(this.getDayArray[i] == true){
-                         console.log("čau");
-                          let datatimes = {
-                            user_id: this.user_id,
-                            plan_id: response.data.id.id,
-                            time: i,
-
-                          }
-
-                          axios.post('./api/plantimes', datatimes).then(response => {
-                              console.log(datatimes);
-                              this.getPlantimes();
-                              this.mainModal = false;
-                          });
-                        }
-
-
-                      }
-
-
-
-
-              });
+                }
+              );
 
             },
 

@@ -25,8 +25,7 @@ import moment from 'moment'
         },
 
         mounted() {
-         //   this.getPlantimes();
-
+            this.getPlantimes();
 
                 var date = new Date(this.today);
                 var day = date.getDay();

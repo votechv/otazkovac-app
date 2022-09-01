@@ -13,11 +13,12 @@
     &__window{
         max-width: 700px;
         width: 100%;
-        padding: 10px 10px 20px 10px;
+        padding: 20px;
         background: white;
         position: relative;
         max-height: 70vh;
         overflow-y: scroll;
+
         &--head{
             i{
                 position: absolute;
@@ -32,5 +33,6 @@
             font-weight: bold;
         }
     }
+
 }
 

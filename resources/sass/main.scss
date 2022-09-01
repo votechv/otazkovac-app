@@ -51,7 +51,7 @@ padding: 40px 0px;
     }
 
     @media screen and (max-width: 959px){
-        padding-top: 64px;
+      //  padding-top: 64px;
     }
 }
 
@@ -116,7 +116,7 @@ padding: 40px 0px;
         @media screen and(max-width: 655px){
             flex-direction: column;
         }
-        
+
         @media screen and (max-width:1399px){
             padding: 15px 30px;
         }
@@ -137,7 +137,7 @@ padding: 40px 0px;
         }
 
         &--buttons{
-            width: 50%; 
+            width: 50%;
             justify-content: flex-end;
             display: flex;
             @media screen and(max-width: 655px){
@@ -148,7 +148,7 @@ padding: 40px 0px;
             }
         }
 
-    
+
     }
 
     &--mainButton{
@@ -170,7 +170,7 @@ padding: 40px 0px;
        i{
            padding-right: 6px;
        }
-       
+
     }
 
     &--delete{
@@ -192,8 +192,8 @@ padding: 40px 0px;
         color: #24695c;
        }
 
-   
-       
+
+
     }
 }
 
@@ -223,7 +223,7 @@ padding: 40px 0px;
         justify-content: center;
         padding: 80px;
         position: relative;
-        
+
         @media screen and (min-width: 975px) {
             margin-left: 280px;
         }
@@ -276,7 +276,7 @@ padding: 40px 0px;
             animation: erroroffline .5s alternate infinite;
       }
   }
-  
+
 }
 
 
