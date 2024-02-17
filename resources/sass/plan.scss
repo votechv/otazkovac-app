@@ -67,11 +67,41 @@
 }
 
 .approve_icon_check {
-	transform-origin: 50% 50%;
+	transform-origin: 70% 70%;
 	stroke-dasharray: 48;
 	stroke-dashoffset: 48;
 	animation: stroke 0.3s cubic-bezier(0.65, 0, 0.45, 1) 0.8s forwards;
 }
+
+            .path {
+                stroke-dasharray: 1000;
+                stroke-dashoffset: 0;
+
+            }
+
+            .line {
+                stroke-dashoffset: 1000;
+                -webkit-animation: dash .9s .35s ease-in-out forwards;
+                animation: dash .9s .35s ease-in-out forwards;
+            }
+
+            @-webkit-keyframes dash {
+                0% {
+                    stroke-dashoffset: 1000;
+                }
+                100% {
+                    stroke-dashoffset: 0;
+                }
+            }
+
+            @keyframes dash {
+                0% {
+                    stroke-dashoffset: 1000;
+                }
+                100% {
+                    stroke-dashoffset: 0;
+                }
+            }
 
 @keyframes stroke {
 	100% {

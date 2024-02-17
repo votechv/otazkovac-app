@@ -1,8 +1,10 @@
 <template>
     <div>
+        <div class="main-grid">
         <Menu />
         <div class="app-content">
             <router-view/>
+        </div>
         </div>
     </div>
 </template>

@@ -33,7 +33,7 @@ class PlantimeController extends Controller
         if($request['user_id'] === auth('api')->user()->id){
 
             $plantimes = Plantime::create($request->all());
-    
+
             return response()->json([
                 'message' => 'plantime created',
                  'id' => $plantimes
@@ -65,7 +65,7 @@ class PlantimeController extends Controller
         $request->validate([
             'last' => 'required',
         ]);
-        if($plantime['user_id'] === auth('api')->user()->id){  
+        if($plantime['user_id'] === auth('api')->user()->id){
         $plantime->update(
             $request->all()
         );
@@ -81,7 +81,7 @@ class PlantimeController extends Controller
      */
     public function destroy(Plantime $plantime)
     {
-        if($plantime['user_id'] === auth('api')->user()->id){ 
+        if($plantime['user_id'] === auth('api')->user()->id){
             $plantime->delete();
         }
     }

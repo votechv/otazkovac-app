@@ -48,7 +48,7 @@
     <link rel="stylesheet" type="text/css" href="{{asset('css/responsive.css')}}">
         <link href="{{ asset('css/app.css') }}" rel="stylesheet">
         <script src="/path/to/flickity.pkgd.min.js"></script>
-    
+
 
 
 </head>
@@ -59,9 +59,8 @@
 
     <div class="content">
 
-        <div id="app" class="padding-top: 80px">
+        <div id="app" class="content">
 
-            
         </div>
 
     </div>

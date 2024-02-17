@@ -6,15 +6,15 @@
                 <li v-for="item in sortpickarray" @click="getPlan()" :key="item.index" class="pick" :class="{ checkDay: date == item.value }"><input type="radio" v-model="date" :value="item.value" name="check-day"><label>{{item.name}}</label></li>
             </ul>
         </div>
+
         <div class="plan__info--buttons">
             <button class="user-home__category--mainButton" @click="openModal('add')"> <i class="fa-solid fa-plus"></i> Přidat </button>
             <button  class="user-home__category--mainButton" @click="openModal('edit')"><i class="fa-solid fa-marker"></i>Upravit</button>
         </div>
     </div>
-
         <div class="plan__app">
-
-            <div class="plan__app--single" v-for="plan in plans" :key="plan.id">
+            <div class="plan__app--single" v-if="changeDate(plan.created_at) <= todayformDate" v-for="plan in plans" :key="plan.id">
+                <template >
                 <div class="plan__app--icon">
                     <p>{{plan.emoji}}</p>
                 </div>
@@ -23,17 +23,18 @@
                     <h2>{{plan.name}}</h2>
                 </div>
 
-                <div @click="todayDone(plantime)" class="plan__app--done" >
-                    <div class="plan__app--done--ico"><span v-if="date === todayDay"> 🔥 {{plan.count}} </span></div>
+                <div @click="todayDone(plan)" class="plan__app--done" v-if="plan.last != today" >
+                    <div class="plan__app--done--ico"><span v-if="date === todayDay"> 🔥  {{plan.count}} </span></div>
                 </div>
 
-                <div class="wrapper" v-if="false">
+                <div class="wrapper" v-if="plan.last == today">
                   <svg class="approve_icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 52 52">
                     <circle class="approve_icon_circle" cx="26" cy="26" r="25" fill="none" />
                     <path class="approve_icon_check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8" />
+
                   </svg>
                 </div>
-
+                </template>
               </div>
 
             </div>
@@ -158,6 +159,7 @@ import {forEach} from "lodash";
         data() {
             return {
                plans: '',
+               moment: '',
                plantimes: '',
                date: '',
                mainModal: false,
@@ -181,9 +183,11 @@ import {forEach} from "lodash";
                procenta: '',
                plans: [],
                 error: '',
+                arraywithDays: [],
                 sendDay: '',
                modalAllHab: false,
                 indexsDays: [],
+                allPlan: '',
                 daypick :'',
                 pickarray:[
                     { name: 'Ne', value: 0, },
@@ -203,15 +207,15 @@ import {forEach} from "lodash";
         this.getPlan();
         this.showDayPicker();
        this.reoder(this.pickarray, this.indexsDays, this.pickarray.length);
-        console.log(this.getDayArray);
+         this.getPlantimes();
        },
 
       computed:{
         getDayArray(){
-         const array =  [this.day0, this.day1, this.day2, this.day3, this.day4, this.day5, this.day6];
+         this.arraywithDays =  [this.day0, this.day1, this.day2, this.day3, this.day4, this.day5, this.day6];
          const array2 = [];
 
-            array.forEach((element, index) => {
+            this.arraywithDays.forEach((element, index) => {
                if(element == true){
                    array2.push(index);
                }else if(element == false){
@@ -225,6 +229,26 @@ import {forEach} from "lodash";
 
             return string1;
         },
+          todayformDate(){
+              const today = new Date();
+              if(this.date == this.todayDay){
+                  return  moment().add(0,'days').format("YYYY-MM-DD");
+              }else{
+                 return moment().add(-(this.indexChooseDay),'days').format("YYYY-MM-DD");
+
+              }
+
+
+
+          },
+
+          indexChooseDay(){
+              const index = this.sortpickarray.findIndex(object => {
+                  return  object.value == this.date;
+              });
+
+              return 6 - index;
+          },
 
 
       },
@@ -245,20 +269,32 @@ import {forEach} from "lodash";
         var year = dateObj.getUTCFullYear();
 
         this.today = moment().format("YYYY-MM-DD");
+       // this.today = moment().add(4,'days').date("YYYY-MM-DD");
 
+        },
+
+        filters: {
+            date: function (value) {
+              return  moment(value).format("YYYY-MM-DD");
+            }
         },
 
 
         methods:{
+            changeDate(value){
+                return  moment(value).format("YYYY-MM-DD");
+            },
             getPlan(){
             axios.get('/api/plans').then(response => {
                 this.plans = [];
-                console.log(response.data);
+                this.allPlan = response.data;
+                console.log(this.allPlan);
+
                 response.data.forEach((element, index) => {
 
                      const array = element.days.split(",");
                     const istoday = array.some((x) => x == this.date );
-                    console.log(istoday);
+
                      if(istoday){
                         this.plans.push(element);
                      }
@@ -268,6 +304,16 @@ import {forEach} from "lodash";
              .catch(error => {
                 console.log("404");
             });
+            },
+
+            getPlantimes(){
+                axios.get('/api/plantimes').then(response => {
+                    this.plantimes = response.data;
+                //    console.log(this.plantimes);
+                })
+                    .catch(error => {
+                        console.log("404");
+                    });
             },
 
             openModal(info){
@@ -344,8 +390,6 @@ import {forEach} from "lodash";
 
                 this.user_id = response.data.id
 
-                console.log(this.user_id);
-                console.log(response.data);
             });
             },
 
@@ -358,35 +402,39 @@ import {forEach} from "lodash";
                 days: this.getDayArray,
               }
                 axios.post('./api/plans', data).then(response => {
-
+                    this.getPlan();
+                    this.closeModal('add');
                 }
               );
 
             },
 
-            todayDone(plantime){
-              var plantime_id = plantime.id;
-              var plantime_plan_id = plantime.plan.id;
+            todayDone(plan){
+          //    var plantime_id = plantime.id;
+          //    var plantime_plan_id = plantime.plan.id;
 
-              var newCount = plantime.plan.count + 1;
+              var newCount = plan.count + 1;
 
               let dataPlans = {
-                count: newCount
-              }
-
-              axios.patch('/api/plans/'+plantime_plan_id, dataPlans).then(response => {
-                      this.getPlantimes();
-              });;
-
-              let dataPlanTime = {
+                count: newCount,
                 last: this.today
               }
 
-               axios.patch('/api/plantimes/'+plantime_id, dataPlanTime).then(response => {
-                    this.getPlantimes();
+              axios.patch('/api/plans/'+plan.id, dataPlans).then(response => {
+                      this.getPlan();
               });;
 
-              console.log(this.today);
+                let dataPlanTime = {
+                    plan_id: plan.id,
+                    last: this.today,
+                    time: this.todayDay,
+                    user_id: this.user_id,
+                }
+
+                axios.post('/api/plantimes', dataPlanTime).then(response => {
+
+                });
+
             },
 
             countProcent(){

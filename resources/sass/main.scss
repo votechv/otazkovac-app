@@ -40,8 +40,7 @@ padding: 40px 0px;
 }
 
 .app-content{
-    width: calc(100% - 290px);
-    margin-left: 290px;
+    width: 100%;
 
     @media screen and(max-width: 974px){
         &{
@@ -60,14 +59,19 @@ padding: 40px 0px;
 
 // MAIN !!!!!
 
-.content{
-    background: #f5f7fb;
+
+
+.main-grid{
     min-height: 100vh;
     height: 100%;
     width: 100%;
     transition: 0.5s margin-left;
     padding-top: 74px;
     position: relative;
+    background: #f5f7fb;
+    display: grid;
+    grid-template-columns: 290px 1fr;
+    min-height: 100vh;
 }
 
 #check:checked ~ .content{

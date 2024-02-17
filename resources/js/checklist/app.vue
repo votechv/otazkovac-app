@@ -1,170 +1,29 @@
 <template>
-    <div class="checklist">
-        <div class="checklist__top">
-            <div class="checklist__top-info">
-                 <h2> <span><i class="fa-solid fa-angle-left"></i> </span> 31. srpen <span> <i class="fa-solid fa-angle-right"></i></span> </h2>
-            </div>
-            <div class="checklist__top-calendar">
-                <h2 @click="openCalendar()"> <i class="fa-solid fa-calendar-days"></i></h2>
-                <date-picker  v-model='selectedDate' v-if="calendarOpen"/>
-            </div>
-
+    <div class="todo-folders">
+        <div class="todo-folders__title">
+            <h2>Vaše todo složky</h2>
         </div>
 
-        <div class="checklist__buttons">
-        <button v-if="page==1" @click="page = 2"class="user-home__category--mainButton"><i class="fa-solid fa-eye"></i> Vypast </button>
-        <button v-if="page==2" @click="page = 1" class="user-home__category--mainButton"><i class="fa-solid fa-eye"></i> Rozložení </button>
-        <button @click="modalCreate = true" class="user-home__category--mainButton"><i class="fa-solid fa-plus"></i> Zapsat </button>
+        <div class="todo-folders__grid">
+            <div class="todo-folders__grid-single" style="background-image: url('https://wallpaper.dog/large/5529049.jpg');">
+                <h2> Název složky </h2>
+            </div>
+            <div class="todo-folders__grid-single" style="background-image: url('https://wallpaperaccess.com/full/2041307.png');" >
+                    <h2> Název složky </h2>
+            </div>
+            <div class="todo-folders__grid-single" style="background-image: url('https://clickwallpapers.net/wp-content/uploads/2022/08/clickwallpapers-Java-img1.jpg');" >
+                <h2> Název složky </h2>
+            </div>
+            <div class="todo-folders__grid-single" style="background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/6284b53e-38f1-4d2e-81b4-f6a5c452f92f/d9o6yba-3071e4ea-982e-4654-b6f3-666027ab120c.png/v1/fill/w_1024,h_576,q_80,strp/php_wallpaper_by_milesandryprower_d9o6yba-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9NTc2IiwicGF0aCI6IlwvZlwvNjI4NGI1M2UtMzhmMS00ZDJlLTgxYjQtZjZhNWM0NTJmOTJmXC9kOW82eWJhLTMwNzFlNGVhLTk4MmUtNDY1NC1iNmYzLTY2NjAyN2FiMTIwYy5wbmciLCJ3aWR0aCI6Ijw9MTAyNCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.epU2KLIxu8aLPWf5yKw1oCTB0yEYKfyju6xmKdEL7xQ');">
+                <h2> Název složky </h2>
+            </div>
+            <div class="todo-folders__grid-single" style="background-image: url('https://clickwallpapers.net/wp-content/uploads/2022/08/clickwallpapers-C-img1.jpg');">
+                <h2> Název složky </h2>
+            </div>
+            <div class="todo-folders__grid-single" style="background-image: url('https://img.freepik.com/free-photo/black-friday-elements-assortment_23-2149074075.jpg?w=2000');">
+                <h2> Název složky </h2>
+            </div>
         </div>
-
-        <template v-if="page == 1">
-        <div class="checklist__app">
-            <div class="checklist__app-single checklist__app-single--green">
-                <p> Dodělat v Pobo copywriting </p>
-
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single checklist__app-single--red">
-                <p> Zajet si pro novou občanku </p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single checklist__app-single--orange checklist__app-single--done">
-                <p> Jít se psem na procházku </p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single checklist__app-single--orange" >
-                <p> Dodělat custom úpravy pro 4 premium klienty</p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single checklist__app-single--green">
-                <p> Zbytek dne se věnovat psovi </p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single">
-                <p> Ahooojky 6 </p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single">
-                <p> Ahooojky 7 </p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single">
-                <p> Ahooojky 8 </p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single">
-                <p> Ahooojky 9 </p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single">
-                <p> Ahooojky 10 </p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single">
-                <p> Čauky mňauky úkol číslo 11 :) </p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single">
-                <p> Ahooojky 12 </p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single">
-                <p> Ahooojky 13 </p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single">
-                <p> Ahooojky 14 </p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-            <div class="checklist__app-single">
-                <p> Ahooojky 15 </p>
-                <div class="checklist__app-single--time">15:00</div>
-            </div>
-
-        </div>
-        </template>
-
-        <template v-if="page ==2">
-            <div class="checklist__table">
-                <table>
-                    <thead>
-                    <tr>
-                        <th>Datum </th>
-                        <th>Událost / Úkol </th>
-                        <th>Čas</th>
-                        <th>Edit</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr>
-                        <td>12.9.</td>
-                        <td>Předpříprava v Plzni na VŠ</td>
-                        <td>14:30</td>
-                        <td class="checklist__table--edit">  <i class="fa-solid fa-pen"></i>  <i class="fa-solid fa-trash-can"></i></td>
-                    </tr>
-                    <tr>
-                        <td>13.9.</td>
-                        <td>Předpříprava v Plzni na VŠ</td>
-                        <td> 23:00 </td>
-                        <td class="checklist__table--edit">  <i class="fa-solid fa-pen"></i>  <i class="fa-solid fa-trash-can"></i></td>
-                    </tr>
-                    <tr class="checklist__table--event">
-                        <td>19.9.</td>
-                        <td>Zahájení studia na VŠ</td>
-                        <td>8:00</td>
-                        <td class="checklist__table--edit">  <i class="fa-solid fa-pen"></i>  <i class="fa-solid fa-trash-can"></i></td>
-                    </tr>
-                    <tr>
-                        <td>23.9</td>
-                        <td>Domča starosta volba</td>
-                        <td>14:00</td>
-                        <td class="checklist__table--edit">  <i class="fa-solid fa-pen"></i>  <i class="fa-solid fa-trash-can"></i></td>
-
-                    </tr>
-                    <tr class="checklist__table--event">
-                        <td>31.10</td>
-                        <td>Moje narozeniny</td>
-                        <td>0:00</td>
-                        <td class="checklist__table--edit">  <i class="fa-solid fa-pen"></i>  <i class="fa-solid fa-trash-can"></i></td>
-                    </tr>
-                    </tbody>
-                </table>
-            </div>
-        </template>
-
-        <main-modal title="Zapsat" v-if="modalCreate" @close="modalCreate = false">
-            <template v-slot:content>
-                <div class="checklist__modal">
-                    <form>
-                        <div class="btn-group btn-toggle">
-                            <button class="btn btn-bg btn-primary btn-default" style="border: 1px solid gray">Úkol</button>
-                            <button class="btn btn-bg active" style="border: 1px solid gray">Událost</button>
-                        </div>
-
-                    <input type="text" name="newName" class="checklist__modal--big" v-model="newName" placeholder="Úkol: Např. odpovědět na emaily">
-                    <label name="dulezitost"> Důležitost </label>
-                     <div class="checklist__modal-colors">
-                         <div class="checklist__modal-colors-single">
-                            <input type="radio" name="dulezitost" id="dulezitost1"value="1">
-                             <label class="form-check-label" for="dulezitost1">Malá</label>
-                         </div>
-                         <div class="checklist__modal-colors-single">
-                             <input type="radio" name="dulezitost" id="dulezitost2"value="2">
-                             <label class="form-check-label" for="dulezitost2">Střední</label>
-                         </div>
-                         <div class="checklist__modal-colors-single">
-                             <input type="radio" name="dulezitost" id="dulezitost3"value="3">
-                             <label class="form-check-label" for="dulezitost3">Velká</label>
-                         </div>
-                     </div>
-                        <date-picker  v-model='newDate' style="position: relative"/>
-                        <input type="time" value="12:00">
-
-                        <button class="checklist__modal-send"><i class="fa-solid fa-floppy-disk"></i> Odeslat</button>
-                    </form>
-                </div>
-            </template>
-        </main-modal>
     </div>
 </template>
 
@@ -177,31 +36,19 @@ import MainModal from '../components/MainModal.vue'
     export default {
         data() {
             return {
-                selectedDate: '',
-                calendarOpen: false,
-                page: 1,
-                newDate: '',
-                modalCreate: false,
+
             }
         },
 
         mounted() {
-          this.selectedDate = new Date();
+
         },
 
         components:{
-            Calendar,
-            DatePicker, MainModal
+
         },
         methods: {
-            openCalendar(){
-                if(this.calendarOpen){
-                    this.calendarOpen = false;
-                }else{
-                    this.calendarOpen = true;
-                }
 
-            },
         },
     }
 </script>

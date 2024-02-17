@@ -10,7 +10,7 @@ try {
     window.Popper = require('popper.js').default;
     window.$ = window.jQuery = require('jquery');
 
-    
+
 } catch (e) {}
 
 /**
@@ -23,9 +23,9 @@ window.axios = require('axios');
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 let apiToken = document.head.querySelector('meta[name="api-token"]')
- if (apiToken){ 
-    
-    window.axios.defaults.headers.common['Authorization'] = 
+ if (apiToken){
+
+    window.axios.defaults.headers.common['Authorization'] =
     'Bearer ' + apiToken.content;
 
 

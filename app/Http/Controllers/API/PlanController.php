@@ -18,8 +18,8 @@ class PlanController extends Controller
      */
     public function index()
     {
-        return auth()->user()->plan;
-             
+        return auth('api')->user()->plan()->with('plantime')->latest()->get();
+
     }
 
     /**
@@ -33,7 +33,7 @@ class PlanController extends Controller
         if($request['user_id'] === auth('api')->user()->id){
 
             $plans = Plan::create($request->all());
-    
+
             return response()->json([
                 'message' => 'plan created',
                  'id' => $plans
@@ -64,8 +64,9 @@ class PlanController extends Controller
     {
         $request->validate([
             'count' => 'required',
+            'last' => 'required',
         ]);
-        if($plan['user_id'] === auth('api')->user()->id){  
+        if($plan['user_id'] === auth('api')->user()->id){
         $plan->update(
             $request->all()
         );
@@ -80,7 +81,7 @@ class PlanController extends Controller
      */
     public function destroy(Plan $plan)
     {
-        if($plan['user_id'] === auth('api')->user()->id){ 
+        if($plan['user_id'] === auth('api')->user()->id){
             $plan->delete();
         }
     }
